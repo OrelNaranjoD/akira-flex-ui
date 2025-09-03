@@ -118,12 +118,7 @@ jobs:
           major-wording: 'BREAKING CHANGE,breaking,!'
           tag-prefix: 'v'
           default: ${{ github.event.inputs.release_type || 'patch' }}
-          commit-message: |
-            🚀 Release {{version}} [skip ci]
-
-            - build: update version to {{version}}
-            - docs: update changelog for {{version}}
-            - style: auto-fix linting and formatting issues
+          commit-message: 'chore: release {{version}} [skip ci]'
           push: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

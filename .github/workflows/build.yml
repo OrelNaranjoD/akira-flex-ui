@@ -1,0 +1,161 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Type of release (patch, minor, major)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: false
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Configure npm for GitHub Packages
+        run: |
+          echo "@orelnaranjod:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${FLEX_LIB_TOKEN}" >> .npmrc
+        env:
+          FLEX_LIB_TOKEN: ${{ secrets.FLEX_LIB_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test
+        env:
+          NODE_ENV: test
+
+      - name: Build application
+        run: npm run build
+
+      - name: Check build artifacts
+        run: |
+          # Verify main dist directory
+          if [ ! -d "dist" ]; then
+            echo "Build failed - dist directory not found"
+            exit 1
+          fi
+
+          # Verify Angular project directory
+          if [ ! -d "dist/akira-flex-ui" ]; then
+            echo "Build failed - Angular app directory not found"
+            exit 1
+          fi
+
+          # Verify essential Angular files
+          if [ ! -f "dist/akira-flex-ui/index.html" ]; then
+            echo "Build failed - index.html not found"
+            exit 1
+          fi
+
+          # Verify JavaScript files exist (with hash)
+          if [ ! -f "dist/akira-flex-ui/main"*.js ]; then
+            echo "Build failed - main JavaScript files not found"
+            exit 1
+          fi
+
+          # Verify CSS files (with hash)
+          if [ ! -f "dist/akira-flex-ui/styles"*.css ]; then
+            echo "Build failed - CSS files not found"
+            exit 1
+          fi
+
+          # Show content for debugging
+          echo "Build successful - Angular artifacts found:"
+          ls -la dist/akira-flex-ui/
+          echo "Total bundle size:"
+          du -sh dist/akira-flex-ui/
+
+  bump-version:
+    needs: validate-and-build
+    if: success()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Apply formatting and linting fixes
+        run: |
+          npm run lint:fix
+
+      - name: Generate changelog
+        run: |
+          npm run changelog || echo "No changelog script found, skipping..."
+
+      - name: Bump version and commit changes
+        id: bump
+        uses: phips28/gh-action-bump-version@v11.0.4
+        with:
+          patch-wording: 'chore,docs,style,refactor,test,fix,perf'
+          minor-wording: 'feat,feature'
+          major-wording: 'BREAKING CHANGE,breaking,!'
+          tag-prefix: 'v'
+          default: ${{ github.event.inputs.release_type || 'patch' }}
+          commit-message: |
+            🚀 Release {{version}} [skip ci]
+
+            - build: update version to {{version}}
+            - docs: update changelog for {{version}}
+            - style: auto-fix linting and formatting issues
+          push: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output new version
+        id: output-version
+        run: echo "new_version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+    outputs:
+      new_version: ${{ steps.output-version.outputs.new_version }}

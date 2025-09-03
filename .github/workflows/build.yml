@@ -77,29 +77,39 @@ jobs:
           # Show content for debugging first
           echo "Contents of dist/akira-flex-ui/:"
           ls -la dist/akira-flex-ui/
+          
+          # Angular 20+ uses browser subdirectory
+          BROWSER_DIR="dist/akira-flex-ui/browser"
+          if [ -d "$BROWSER_DIR" ]; then
+            echo "Contents of $BROWSER_DIR/:"
+            ls -la "$BROWSER_DIR/"
+            BUILD_DIR="$BROWSER_DIR"
+          else
+            BUILD_DIR="dist/akira-flex-ui"
+          fi
 
-          # Verify essential Angular files
-          if [ ! -f "dist/akira-flex-ui/index.html" ]; then
-            echo "Build failed - index.html not found"
+          # Verify essential Angular files in the correct directory
+          if [ ! -f "$BUILD_DIR/index.html" ]; then
+            echo "Build failed - index.html not found in $BUILD_DIR"
             exit 1
           fi
 
           # Verify JavaScript files exist (using proper wildcard expansion)
-          js_files=$(ls dist/akira-flex-ui/main*.js 2>/dev/null || echo "")
+          js_files=$(ls $BUILD_DIR/main*.js 2>/dev/null || echo "")
           if [ -z "$js_files" ]; then
-            echo "Build failed - main JavaScript files not found"
+            echo "Build failed - main JavaScript files not found in $BUILD_DIR"
             exit 1
           fi
 
           # Verify CSS files (using proper wildcard expansion)  
-          css_files=$(ls dist/akira-flex-ui/styles*.css 2>/dev/null || echo "")
+          css_files=$(ls $BUILD_DIR/styles*.css 2>/dev/null || echo "")
           if [ -z "$css_files" ]; then
-            echo "Build failed - CSS files not found"
+            echo "Build failed - CSS files not found in $BUILD_DIR"
             exit 1
           fi
 
           # Show successful verification
-          echo "Build successful - Angular artifacts verified:"
+          echo "Build successful - Angular artifacts verified in $BUILD_DIR:"
           echo "✓ index.html found"
           echo "✓ JavaScript files: $js_files"
           echo "✓ CSS files: $css_files"

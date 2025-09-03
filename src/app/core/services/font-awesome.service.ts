@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { Injectable, inject } from '@angular/core'
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import {
   faTachometerAlt,
   faUser,
@@ -15,21 +15,29 @@ import {
   faSignal,
   faUserCircle,
   faQuestionCircle,
-} from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+/**
+ * FontAwesome service for managing FontAwesome icons.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class FontAwesomeService {
-  private readonly library = inject(FaIconLibrary);
+  private readonly library = inject(FaIconLibrary)
 
   constructor() {
-    this.initializeIcons();
+    this.initializeIcons()
   }
 
+  /**
+   * Initialize FontAwesome icons.
+   */
   private initializeIcons(): void {
-    // Solid icons
+    /**
+     * Solid icons.
+     */
     this.library.addIcons(
       faTachometerAlt,
       faUser,
@@ -44,10 +52,12 @@ export class FontAwesomeService {
       faEthernet,
       faSignal,
       faUserCircle,
-      faQuestionCircle,
-    );
+      faQuestionCircle
+    )
 
-    // Brand icons
-    this.library.addIcons(faGithub, faTwitter);
+    /**
+     * Brand icons.
+     */
+    this.library.addIcons(faGithub, faTwitter)
   }
 }

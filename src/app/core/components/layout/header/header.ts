@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Component } from '@angular/core'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
+/**
+ * Header component for displaying the application's header section.
+ */
 @Component({
   selector: 'app-header',
   imports: [FontAwesomeModule],

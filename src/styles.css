@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 .content-area {
   grid-template-rows: auto 1fr auto;

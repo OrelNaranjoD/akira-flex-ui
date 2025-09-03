@@ -10,7 +10,5 @@ export default {
     'subject-empty': [0],
     'type-empty': [0],
   },
-  ignores: [
-    (commit) => commit.includes('Release v') || commit.includes('[skip ci]'),
-  ],
-};
+  ignores: [(commit) => commit.includes('Release v') || commit.includes('[skip ci]')],
+}

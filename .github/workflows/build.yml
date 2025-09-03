@@ -68,11 +68,15 @@ jobs:
             exit 1
           fi
 
-          # Verify Angular project directory
+          # Verify Angular project directory  
           if [ ! -d "dist/akira-flex-ui" ]; then
             echo "Build failed - Angular app directory not found"
             exit 1
           fi
+
+          # Show content for debugging first
+          echo "Contents of dist/akira-flex-ui/:"
+          ls -la dist/akira-flex-ui/
 
           # Verify essential Angular files
           if [ ! -f "dist/akira-flex-ui/index.html" ]; then
@@ -80,21 +84,26 @@ jobs:
             exit 1
           fi
 
-          # Verify JavaScript files exist (with hash)
-          if [ ! -f "dist/akira-flex-ui/main"*.js ]; then
+          # Verify JavaScript files exist (using proper wildcard expansion)
+          js_files=$(ls dist/akira-flex-ui/main*.js 2>/dev/null || echo "")
+          if [ -z "$js_files" ]; then
             echo "Build failed - main JavaScript files not found"
             exit 1
           fi
 
-          # Verify CSS files (with hash)
-          if [ ! -f "dist/akira-flex-ui/styles"*.css ]; then
+          # Verify CSS files (using proper wildcard expansion)  
+          css_files=$(ls dist/akira-flex-ui/styles*.css 2>/dev/null || echo "")
+          if [ -z "$css_files" ]; then
             echo "Build failed - CSS files not found"
             exit 1
           fi
 
-          # Show content for debugging
-          echo "Build successful - Angular artifacts found:"
-          ls -la dist/akira-flex-ui/
+          # Show successful verification
+          echo "Build successful - Angular artifacts verified:"
+          echo "✓ index.html found"
+          echo "✓ JavaScript files: $js_files"
+          echo "✓ CSS files: $css_files"
+          
           echo "Total bundle size:"
           du -sh dist/akira-flex-ui/
 

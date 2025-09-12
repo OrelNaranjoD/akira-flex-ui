@@ -1,0 +1,24 @@
+[data-domain="platform"][data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Platform Domain - Enterprise Purple Palette (Dark) */
+  --color-primary: oklch(0.65 0.18 270);
+  --color-secondary: oklch(0.55 0.15 280);
+  --color-accent: oklch(0.7 0.2 260);
+  --color-background: oklch(0.15 0.03 270);
+  --color-foreground: oklch(0.92 0.01 270);
+  --color-border: oklch(0.25 0.04 270);
+  --color-muted: oklch(0.18 0.035 270);
+  --color-card: oklch(0.16 0.032 270);
+  --radius: 0.5rem;
+
+  /* Apply the theme variables */
+  --primary: var(--color-primary);
+  --secondary: var(--color-secondary);
+  --accent: var(--color-accent);
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --border: var(--color-border);
+  --muted: var(--color-muted);
+  --card: var(--color-card);
+}

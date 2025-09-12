@@ -1,0 +1,28 @@
+[data-domain="landing"][data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Landing Domain – Professional Blue Palette (Dark) */
+  --color-primary: oklch(0.65 0.15 230); /* Azul principal: botones, enlaces activos */
+  --color-secondary: oklch(0.55 0.12 220); /* Azul secundario: hover, elementos destacados */
+  --color-accent: oklch(0.7 0.18 280); /* Púrpura vibrante para degradados atractivos */
+  --color-accent-alt: oklch(0.7 0.18 80); /* Naranja vibrante para CTA y elementos destacados */
+
+  --color-background: oklch(0.18 0.035 230); /* Fondo principal oscuro */
+  --color-card: oklch(0.22 0.04 230); /* Fondo de tarjetas y secciones elevadas */
+  --color-border: oklch(0.3 0.05 230); /* Bordes sutiles y separadores */
+
+  --color-foreground: oklch(0.92 0.008 230); /* Texto principal claro */
+  --color-muted-foreground: oklch(0.7 0.01 230); /* Texto secundario o desactivado */
+  --color-muted: oklch(0.25 0.04 230); /* Fondo de elementos desactivados o inputs */
+
+  /* Theme specific overrides */
+  --border: 0.8px;
+  --color-company: oklch(0.4 0.1 260);
+  --color-gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  --color-gradient-border: linear-gradient(315deg, var(--color-primary), var(--color-accent));
+}
+
+/* Landing specific link hover color */
+[data-domain="landing"][data-theme="dark"] a:hover {
+  color: var(--color-primary);
+}

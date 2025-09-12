@@ -15,7 +15,45 @@ import {
   faSignal,
   faUserCircle,
   faQuestionCircle,
+  faMoon,
+  faSun,
+  faDisplay,
+  faChevronLeft,
+  faChevronRight,
+  faChevronDown,
+  faChevronUp,
+  faLock,
+  faSignInAlt,
+  faUserPlus,
+  faEnvelope,
+  faEye,
+  faEyeSlash,
+  faKey,
+  faSignOutAlt,
+  faCheck,
+  faBuilding,
+  faLayerGroup,
+  faFlag,
+  faTag,
+  faPuzzlePiece,
+  faClock,
+  faLifeRing,
+  faBook,
+  faCircleQuestion,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons'
+import {
+  faFlag as faFlagRegular,
+  faHeart as faHeartRegular,
+  faCircleQuestion as faCircleQuestionRegular,
+  faEnvelope as faEnvelopeRegular,
+  faBookmark as faBookRegular,
+  faClock as faClockRegular,
+  faLifeRing as faLifeRingRegular,
+  faSquare as faLayerGroupRegular,
+  faMoneyBill1 as faPriceRegular,
+  faHandshake as faIntegrationsRegular,
+} from '@fortawesome/free-regular-svg-icons'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 /**
@@ -52,12 +90,54 @@ export class FontAwesomeService {
       faEthernet,
       faSignal,
       faUserCircle,
-      faQuestionCircle
+      faQuestionCircle,
+      faMoon,
+      faSun,
+      faDisplay,
+      faChevronLeft,
+      faChevronRight,
+      faChevronDown,
+      faChevronUp,
+      faLock,
+      faSignInAlt,
+      faUserPlus,
+      faEnvelope,
+      faEye,
+      faEyeSlash,
+      faKey,
+      faSignOutAlt,
+      faCheck,
+      faLayerGroup,
+      faFlag,
+      faTag,
+      faPuzzlePiece,
+      faClock,
+      faLifeRing,
+      faBook,
+      faCircleQuestion,
+      faHeart,
+      faBuilding
     )
 
     /**
      * Brand icons.
      */
     this.library.addIcons(faGithub, faTwitter)
+
+    /**
+     * Regular (outline) icons.
+     */
+    this.library.addIcons(
+      faFlagRegular,
+      faHeartRegular,
+      faCircleQuestionRegular,
+      faEnvelopeRegular,
+      faBookRegular,
+      faClockRegular,
+      faLifeRingRegular,
+      faLayerGroupRegular,
+      faPriceRegular,
+      faIntegrationsRegular
+    )
   }
 }

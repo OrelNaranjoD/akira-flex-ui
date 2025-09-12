@@ -4,7 +4,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core'
 import { provideRouter } from '@angular/router'
-import { routes } from './app.routes'
+import { APP_ROUTES } from './app.routes'
 import { FontAwesomeService } from './core/services/font-awesome.service'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay()),
-    provideRouter(routes),
+    provideRouter(APP_ROUTES),
     FontAwesomeService,
   ],
 }

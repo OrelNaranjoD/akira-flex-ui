@@ -13,7 +13,14 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2023",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "@flex-shared-lib": ["./src/flex-shared-lib"],
+      "@tenant": ["./src/tenant"],
+      "@platform": ["./src/platform"],
+      "@landing": ["./src/landing"],
+      "@core": ["./src/core"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -43,7 +43,6 @@ All code must meet quality standards before committing:
 Before each commit, the following checks run automatically via Husky:
 
 ```bash
-# Automatically runs on commit:
 - ESLint validation and auto-fix
 - Prettier formatting
 - JSDoc validation
@@ -88,9 +87,7 @@ git pull origin develop
 # Make your changes here
 
 # Run quality checks locally (optional but recommended)
-npm run validate  # Runs linting and tests
 npm run lint      # Fix linting issues
-npm run format    # Format code with Prettier
 npm test          # Run unit tests
 
 # Stage changes and create a semantic commit
@@ -147,6 +144,49 @@ export class AuthService {
 
 ### Component Documentation
 
+#### Option one(Preferred)
+
+```typescript
+/**
+ * Header component
+ */
+@Component({
+  selector: 'app-header',
+  template: `
+    <header class="flex items-center justify-between p-4">
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/about">About</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+          <li><button (click)="onLogout()">Logout</button></li>
+        </ul>
+      </nav>
+    </header>
+  `,
+  imports: [RouterLink],
+  styles: [
+    `
+      header {
+        background-color: #f8f9fa;
+        padding: 1rem;
+      }
+    `,
+  ],
+})
+export class HeaderComponent {
+  /**
+   * Handles user logout process and redirects to login page.
+   * Clears local storage and resets authentication state.
+   */
+  onLogout(): void {
+    // Implementation
+  }
+}
+```
+
+#### Option two
+
 ```typescript
 /**
  * Header component that displays navigation menu and user actions.
@@ -201,19 +241,33 @@ describe('AuthService', () => {
 ### File Organization
 
 ```bash
-src/app/
-├── core/                    # Core functionality (singletons)
-│   ├── components/         # Layout components (header, footer, etc.)
-│   └── services/          # Core services (auth, http, etc.)
-├── pages/                  # Feature pages/modules
-│   └── [feature]/         # Feature-specific components
-│       ├── components/    # Feature components
-│       ├── services/      # Feature services
-│       └── models/        # Feature models/interfaces
-└── shared/                # Shared utilities and components
-    ├── components/        # Reusable components
-    ├── pipes/            # Custom pipes
-    └── utils/            # Utility functions
+src/
+  app/
+    core/                  # Core functionality (singletons)
+      components/          # Layout components (header, footer, etc.)
+      services/            # Core services (auth, http, etc.)
+    flex-shared-lib/       # Temp shared library for flexible components
+    landing/               # Landing module
+      components/          # Landing components
+      pages/               # Landing pages
+    platform/              # Platform-specific code
+      components/          # Platform components
+      pages/               # Platform pages
+    tenant/                # Tenant-specific code
+      components/          # Tenant components
+      pages/               # Tenant pages
+test/                      # Test files
+  core/
+    services/
+  landing/
+    components/
+    pages/
+  platform/
+    components/
+    pages/
+  tenant/
+    components/
+    pages/
 ```
 
 ### Styling Guidelines

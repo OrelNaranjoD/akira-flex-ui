@@ -19,6 +19,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.css",
+                "input": "src/app/core/themes",
+                "output": "/assets/themes/"
               }
             ],
             "styles": ["src/styles.css"],
@@ -72,13 +77,19 @@
           "options": {
             "main": "src/test/test.ts",
             "tsConfig": "tsconfig.spec.json",
+            "styles": ["src/styles.css"],
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*.css",
+                "input": "src/app/core/themes",
+                "output": "/assets/themes/"
               }
             ],
-            "styles": ["src/styles.css"]
+            "codeCoverageExclude": ["src/test/test.ts", "src/test/**/*.spec.ts", "src/**/*.spec.ts"]
           }
         },
         "lint": {

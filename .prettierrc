@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/prettierrc",
+  "plugins": ["prettier-plugin-organize-attributes"],
   "semi": false,
   "trailingComma": "es5",
   "singleQuote": true,
@@ -13,39 +14,32 @@
   "quoteProps": "as-needed",
   "jsxSingleQuote": true,
   "proseWrap": "preserve",
-  "htmlWhitespaceSensitivity": "css",
+  "htmlWhitespaceSensitivity": "strict",
   "vueIndentScriptAndStyle": false,
   "embeddedLanguageFormatting": "auto",
   "singleAttributePerLine": false,
   "overrides": [
     {
-      "files": "*.html",
+      "files": ["*.ts"],
       "options": {
-        "parser": "angular",
+        "parser": "typescript",
+        "printWidth": 100
+      }
+    },
+    {
+      "files": ["*.component.html", "*.html"],
+      "options": {
+        "parser": "html",
         "printWidth": 120,
-        "bracketSameLine": true,
-        "singleAttributePerLine": true
+        "bracketSameLine": false,
+        "htmlWhitespaceSensitivity": "css",
+        "singleAttributePerLine": false
       }
     },
     {
-      "files": "*.component.html",
+      "files": ["*.css"],
       "options": {
-        "parser": "angular",
-        "printWidth": 120,
-        "bracketSameLine": true,
-        "singleAttributePerLine": true
-      }
-    },
-    {
-      "files": "*.scss",
-      "options": {
-        "singleQuote": false,
-        "printWidth": 120
-      }
-    },
-    {
-      "files": "*.css",
-      "options": {
+        "parser": "css",
         "singleQuote": false,
         "printWidth": 120
       }
@@ -53,28 +47,24 @@
     {
       "files": "*.json",
       "options": {
+        "parser": "json",
         "printWidth": 120,
         "tabWidth": 2
       }
     },
     {
-      "files": "*.md",
+      "files": ["*.md", "*.markdown"],
       "options": {
+        "parser": "markdown",
         "printWidth": 80,
         "proseWrap": "always",
         "tabWidth": 2
       }
     },
     {
-      "files": "*.yml",
+      "files": ["*.yml", "*.yaml"],
       "options": {
-        "tabWidth": 2,
-        "singleQuote": true
-      }
-    },
-    {
-      "files": "*.yaml",
-      "options": {
+        "parser": "yaml",
         "tabWidth": 2,
         "singleQuote": true
       }

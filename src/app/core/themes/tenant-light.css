@@ -1,0 +1,21 @@
+[data-domain="tenant"][data-theme="light"] {
+  color-scheme: light;
+
+  /* Tenant Domain - Corporate Blue & Orange Palette with Soft Neutral Grays */
+  --color-primary: oklch(0.55 0.16 260);
+  --color-secondary: oklch(0.65 0.13 265);
+  --color-accent: oklch(0.75 0.18 40);
+
+  --color-background: oklch(0.97 0 0);
+  --color-card: oklch(0.98 0 0);
+  --color-border: oklch(0.9 0 0);
+
+  --color-foreground: oklch(0.22 0 0);
+  --color-muted-foreground: oklch(0.6 0 0);
+  --color-muted: oklch(0.94 0 0);
+
+  /* Theme specific overrides */
+  --border: 1px;
+  --radius: 0.5rem;
+  --color-company: oklch(0.4 0.1 260);
+}

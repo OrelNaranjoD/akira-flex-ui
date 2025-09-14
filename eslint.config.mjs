@@ -1,5 +1,5 @@
 // @ts-check
-import eslint from '@eslint/js'
+import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import angular from 'angular-eslint'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
@@ -7,13 +7,42 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
 
-export default tseslint.config(
+export default [
   {
     ignores: ['node_modules/', 'dist/', '.angular/', 'coverage/', 'eslint.config.mjs'],
   },
+  {
+    files: ['**/*.js', '**/*.mjs'],
+    plugins: {
+      js,
+      prettier: prettierPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2023,
+      },
+      ecmaVersion: 2023,
+      sourceType: 'module',
+    },
+    rules: {
+      'prettier/prettier': 'error',
+    },
+  },
 
-  eslint.configs.recommended,
-  ...angular.configs.tsRecommended,
+  js.configs.recommended,
+
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ['**/*.ts'],
+  })),
+
+  ...angular.configs.tsRecommended.map((config) => ({
+    ...config,
+    files: ['**/*.ts'],
+  })),
+
   prettierConfig,
 
   {
@@ -81,6 +110,9 @@ export default tseslint.config(
 
   {
     files: ['**/*.spec.ts', '**/*.test.ts', 'src/test/**/*.ts'],
+    plugins: {
+      prettier: prettierPlugin,
+    },
     languageOptions: {
       globals: {
         ...globals.jasmine,
@@ -88,6 +120,7 @@ export default tseslint.config(
       },
     },
     rules: {
+      'prettier/prettier': 'error',
       'jsdoc/require-jsdoc': 'off',
       'jsdoc/require-description': 'off',
       'jsdoc/require-param': 'off',
@@ -104,7 +137,11 @@ export default tseslint.config(
       '**/*.pipe.ts',
       '**/*.directive.ts',
     ],
+    plugins: {
+      prettier: prettierPlugin,
+    },
     rules: {
+      'prettier/prettier': 'error',
       'jsdoc/require-description': 'error',
       'jsdoc/require-param': 'warn',
       'jsdoc/require-returns': 'warn',
@@ -113,14 +150,22 @@ export default tseslint.config(
     },
   },
 
+  ...angular.configs.templateRecommended.map((config) => ({
+    ...config,
+    files: ['**/*.html'],
+  })),
+  ...angular.configs.templateAccessibility.map((config) => ({
+    ...config,
+    files: ['**/*.html'],
+  })),
+
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     plugins: {
       prettier: prettierPlugin,
     },
     rules: {
       'prettier/prettier': 'error',
     },
-  }
-)
+  },
+]

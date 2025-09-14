@@ -1,0 +1,33 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4 theme definition for defining design tokens"
+    },
+    {
+      "name": "@config",
+      "description": "Tailwind CSS v4 configuration directive"
+    },
+    {
+      "name": "@apply",
+      "description": "Tailwind CSS v4 apply directive for applying utility classes"
+    },
+    {
+      "name": "@layer",
+      "description": "Tailwind CSS v4 layer directive for organizing CSS into layers"
+    },
+    {
+      "name": "@utility",
+      "description": "Tailwind CSS v4 utility directive for defining custom utilities"
+    },
+    {
+      "name": "@variant",
+      "description": "Tailwind CSS v4 variant directive for applying variants"
+    },
+    {
+      "name": "@custom-variant",
+      "description": "Tailwind CSS v4 custom variant directive for defining custom variants"
+    }
+  ]
+}

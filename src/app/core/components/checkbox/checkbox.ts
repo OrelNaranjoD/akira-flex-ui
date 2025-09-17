@@ -3,9 +3,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 /**
  * Reusable checkbox component with theme support.
- *
- * Uses Angular signals for reactive state management and provides
- * a consistent styled checkbox across the application.
  */
 @Component({
   selector: 'app-checkbox',
@@ -14,13 +11,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     <label class="flex items-center cursor-pointer group">
       <div class="relative flex items-center justify-center">
         <input
-          class="peer h-5 w-5 cursor-pointer transition-all duration-200 appearance-none rounded shadow hover:shadow-md border border-[var(--border)] checked:bg-[var(--color-primary)] checked:border-[var(--color-primary)] hover:border-[var(--color-primary)]/60 hover:bg-[var(--color-muted)]/50"
+          class="peer h-5 w-5 cursor-pointer transition-all duration-200 appearance-none rounded shadow border border-[var(--border)] checked:bg-[var(--color-primary)] checked:border-transparent checked:shadow-md hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 focus:outline-none focus:ring-1"
           [checked]="checked()"
           (change)="onToggle($event)"
           type="checkbox"
         />
         <span
-          class="absolute inset-0 flex items-center justify-center text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+          class="absolute inset-0 flex items-center justify-center text-[var(--color-foreground)] opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+          aria-hidden="true"
         >
           <fa-icon class="text-[10px] leading-none" [icon]="['fas', 'check']"></fa-icon>
         </span>
@@ -36,19 +34,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
   `,
 })
 export class Checkbox {
-  /**
-   * Whether the checkbox is checked.
-   */
   checked = input<boolean>(false)
-
-  /**
-   * Label text for the checkbox.
-   */
   label = input<string>('')
-
-  /**
-   * Event emitted when checkbox state changes.
-   */
   checkedChange = output<boolean>()
 
   /**

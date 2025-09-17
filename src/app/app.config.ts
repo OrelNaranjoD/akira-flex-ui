@@ -6,6 +6,7 @@ import {
 import { provideRouter } from '@angular/router'
 import { APP_ROUTES } from './app.routes'
 import { FontAwesomeService } from './core/services/font-awesome.service'
+import { provideHttpClient, withFetch } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 
 export const appConfig: ApplicationConfig = {
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay()),
     provideRouter(APP_ROUTES),
+    provideHttpClient(withFetch()),
     FontAwesomeService,
   ],
 }

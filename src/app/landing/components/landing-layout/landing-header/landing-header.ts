@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core'
 import { LandingMenu } from '../../landing-menu/landing-menu'
-import { LandingLogin } from '../../landing-login/landing-login'
+import { LandingAuth } from '../../landing-auth/landing-auth'
 import { Logotype } from '../../../../core/components/logotype/logotype'
 import { Profile } from '../../../../core/components/profile/profile'
 import { ThemeSwitch } from '../../../../core/components/theme-switch/theme-switch'
@@ -10,7 +10,7 @@ import { ThemeSwitch } from '../../../../core/components/theme-switch/theme-swit
  */
 @Component({
   selector: 'app-landing-header',
-  imports: [LandingMenu, LandingLogin, Logotype, Profile, ThemeSwitch],
+  imports: [LandingMenu, LandingAuth, Logotype, Profile, ThemeSwitch],
   template: `
     <header
       class="fixed top-0 left-0 right-0 z-50 text-[var(--color-foreground)] px-4 w-full shadow-sm transition-all duration-300"
@@ -37,24 +37,17 @@ import { ThemeSwitch } from '../../../../core/components/theme-switch/theme-swit
           <app-theme-switch></app-theme-switch>
 
           @if (!isLoggedIn) {
-            <app-landing-login></app-landing-login>
+            <app-landing-auth (loginSuccess)="onLogin()"></app-landing-auth>
           } @else {
             <app-profile></app-profile>
           }
-          <button
-            class="relative py-2 px-4 text-sm text-white rounded-full hover:shadow-lg bg-linear-to-br from-[var(--color-primary)] to-[var(--color-accent)] border-white border hover:from-[var(--color-primary)]/70 hover:to-[var(--color-accent)]/70 hover:!text-white"
-            (click)="requestDemo()"
-          >
-            Solicitar Demo
-          </button>
         </div>
       </div>
     </header>
   `,
-  styles: [],
 })
 export class LandingHeader {
-  isLoggedIn = true
+  isLoggedIn = false
   isScrolled = false
 
   /**
@@ -87,10 +80,9 @@ export class LandingHeader {
   }
 
   /**
-   * Handles demo request action.
-   * Currently shows an alert for demonstration purposes.
+   * Sets the login state to true.
    */
-  requestDemo(): void {
-    alert('Demo request functionality will be implemented here')
+  onLogin(): void {
+    this.isLoggedIn = true
   }
 }

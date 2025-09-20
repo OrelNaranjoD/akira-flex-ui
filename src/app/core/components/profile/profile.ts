@@ -1,12 +1,11 @@
 import { Component } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 /**
  * Component for displaying user profile information.
  */
 @Component({
   selector: 'app-profile',
-  imports: [FontAwesomeModule],
+  imports: [],
   template: `
     <div class="relative">
       <button
@@ -26,11 +25,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
             {{ this.profileUser.role }}
           </span>
         </div>
-        <fa-icon
+        <i
           class="text-xs text-[var(--color-muted-foreground)] transition-transform"
-          [icon]="['fas', 'chevron-down']"
           [class.rotate-180]="isDropdownOpen"
-        ></fa-icon>
+          icon="pi pi-chevron-down"
+        ></i>
       </button>
 
       @if (isDropdownOpen) {
@@ -43,14 +42,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
               (click)="viewProfile()"
             >
               <span>Ver Perfil</span>
-              <fa-icon [icon]="['fas', 'user']"></fa-icon>
+              <i icon="pi pi-user"></i>
             </button>
             <button
               class="w-full px-4 py-2 text-sm hover:bg-[var(--color-muted)] flex items-center justify-end gap-2"
               (click)="settings()"
             >
               <span>Configuración</span>
-              <fa-icon [icon]="['fas', 'cog']"></fa-icon>
+              <i icon="pi pi-cog"></i>
             </button>
             <hr class="my-2 border-[var(--border)]" />
             <button
@@ -58,7 +57,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
               (click)="logout()"
             >
               <span>Cerrar Sesión</span>
-              <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
+              <i icon="pi pi-sign-out-alt"></i>
             </button>
           </div>
         </div>

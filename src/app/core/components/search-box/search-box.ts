@@ -1,5 +1,4 @@
 import { Component, input, output } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { FormsModule } from '@angular/forms'
 
 /**
@@ -7,15 +6,14 @@ import { FormsModule } from '@angular/forms'
  */
 @Component({
   selector: 'app-search-box',
-  imports: [FontAwesomeModule, FormsModule],
+  imports: [FormsModule],
   template: `
     <div class="relative" [style.width]="width()">
-      <fa-icon
-        class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
-        [icon]="['fas', 'search']"
-      ></fa-icon>
+      <i
+        class="pi pi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
+      ></i>
       <input
-        class="w-full pl-9 pr-3 py-2 text-sm bg-[var(--color-muted)] border border-[var(--color-border)] rounded-md text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition-all duration-200"
+        class="w-full pl-9 pr-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200"
         [(ngModel)]="searchValue"
         [placeholder]="placeholder()"
         [disabled]="disabled()"
@@ -27,14 +25,11 @@ import { FormsModule } from '@angular/forms'
       <!-- Clear button -->
       @if (searchValue && !disabled()) {
         <button
-          class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full hover:bg-[var(--color-card)] transition-colors duration-200"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
           (click)="clearSearch()"
           aria-label="Clear search"
         >
-          <fa-icon
-            class="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] text-xs"
-            [icon]="['fas', 'times']"
-          ></fa-icon>
+          <i class="pi pi-times text-xs"></i>
         </button>
       }
     </div>

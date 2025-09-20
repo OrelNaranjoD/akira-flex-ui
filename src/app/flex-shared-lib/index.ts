@@ -69,3 +69,16 @@ export const passwordsMatchValidator: ValidatorFn = (
   const confirm = group.get('confirmPassword')?.value
   return pw === confirm ? null : { passwordsMismatch: true }
 }
+
+export const THEME_DOMAIN_KEY = 'akira-theme-domain'
+/**
+ * Returns the theme mode key for a given domain.
+ * @param domain The domain type ('landing' | 'platform' | 'tenant').
+ * @returns The theme mode key string for the specified domain.
+ */
+export function getThemeModeKey(domain: DomainType) {
+  return `akira-theme-mode-${domain}`
+}
+
+export type DomainType = 'landing' | 'platform' | 'tenant'
+export type ThemeMode = 'light' | 'dark' | 'system'

@@ -1,5 +1,4 @@
 import { Component, input, output, signal, OnInit, OnChanges } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { AppNotification } from '@flex-shared-lib'
 
 /**
@@ -7,7 +6,7 @@ import { AppNotification } from '@flex-shared-lib'
  */
 @Component({
   selector: 'app-notification-button',
-  imports: [FontAwesomeModule],
+  imports: [],
   template: `
     <div class="relative">
       <!-- Notification button -->
@@ -18,10 +17,9 @@ import { AppNotification } from '@flex-shared-lib'
         title="Notifications"
         aria-label="Notifications"
       >
-        <fa-icon
-          class="text-[var(--color-muted-foreground)] group-hover:text-[var(--color-foreground)] text-sm"
-          [icon]="['fas', 'bell']"
-        ></fa-icon>
+        <i
+          class="pi pi-bell text-[var(--color-muted-foreground)] group-hover:text-[var(--color-foreground)] text-sm"
+        ></i>
 
         <!-- Badge counter -->
         @if (unreadCount() > 0) {
@@ -56,19 +54,16 @@ import { AppNotification } from '@flex-shared-lib'
                   <div class="flex-shrink-0">
                     @switch (notification.type) {
                       @case ('info') {
-                        <fa-icon class="text-blue-500" [icon]="['fas', 'info-circle']"></fa-icon>
+                        <i class="pi pi-info-circle text-blue-500"></i>
                       }
                       @case ('warning') {
-                        <fa-icon
-                          class="text-yellow-500"
-                          [icon]="['fas', 'exclamation-triangle']"
-                        ></fa-icon>
+                        <i class="pi pi-exclamation-triangle text-yellow-500"></i>
                       }
                       @case ('success') {
-                        <fa-icon class="text-green-500" [icon]="['fas', 'check-circle']"></fa-icon>
+                        <i class="text-green-500" icon="pi pi-check-circle"></i>
                       }
                       @case ('error') {
-                        <fa-icon class="text-red-500" [icon]="['fas', 'times-circle']"></fa-icon>
+                        <i class="text-red-500" icon="pi pi-times-circle"></i>
                       }
                     }
                   </div>
@@ -92,7 +87,7 @@ import { AppNotification } from '@flex-shared-lib'
               </div>
             } @empty {
               <div class="p-8 text-center text-[var(--color-muted-foreground)]">
-                <fa-icon class="text-2xl mb-2" [icon]="['fas', 'bell-slash']"></fa-icon>
+                <i class="text-2xl mb-2" icon="pi pi-bell-slash"></i>
                 <p>No notifications</p>
               </div>
             }

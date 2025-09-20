@@ -1,10 +1,9 @@
 import { Component, signal, OnInit } from '@angular/core'
-import { ThemeSwitch } from '../../../../core/components/theme-switch/theme-switch'
-import { Profile } from '../../../../core/components/profile/profile'
-import { SearchBox } from '../../../../core/components/search-box/search-box'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { CompanyIdentity } from '../../company-identity/company-identity'
-import { NotificationButton } from '../../../../core/components/notification-button/notification-button'
+import { ThemeSwitch } from '../../../core/components/theme-switch/theme-switch'
+import { Profile } from '../../../core/components/profile/profile'
+import { SearchBox } from '../../../core/components/search-box/search-box'
+import { CompanyIdentity } from '../company-identity/company-identity'
+import { NotificationButton } from '../../../core/components/notification-button/notification-button'
 import { AppNotification } from '@flex-shared-lib'
 
 /**
@@ -13,51 +12,37 @@ import { AppNotification } from '@flex-shared-lib'
  */
 @Component({
   selector: 'app-tenant-header',
-  imports: [
-    ThemeSwitch,
-    NotificationButton,
-    Profile,
-    SearchBox,
-    FontAwesomeModule,
-    CompanyIdentity,
-  ],
+  imports: [ThemeSwitch, NotificationButton, Profile, SearchBox, CompanyIdentity],
   template: `
-    <header
-      class="flex items-center justify-between px-6 py-3 bg-[var(--color-card)] border-b border-[var(--color-border)] shadow-sm"
-    >
-      <!-- Left Section -->
-      <div class="flex items-center gap-6">
-        <!-- Company Logo -->
-        <div class="flex items-center gap-3">
-          <app-tenant-company-identity
-            [logo]="companyData.logo"
-            [name]="companyData.name"
-            [slogan]="companyData.slogan"
-            size="large"
-          ></app-tenant-company-identity>
-        </div>
-      </div>
-
-      <!-- Right Section -->
+    <header class="flex items-center px-5 py-3 p-surface-card border-bottom-1 p-shadow-1 w-full">
+      <!-- Logo/Identidad a la izquierda -->
       <div class="flex items-center gap-3">
-        <!-- Search -->
+        <app-tenant-company-identity
+          [logo]="companyData.logo"
+          [name]="companyData.name"
+          [slogan]="companyData.slogan"
+          size="large"
+        ></app-tenant-company-identity>
+      </div>
+      <!-- Espaciador flexible -->
+      <div class="flex-1"></div>
+      <!-- Elementos a la derecha -->
+      <div class="flex items-center gap-3">
         <app-search-box
           (searchQuery)="onSearch($event)"
           (enterPressed)="onSearchEnter($event)"
           placeholder="Buscar..."
           width="100%"
         ></app-search-box>
-        <!-- Notifications -->
+        <button class="p-button p-button-icon-only p-button-text p-button-secondary" title="Ayuda">
+          <i class="pi pi-question-circle"></i>
+        </button>
         <app-notification-button
           [notifications]="notifications()"
           (notificationRead)="markAsRead($event)"
           (markAllRead)="markAllAsRead()"
         ></app-notification-button>
-
-        <!-- Theme Switch -->
         <app-theme-switch></app-theme-switch>
-
-        <!-- User Profile -->
         <app-profile></app-profile>
       </div>
     </header>

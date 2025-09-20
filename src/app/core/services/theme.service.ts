@@ -1,289 +1,279 @@
-import { Injectable, Renderer2, RendererFactory2, inject, signal, computed } from '@angular/core'
-import { DOCUMENT } from '@angular/common'
-
-export type Domain = 'landing' | 'tenant' | 'platform'
-export type ThemeMode = 'light' | 'dark' | 'system'
+import { Injectable, PLATFORM_ID, signal, computed, effect, inject } from '@angular/core'
+import { isPlatformBrowser } from '@angular/common'
+import { usePreset } from '@primeuix/themes'
+import { LandingPreset } from '@landing/themes/landing-preset'
+import { PlatformPreset } from '@platform/themes/platform-preset'
+import { TenantPreset } from '@tenant/themes/tenant-preset'
+import { DomainType, ThemeMode } from '@flex-shared-lib'
+import { setCookie, getCookie, getThemeModeCookieKey, THEME_COOKIES } from '../utils/cookie-utils'
 
 /**
- * Service to manage theme modes (light, dark, system) across different application domains.
- * It persists user preferences in localStorage and dynamically loads corresponding stylesheets.
- * The service also listens to system theme changes when 'system' mode is active.
+ * ThemeService manages application theming based on domain and user preferences.
  */
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly rendererFactory = inject(RendererFactory2)
-  private readonly document = inject(DOCUMENT)
-  private readonly renderer: Renderer2
-  private readonly isBrowser: boolean
-
-  private readonly _currentDomain = signal<Domain>('landing')
-  private readonly _domainModes = signal<Partial<Record<Domain, ThemeMode>>>({})
-
-  readonly currentDomain = this._currentDomain.asReadonly()
-  readonly domainModes = this._domainModes.asReadonly()
-
-  readonly currentMode = computed(() => {
-    const domain = this._currentDomain()
-    const modes = this._domainModes()
-    return modes[domain] || 'system'
-  })
-
-  readonly resolvedMode = computed(() => {
+  private readonly platformId = inject(PLATFORM_ID)
+  private readonly isBrowser = isPlatformBrowser(this.platformId)
+  private readonly currentDomain = signal<DomainType>(this.getInitialDomain())
+  private readonly currentMode = signal<ThemeMode>(this.getInitialMode(this.getInitialDomain()))
+  private readonly effectiveMode = computed<Exclude<ThemeMode, 'system'>>(() => {
     const mode = this.currentMode()
-    return mode === 'system' ? this.getSystemMode() : mode
+    if (mode === 'system' && this.isBrowser) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return mode as Exclude<ThemeMode, 'system'>
   })
+  public readonly themeReady = signal(false)
+
+  public currentDomain$ = computed(() => this.currentDomain())
+  public currentMode$ = computed(() => this.currentMode())
+  public effectiveMode$ = computed(() => this.effectiveMode())
 
   constructor() {
-    this.renderer = this.rendererFactory.createRenderer(null, null)
-    this.isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined'
+    effect(() => {
+      const domain = this.currentDomain()
+      const mode = this.effectiveMode()
+      this.applyTheme(domain, mode)
+    })
+    this.initializeTheme()
 
     if (this.isBrowser) {
-      const modes: Partial<Record<Domain, ThemeMode>> = {}
-      ;(['landing', 'tenant', 'platform'] as Domain[]).forEach((domain) => {
-        modes[domain] = this.loadModeForDomain(domain)
-      })
-      this._domainModes.set(modes)
-
-      this.applyCurrentTheme()
-      this.listenToSystemThemeChanges()
-    } else {
-      this.applyCurrentTheme()
+      setTimeout(() => {
+        this.syncWithHtmlScript()
+      }, 0)
     }
   }
 
   /**
-   * Sets the active domain and applies its theme.
-   * Also persists the current mode for that domain.
-   * @param domain The domain to set as active.
+   * Sets the current domain and updates the theme accordingly.
+   * @param domain The domain to set ('landing' | 'platform' | 'tenant').
    */
-  setDomain(domain: Domain): void {
-    this._currentDomain.set(domain)
-    this.applyCurrentTheme()
-
+  setDomain(domain: DomainType): void {
+    this.themeReady.set(false)
+    this.currentDomain.set(domain)
     if (this.isBrowser) {
-      const modes = this._domainModes()
-      const mode = modes[domain] || 'system'
-      this.saveModeForDomain(domain, mode)
+      setCookie(THEME_COOKIES.DOMAIN, domain)
     }
+    const mode = this.getInitialMode(domain)
+    this.currentMode.set(mode)
   }
 
   /**
-   * Sets the theme mode for the current domain and persists it.
-   * @param mode The new theme mode ('light'|'dark'|'system').
+   * Sets the current theme mode.
+   * @param mode The theme mode to set ('light' | 'dark' | 'system').
    */
   setMode(mode: ThemeMode): void {
-    const currentDomain = this._currentDomain()
-    const currentModes = this._domainModes()
-
-    this._domainModes.set({
-      ...currentModes,
-      [currentDomain]: mode,
-    })
-
-    this.applyCurrentTheme()
-
+    this.themeReady.set(false)
+    this.currentMode.set(mode)
     if (this.isBrowser) {
-      this.saveModeForDomain(currentDomain, mode)
+      setCookie(getThemeModeCookieKey(this.currentDomain()), mode)
     }
   }
 
   /**
-   * Returns the theme mode for the current domain.
-   * @returns The current theme mode ('light'|'dark'|'system').
-   */
-  getMode(): ThemeMode {
-    return this.currentMode()
-  }
-
-  /**
-   * Returns the theme mode for a specific domain.
-   * @param domain The domain to get the theme mode for.
-   * @returns The theme mode for the specified domain.
-   */
-  getModeForDomain(domain: Domain): ThemeMode {
-    const modes = this._domainModes()
-    return modes[domain] || 'system'
-  }
-
-  /**
-   * Returns the currently active domain.
-   * @returns The current domain ('landing'|'tenant'|'platform').
-   */
-  getDomain(): Domain {
-    return this._currentDomain()
-  }
-
-  /**
-   * Toggles between light and dark theme modes for the current domain.
+   * Toggles the current theme mode between 'light' and 'dark'.
    */
   toggleMode(): void {
-    const resolvedMode = this.resolvedMode()
-    const newMode = resolvedMode === 'light' ? 'dark' : 'light'
-    this.setMode(newMode)
+    this.currentMode.update((current) => {
+      let next: ThemeMode
+      if (current === 'system') {
+        next = this.effectiveMode() === 'light' ? 'dark' : 'light'
+      } else {
+        next = current === 'light' ? 'dark' : 'light'
+      }
+      if (this.isBrowser) {
+        setCookie(getThemeModeCookieKey(this.currentDomain()), next)
+      }
+      return next
+    })
   }
 
   /**
-   * Applies the theme for the current domain.
+   * Initializes the theme service.
    */
-  private applyCurrentTheme(): void {
-    const currentDomain = this._currentDomain()
-    const resolvedMode = this.resolvedMode()
-
-    this.applyDomain(currentDomain)
-    this.applyModeWithTransition(resolvedMode)
-    this.loadThemeForDomain(currentDomain, resolvedMode)
-  }
-
-  /**
-   * Applies the given domain as an attribute on the document root.
-   * @param domain The domain to apply ('landing'|'tenant'|'platform').
-   */
-  private applyDomain(domain: Domain): void {
-    const root = this.document.documentElement
-    root.setAttribute('data-domain', domain)
-  }
-
-  /**
-   * Applies the given theme mode as an attribute on the document root.
-   * @param mode The theme mode to apply ('light'|'dark').
-   */
-  private applyMode(mode: 'light' | 'dark'): void {
-    const root = this.document.documentElement
-    root.setAttribute('data-theme', mode)
-  }
-
-  /**
-   * Applies the given theme mode with a smooth transition animation.
-   * @param mode The theme mode to apply ('light'|'dark').
-   */
-  private applyModeWithTransition(mode: 'light' | 'dark'): void {
-    if (!this.isBrowser) {
-      this.applyMode(mode)
-      return
+  private initializeTheme(): void {
+    if (this.isBrowser) {
+      if (!getCookie(THEME_COOKIES.DOMAIN)) {
+        this.detectDomainFromHostname()
+      }
+      this.setupSystemThemeListener()
     }
-
-    const root = this.document.documentElement
-    const currentMode = root.getAttribute('data-theme')
-
-    // Skip animation if it's the same mode
-    if (currentMode === mode) {
-      return
-    }
-
-    // Add transition class for smooth color transitions
-    root.classList.add('theme-transitioning')
-
-    // Apply new theme immediately, CSS transitions will handle the animation
-    this.applyMode(mode)
-
-    // Remove transition class after animation completes
-    setTimeout(() => {
-      root.classList.remove('theme-transitioning')
-    }, 300)
   }
 
   /**
-   * Gets the system's preferred color scheme.
-   * @returns 'light' or 'dark' based on system preference.
+   * Synchronizes the service state with the HTML script state after hydration.
    */
-  private getSystemMode(): 'light' | 'dark' {
-    if (!this.isBrowser || !window.matchMedia) return 'light'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
-
-  /**
-   * Resolves 'system' into either 'light' or 'dark' based on system preference.
-   * @param mode The theme mode to resolve.
-   * @returns 'light' or 'dark'.
-   */
-  private getResolvedMode(mode: ThemeMode): 'light' | 'dark' {
-    return mode === 'system' ? this.getSystemMode() : mode
-  }
-
-  /**
-   * Dynamically loads the stylesheet for the given domain and mode.
-   * @param domain The domain to load the theme for.
-   * @param mode The theme mode to apply ('light'|'dark').
-   */
-  private loadThemeForDomain(domain: Domain, mode: 'light' | 'dark'): void {
-    this.removeThemeLinks()
-
+  private syncWithHtmlScript(): void {
     if (!this.isBrowser) return
 
-    const link = this.renderer.createElement('link')
-    this.renderer.setAttribute(link, 'rel', 'stylesheet')
-    this.renderer.setAttribute(link, 'href', `/assets/themes/${domain}-${mode}.css`)
-    this.renderer.setAttribute(link, 'id', 'theme-styles')
+    // Sync domain
+    interface AkiraWindow extends Window {
+      __AKIRA_DOMAIN__?: string
+    }
+    const htmlDomain = (window as AkiraWindow).__AKIRA_DOMAIN__
+    if (htmlDomain && htmlDomain !== this.currentDomain()) {
+      this.currentDomain.set(htmlDomain as DomainType)
+    }
 
-    this.renderer.appendChild(this.document.head, link)
+    // Sync theme mode
+    interface AkiraWindow extends Window {
+      __AKIRA_THEME_MODE__?: string
+    }
+    const htmlMode = (window as AkiraWindow).__AKIRA_THEME_MODE__
+    if (htmlMode && htmlMode !== this.currentMode()) {
+      this.currentMode.set(htmlMode as ThemeMode)
+    }
   }
 
   /**
-   * Persists the theme mode for a specific domain into localStorage.
-   * @param domain The domain to save the theme mode for.
-   * @param mode The theme mode to save ('light'|'dark'|'system').
+   * Initial theme mode retrieval.
+   * @param domain The domain to check.
+   * @returns {ThemeMode} The initial theme mode.
    */
-  private saveModeForDomain(domain: Domain, mode: ThemeMode): void {
-    if (!this.isBrowser) return
-    localStorage.setItem(this.getStorageKey(domain), mode)
-  }
+  private getInitialMode(domain: DomainType): ThemeMode {
+    if (typeof window !== 'undefined') {
+      // Extend the Window interface to include __AKIRA_THEME_MODE__
+      interface AkiraWindow extends Window {
+        __AKIRA_THEME_MODE__?: string
+      }
+      const akiraWindow = window as AkiraWindow
+      // First check if mode was set by HTML script
+      if (akiraWindow.__AKIRA_THEME_MODE__) {
+        const mode = akiraWindow.__AKIRA_THEME_MODE__
+        if (mode === 'light' || mode === 'dark' || mode === 'system') {
+          return mode as ThemeMode
+        }
+      }
 
-  /**
-   * Loads the persisted theme mode for a domain from localStorage.
-   * Returns 'system' if not found.
-   * @param domain The domain to load the theme mode for.
-   * @returns The loaded ThemeMode ('light'|'dark'|'system').
-   */
-  private loadModeForDomain(domain: Domain): ThemeMode {
-    if (!this.isBrowser) return 'system'
-    const mode = localStorage.getItem(this.getStorageKey(domain)) as ThemeMode | null
-    return mode && this.isValidMode(mode) ? mode : 'system'
-  }
-
-  /**
-   * Builds the localStorage key for a given domain.
-   * @param domain The domain to build the key for.
-   * @returns The localStorage key string.
-   */
-  private getStorageKey(domain: Domain): string {
-    return `akiraflex-theme-${domain}`
-  }
-
-  /**
-   * Registers a listener to update the theme if the system theme changes
-   * while the current domain is set to 'system'.
-   */
-  private listenToSystemThemeChanges(): void {
-    if (!this.isBrowser || !window.matchMedia) return
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = () => {
-      if (this.currentMode() === 'system') {
-        this.applyCurrentTheme()
+      // Then check cookies
+      const stored = getCookie(getThemeModeCookieKey(domain))
+      if (stored === 'light' || stored === 'dark' || stored === 'system') {
+        return stored as ThemeMode
       }
     }
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleChange)
-    }
+    return 'system'
   }
 
   /**
-   * Removes the existing theme <link> element from the document head.
+   * Obtains the initial domain from cookies, HTML script, DOM classes, or defaults to 'landing'.
+   * @returns {DomainType} The initial domain.
    */
-  private removeThemeLinks(): void {
-    const existingLink = this.document.getElementById('theme-styles')
-    if (existingLink) {
-      this.renderer.removeChild(this.document.head, existingLink)
+  private getInitialDomain(): DomainType {
+    if (typeof window !== 'undefined') {
+      const win = window as unknown as { __AKIRA_DOMAIN__?: unknown }
+      if (
+        typeof win.__AKIRA_DOMAIN__ === 'string' &&
+        (win.__AKIRA_DOMAIN__ === 'landing' ||
+          win.__AKIRA_DOMAIN__ === 'platform' ||
+          win.__AKIRA_DOMAIN__ === 'tenant')
+      ) {
+        return win.__AKIRA_DOMAIN__ as DomainType
+      }
+
+      // Then check cookies
+      const stored = getCookie(THEME_COOKIES.DOMAIN)
+      if (stored === 'landing' || stored === 'platform' || stored === 'tenant') {
+        return stored as DomainType
+      }
+
+      // Finally check DOM classes applied by HTML script
+      const htmlElement = document.documentElement
+      if (htmlElement.classList.contains('domain-platform')) {
+        return 'platform'
+      } else if (htmlElement.classList.contains('domain-tenant')) {
+        return 'tenant'
+      }
     }
+    return 'landing'
   }
 
   /**
-   * Validates if a string is a supported theme mode.
-   * @param mode The mode string to validate.
-   * @returns True if valid, false otherwise.
+   * Detects the domain based on the hostname.
    */
-  private isValidMode(mode: string): mode is ThemeMode {
-    return ['light', 'dark', 'system'].includes(mode)
+  private detectDomainFromHostname(): void {
+    if (!this.isBrowser) return
+
+    const hostname = window.location.hostname
+    let domain: DomainType = 'landing'
+
+    if (hostname.includes('platform') || hostname.includes('app')) {
+      domain = 'platform'
+    } else if (hostname.includes('tenant') || hostname.includes('client')) {
+      domain = 'tenant'
+    }
+
+    this.currentDomain.set(domain)
+  }
+
+  /**
+   * Sets up a listener for system theme changes.
+   */
+  private setupSystemThemeListener(): void {
+    if (!this.isBrowser) return
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (this.currentMode() === 'system') {
+        this.currentMode.set('system')
+      }
+    })
+  }
+
+  /**
+   * Applies the theme based on the current domain and mode.
+   * @param domain The current domain.
+   * @param mode The effective theme mode ('light' | 'dark').
+   */
+  private applyTheme(domain: DomainType, mode: 'light' | 'dark'): void {
+    if (!this.isBrowser) return
+
+    const htmlElement = document.documentElement
+    let needsUpdate = false
+
+    // Check and apply dark mode
+    const hasDarkMode = htmlElement.classList.contains('dark-mode')
+    if (mode === 'dark' && !hasDarkMode) {
+      htmlElement.classList.add('dark-mode')
+      needsUpdate = true
+    } else if (mode === 'light' && hasDarkMode) {
+      htmlElement.classList.remove('dark-mode')
+      needsUpdate = true
+    }
+
+    // Check and apply domain class
+    const currentDomainClass = `domain-${domain}`
+    if (!htmlElement.classList.contains(currentDomainClass)) {
+      htmlElement.classList.remove('domain-landing', 'domain-platform', 'domain-tenant')
+      htmlElement.classList.add(currentDomainClass)
+      needsUpdate = true
+    }
+
+    // Only update preset if something changed or it's the first time
+    if (needsUpdate || !this.themeReady()) {
+      this.updatePresetForDomain(domain)
+    }
+
+    this.themeReady.set(true)
+  }
+
+  /**
+   * Updates the preset based on the current domain.
+   * @param domain The current domain.
+   */
+  private updatePresetForDomain(domain: DomainType): void {
+    if (!this.isBrowser) return
+
+    switch (domain) {
+      case 'landing':
+        usePreset(LandingPreset)
+        break
+      case 'platform':
+        usePreset(PlatformPreset)
+        break
+      case 'tenant':
+        usePreset(TenantPreset)
+        break
+      default:
+        usePreset(LandingPreset)
+    }
   }
 }

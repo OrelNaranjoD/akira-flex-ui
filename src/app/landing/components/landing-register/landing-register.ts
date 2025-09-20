@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { ChangeDetectorRef, Component, output, input, inject } from '@angular/core'
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { LandingRegisterService } from './landing-register.service'
 import { passwordsMatchValidator } from '@flex-shared-lib'
 
@@ -10,7 +9,7 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
  */
 @Component({
   selector: 'app-landing-register',
-  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
+  imports: [CommonModule, ReactiveFormsModule],
   providers: [LandingRegisterService],
   template: `
     @if (isDropdownOpen() && isRegisterOpen()) {
@@ -36,10 +35,10 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                     Nombre
                   </label>
                   <div class="relative">
-                    <fa-icon
+                    <i
                       class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)]"
-                      [icon]="['fas', 'user']"
-                    ></fa-icon>
+                      icon="pi pi-user"
+                    ></i>
                     <input
                       class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none"
                       id="register-firstname"
@@ -89,10 +88,10 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                   Email
                 </label>
                 <div class="relative">
-                  <fa-icon
+                  <i
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)]"
-                    [icon]="['fas', 'envelope']"
-                  ></fa-icon>
+                    icon="pi pi-envelope"
+                  ></i>
                   <input
                     class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none"
                     id="register-email"
@@ -125,10 +124,10 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                   Teléfono
                 </label>
                 <div class="relative">
-                  <fa-icon
+                  <i
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)]"
-                    [icon]="['fas', 'phone']"
-                  ></fa-icon>
+                    icon="pi pi-phone"
+                  ></i>
                   <input
                     class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none"
                     id="register-phone"
@@ -149,10 +148,10 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                   Contraseña
                 </label>
                 <div class="relative">
-                  <fa-icon
+                  <i
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)]"
-                    [icon]="['fas', 'lock']"
-                  ></fa-icon>
+                    icon="pi pi-lock"
+                  ></i>
                   <input
                     class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none"
                     id="register-password"
@@ -167,9 +166,7 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                     (click)="togglePasswordVisibility()"
                     type="button"
                   >
-                    <fa-icon
-                      [icon]="showPassword ? ['fas', 'eye-slash'] : ['fas', 'eye']"
-                    ></fa-icon>
+                    <i [ngClass]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
                   </button>
                 </div>
                 @if (
@@ -195,10 +192,10 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                   Confirmar contraseña
                 </label>
                 <div class="relative">
-                  <fa-icon
+                  <i
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)]"
-                    [icon]="['fas', 'lock']"
-                  ></fa-icon>
+                    icon="pi pi-lock"
+                  ></i>
                   <input
                     class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none"
                     id="register-confirm"
@@ -213,9 +210,7 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                     (click)="togglePasswordVisibility()"
                     type="button"
                   >
-                    <fa-icon
-                      [icon]="showPassword ? ['fas', 'eye-slash'] : ['fas', 'eye']"
-                    ></fa-icon>
+                    <i [ngClass]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
                   </button>
                 </div>
               </div>
@@ -240,7 +235,7 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
                 [disabled]="form.invalid || isLoading"
                 type="submit"
               >
-                <fa-icon class="mr-2" [icon]="['fas', 'check-circle']"></fa-icon>
+                <i class="mr-2" icon="pi pi-check-circle"></i>
                 <span>
                   @if (!isLoading) {
                     Crear cuenta
@@ -265,10 +260,7 @@ import { passwordsMatchValidator } from '@flex-shared-lib'
             </form>
           } @else {
             <div class="text-center p-4">
-              <fa-icon
-                class="text-green-500 text-4xl mb-4"
-                [icon]="['fas', 'check-circle']"
-              ></fa-icon>
+              <i class="text-green-500 text-4xl mb-4" icon="pi pi-check-circle"></i>
               <h3 class="text-lg font-medium text-[var(--color-foreground)]">
                 ¡Registro exitoso!
               </h3>

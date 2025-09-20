@@ -5,9 +5,11 @@ import {
 } from '@angular/core'
 import { provideRouter } from '@angular/router'
 import { APP_ROUTES } from './app.routes'
-import { FontAwesomeService } from './core/services/font-awesome.service'
 import { provideHttpClient, withFetch } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
+import { providePrimeNG } from 'primeng/config'
+import { getPresetForDomain } from './core/utils/theme-initializer'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,19 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideRouter(APP_ROUTES),
     provideHttpClient(withFetch()),
-    FontAwesomeService,
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: getPresetForDomain(),
+        options: {
+          darkModeSelector: '.dark-mode',
+          prefix: 'p',
+          cssLayer: {
+            name: 'primeng',
+            order: 'tailwind-base, primeng, tailwind-utilities',
+          },
+        },
+      },
+    }),
   ],
 }

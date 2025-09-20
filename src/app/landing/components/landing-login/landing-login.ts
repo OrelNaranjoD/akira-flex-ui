@@ -9,7 +9,6 @@ import {
   ViewChild,
 } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { Checkbox } from '../../../core/components/checkbox/checkbox'
 import { LandingLoginService } from './landing-login.service'
 import { LoginRequest, LoginResponse } from '@flex-shared-lib'
@@ -19,7 +18,7 @@ import { LoginRequest, LoginResponse } from '@flex-shared-lib'
  */
 @Component({
   selector: 'app-landing-login',
-  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, Checkbox],
+  imports: [CommonModule, ReactiveFormsModule, Checkbox],
   providers: [LandingLoginService],
   template: `
     @if (isDropdownOpen() && !isRegisterOpen()) {
@@ -38,10 +37,10 @@ import { LoginRequest, LoginResponse } from '@flex-shared-lib'
                 Email
               </label>
               <div class="relative">
-                <fa-icon
+                <i
                   class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
-                  [icon]="['fas', 'envelope']"
-                ></fa-icon>
+                  icon="pi pi-envelope"
+                ></i>
                 <input
                   class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
                   id="login-email"
@@ -75,10 +74,10 @@ import { LoginRequest, LoginResponse } from '@flex-shared-lib'
                 Contraseña
               </label>
               <div class="relative">
-                <fa-icon
+                <i
                   class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
-                  [icon]="['fas', 'lock']"
-                ></fa-icon>
+                  icon="pi pi-lock"
+                ></i>
                 <input
                   class="w-full px-3 py-2 pl-10 pr-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
                   id="login-password"
@@ -93,7 +92,7 @@ import { LoginRequest, LoginResponse } from '@flex-shared-lib'
                   (click)="togglePasswordVisibility()"
                   type="button"
                 >
-                  <fa-icon [icon]="showPassword ? ['fas', 'eye-slash'] : ['fas', 'eye']"></fa-icon>
+                  <i [ngClass]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
                 </button>
               </div>
               @if (
@@ -138,7 +137,7 @@ import { LoginRequest, LoginResponse } from '@flex-shared-lib'
               type="submit"
             >
               @if (!isLoading) {
-                <fa-icon class="mr-2" [icon]="['fas', 'sign-in-alt']"></fa-icon>
+                <i class="mr-2" [ngClass]="['pi', 'pi-sign-in-alt']"></i>
                 <span>Iniciar Sesión</span>
               } @else {
                 <span>Conectando...</span>

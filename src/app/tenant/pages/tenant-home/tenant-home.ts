@@ -1,15 +1,16 @@
 import { Component } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { CurrencyPipe } from '@angular/common'
+import { CurrencyPipe, NgClass } from '@angular/common'
+import { CardModule } from 'primeng/card'
+import { ButtonModule } from 'primeng/button'
 
 /**
  * Tenant Home Page - Main dashboard for PyME business operations.
  */
 @Component({
   selector: 'app-tenant-home',
-  imports: [FontAwesomeModule, CurrencyPipe],
+  imports: [CurrencyPipe, CardModule, ButtonModule, NgClass],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 p-surface-ground">
       <!-- Page Header -->
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
@@ -20,224 +21,213 @@ import { CurrencyPipe } from '@angular/common'
         </div>
 
         <!-- Cash Register Status Card -->
-        <div
-          class="bg-[var(--color-card)] rounded-lg p-4 border border-[var(--color-border)] shadow-sm"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-12 h-12 rounded-full flex items-center justify-center"
-              [class]="cashRegister.isOpen ? 'bg-green-500/10' : 'bg-red-500/10'"
-            >
-              <fa-icon
-                class="text-xl"
-                [class]="cashRegister.isOpen ? 'text-green-500' : 'text-red-500'"
-                [icon]="['fas', 'cash-register']"
-              ></fa-icon>
-            </div>
-            <div>
-              <p class="font-semibold text-[var(--color-foreground)]">
-                {{ cashRegister.isOpen ? 'Caja Abierta' : 'Caja Cerrada' }}
-              </p>
-              <p class="text-sm text-[var(--color-muted-foreground)]">
-                Último movimiento: {{ cashRegister.lastMovement }}
-              </p>
-              <p class="text-sm font-medium text-[var(--color-foreground)]">
-                Efectivo disponible:
-                {{ cashRegister.availableCash | currency: 'CLP' : 'symbol' : '1.0-0' }}
-              </p>
-            </div>
-            @if (!cashRegister.isOpen) {
-              <button
-                class="ml-auto px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white rounded-md font-medium transition-colors duration-200"
-                (click)="openCashRegister()"
+        <p-card class="p-mb-3 p-shadow-2 p-surface-card rounded-lg">
+          <ng-template pTemplate="content">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full flex items-center justify-center"
+                [class]="cashRegister.isOpen ? 'bg-green-500/10' : 'bg-red-500/10'"
               >
-                Abrir Caja
-              </button>
-            }
-          </div>
-        </div>
+                <i
+                  class="pi pi-box flex items-center justify-center text-xl"
+                  [ngClass]="cashRegister.isOpen ? 'text-green-500' : 'text-red-500'"
+                ></i>
+              </div>
+              <div>
+                <p class="font-semibold text-[var(--color-foreground)]">
+                  {{ cashRegister.isOpen ? 'Caja Abierta' : 'Caja Cerrada' }}
+                </p>
+                <p class="text-sm text-[var(--color-muted-foreground)]">
+                  Último movimiento: {{ cashRegister.lastMovement }}
+                </p>
+                <p class="text-sm font-medium text-[var(--color-foreground)]">
+                  Efectivo disponible:
+                  {{ cashRegister.availableCash | currency: 'CLP' : 'symbol' : '1.0-0' }}
+                </p>
+              </div>
+              @if (!cashRegister.isOpen) {
+                <button
+                  class="ml-auto px-4 py-2 p-button p-button-primary"
+                  (click)="openCashRegister()"
+                >
+                  Abrir Caja
+                </button>
+              }
+            </div>
+          </ng-template>
+        </p-card>
       </div>
 
       <!-- Key Performance Indicators -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Daily Sales -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Ventas del Día</p>
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">
-                {{ dailyKPIs.sales.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
-              </p>
-              <div class="flex items-center mt-2 text-sm">
-                <fa-icon
-                  class="mr-1"
-                  [class]="dailyKPIs.sales.trend === 'up' ? 'text-green-500' : 'text-red-500'"
-                  [icon]="['fas', dailyKPIs.sales.trend === 'up' ? 'arrow-up' : 'arrow-down']"
-                ></fa-icon>
-                <span [class]="dailyKPIs.sales.trend === 'up' ? 'text-green-500' : 'text-red-500'">
-                  {{ dailyKPIs.sales.change }}
-                </span>
-                <span class="text-[var(--color-muted-foreground)] ml-1">vs ayer</span>
+        <p-card class="p-shadow-1 p-surface-card rounded-xl">
+          <ng-template pTemplate="content">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[var(--color-muted-foreground)] text-sm font-medium"
+                  >Ventas del Día</p
+                >
+                <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">
+                  {{ dailyKPIs.sales.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
+                </p>
+                <div class="flex items-center mt-2 text-sm">
+                  <i
+                    class="pi"
+                    [ngClass]="
+                      dailyKPIs.sales.trend === 'up'
+                        ? 'pi-arrow-up text-green-500 mr-1'
+                        : 'pi-arrow-down text-red-500 mr-1'
+                    "
+                  ></i>
+                  <span
+                    [class]="dailyKPIs.sales.trend === 'up' ? 'text-green-500' : 'text-red-500'"
+                  >
+                    {{ dailyKPIs.sales.change }}
+                  </span>
+                  <span class="text-[var(--color-muted-foreground)] ml-1">vs ayer</span>
+                </div>
+              </div>
+              <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+                <i class="pi pi-cash-register text-white"></i>
               </div>
             </div>
-            <div
-              class="w-12 h-12 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg flex items-center justify-center"
-            >
-              <fa-icon class="text-white" [icon]="['fas', 'cash-register']"></fa-icon>
-            </div>
-          </div>
-        </div>
+          </ng-template>
+        </p-card>
 
         <!-- Work Orders -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium"
-                >Órdenes Activas</p
-              >
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">{{
-                dailyKPIs.workOrders.active
-              }}</p>
-              <div class="flex items-center mt-2 text-sm">
-                <span class="text-yellow-500">{{ dailyKPIs.workOrders.pending }} pendientes</span>
-                <span class="text-[var(--color-muted-foreground)] ml-1"
-                  >• {{ dailyKPIs.workOrders.inProgress }} en proceso</span
+        <p-card class="p-shadow-1 p-surface-card rounded-xl">
+          <ng-template pTemplate="content">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[var(--color-muted-foreground)] text-sm font-medium"
+                  >Órdenes Activas</p
                 >
+                <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">{{
+                  dailyKPIs.workOrders.active
+                }}</p>
+                <div class="flex items-center mt-2 text-sm">
+                  <span class="text-yellow-500">{{ dailyKPIs.workOrders.pending }} pendientes</span>
+                  <span class="text-[var(--color-muted-foreground)] ml-1"
+                    >• {{ dailyKPIs.workOrders.inProgress }} en proceso</span
+                  >
+                </div>
+              </div>
+              <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+                <i class="pi pi-wrench text-white"></i>
               </div>
             </div>
-            <div
-              class="w-12 h-12 bg-gradient-to-br from-[var(--color-secondary)] to-[var(--color-primary)] rounded-lg flex items-center justify-center"
-            >
-              <fa-icon class="text-white" [icon]="['fas', 'wrench']"></fa-icon>
-            </div>
-          </div>
-        </div>
+          </ng-template>
+        </p-card>
 
         <!-- Parts Inventory -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Stock Crítico</p>
-              <p class="text-2xl font-bold text-yellow-500 mt-1">{{
-                dailyKPIs.inventory.criticalItems
-              }}</p>
-              <div class="flex items-center mt-2 text-sm">
-                <fa-icon
-                  class="text-red-500 mr-1"
-                  [icon]="['fas', 'exclamation-triangle']"
-                ></fa-icon>
-                <span class="text-red-500">{{ dailyKPIs.inventory.outOfStock }} agotados</span>
+        <p-card class="p-shadow-1 p-surface-card rounded-xl">
+          <ng-template pTemplate="content">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[var(--color-muted-foreground)] text-sm font-medium"
+                  >Stock Crítico</p
+                >
+                <p class="text-2xl font-bold text-yellow-500 mt-1">{{
+                  dailyKPIs.inventory.criticalItems
+                }}</p>
+                <div class="flex items-center mt-2 text-sm">
+                  <i class="pi pi-exclamation-triangle text-red-500 mr-1"></i>
+                  <span class="text-red-500">{{ dailyKPIs.inventory.outOfStock }} agotados</span>
+                </div>
+              </div>
+              <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+                <i class="pi pi-box text-white"></i>
               </div>
             </div>
-            <div
-              class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-400 rounded-lg flex items-center justify-center"
-            >
-              <fa-icon class="text-white" [icon]="['fas', 'boxes']"></fa-icon>
-            </div>
-          </div>
-        </div>
+          </ng-template>
+        </p-card>
 
         <!-- Accounts Receivable -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Por Cobrar</p>
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">
-                {{ dailyKPIs.receivables.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
-              </p>
-              <div class="flex items-center mt-2 text-sm">
-                <span class="text-red-500">{{ dailyKPIs.receivables.overdue }} vencidas</span>
-                <span class="text-[var(--color-muted-foreground)] ml-1"
-                  >• {{ dailyKPIs.receivables.dueToday }} vencen hoy</span
-                >
+        <p-card class="p-shadow-1 p-surface-card rounded-xl">
+          <ng-template pTemplate="content">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Por Cobrar</p>
+                <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">
+                  {{ dailyKPIs.receivables.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
+                </p>
+                <div class="flex items-center mt-2 text-sm">
+                  <span class="text-red-500">{{ dailyKPIs.receivables.overdue }} vencidas</span>
+                  <span class="text-[var(--color-muted-foreground)] ml-1"
+                    >• {{ dailyKPIs.receivables.dueToday }} vencen hoy</span
+                  >
+                </div>
+              </div>
+              <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+                <i class="pi pi-dollar text-white"></i>
               </div>
             </div>
-            <div
-              class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center"
-            >
-              <fa-icon class="text-white" [icon]="['fas', 'hand-holding-usd']"></fa-icon>
-            </div>
-          </div>
-        </div>
+          </ng-template>
+        </p-card>
       </div>
 
       <!-- Quick Actions -->
-      <div
-        class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-      >
+      <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
         <h3 class="text-lg font-semibold text-[var(--color-foreground)] mb-4">Acciones Rápidas</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('new-sale')"
           >
-            <fa-icon
-              class="text-2xl text-[var(--color-primary)] group-hover:text-white transition-colors"
-              [icon]="['fas', 'plus-circle']"
-            ></fa-icon>
+            <i
+              class="pi pi-plus-circle text-2xl text-[var(--color-primary)] group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Nueva Venta</span>
           </button>
 
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-[var(--color-secondary)] hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('new-work-order')"
           >
-            <fa-icon
-              class="text-2xl text-[var(--color-secondary)] group-hover:text-white transition-colors"
-              [icon]="['fas', 'file-alt']"
-            ></fa-icon>
+            <i
+              class="pi pi-file-edit text-2xl text-[var(--color-secondary)] group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Nueva O.T.</span>
           </button>
 
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-[var(--color-accent)] hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('cash-count')"
           >
-            <fa-icon
-              class="text-2xl text-[var(--color-accent)] group-hover:text-white transition-colors"
-              [icon]="['fas', 'calculator']"
-            ></fa-icon>
+            <i
+              class="pi pi-calculator text-2xl text-[var(--color-accent)] group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Arqueo Caja</span>
           </button>
 
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-green-600 hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('inventory-check')"
           >
-            <fa-icon
-              class="text-2xl text-green-600 group-hover:text-white transition-colors"
-              [icon]="['fas', 'clipboard-check']"
-            ></fa-icon>
+            <i
+              class="pi pi-box text-2xl text-green-600 group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Revisar Stock</span>
           </button>
 
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-blue-600 hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('customer-search')"
           >
-            <fa-icon
-              class="text-2xl text-blue-600 group-hover:text-white transition-colors"
-              [icon]="['fas', 'search']"
-            ></fa-icon>
+            <i
+              class="pi pi-search text-2xl text-blue-600 group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Buscar Cliente</span>
           </button>
 
           <button
-            class="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--color-muted)] hover:bg-purple-600 hover:text-white transition-all duration-200 group"
+            class="flex flex-col items-center gap-3 p-4 rounded-lg p-surface-card hover:p-surface hover:text-color transition-all duration-200 group"
             (click)="quickAction('reports')"
           >
-            <fa-icon
-              class="text-2xl text-purple-600 group-hover:text-white transition-colors"
-              [icon]="['fas', 'chart-bar']"
-            ></fa-icon>
+            <i
+              class="pi pi-chart-bar text-2xl text-purple-600 group-hover:text-white transition-colors"
+            ></i>
             <span class="text-sm font-medium">Reportes</span>
           </button>
         </div>
@@ -246,9 +236,7 @@ import { CurrencyPipe } from '@angular/common'
       <!-- Recent Activity & Notifications -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Recent Work Orders -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
+        <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold text-[var(--color-foreground)]">Órdenes Recientes</h3>
             <button
@@ -259,19 +247,18 @@ import { CurrencyPipe } from '@angular/common'
           </div>
           <div class="space-y-4">
             @for (order of recentWorkOrders; track order.id) {
-              <div
-                class="flex items-center justify-between p-3 rounded-lg bg-[var(--color-muted)]/50"
-              >
+              <div class="flex items-center justify-between p-3 rounded-lg p-surface">
                 <div class="flex items-center gap-3">
                   <div
                     class="w-10 h-10 rounded-full flex items-center justify-center"
                     [class]="getStatusColor(order.status) + '/10'"
                   >
-                    <fa-icon
-                      class="text-sm"
-                      [class]="getStatusColor(order.status)"
-                      [icon]="['fas', getStatusIcon(order.status)]"
-                    ></fa-icon>
+                    <i
+                      class="pi text-sm"
+                      [ngClass]="
+                        'pi-' + getStatusIcon(order.status) + ' ' + getStatusColor(order.status)
+                      "
+                    ></i>
                   </div>
                   <div>
                     <p class="font-medium text-[var(--color-foreground)]">{{ order.vehicle }}</p>
@@ -292,17 +279,13 @@ import { CurrencyPipe } from '@angular/common'
         </div>
 
         <!-- Daily Summary -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] shadow-sm"
-        >
+        <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
           <h3 class="text-lg font-semibold text-[var(--color-foreground)] mb-4">Resumen del Día</h3>
           <div class="space-y-4">
             <!-- Revenue Summary -->
-            <div
-              class="flex items-center justify-between p-3 rounded-lg bg-green-500/5 border border-green-500/20"
-            >
+            <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
               <div class="flex items-center gap-3">
-                <fa-icon class="text-green-500" [icon]="['fas', 'dollar-sign']"></fa-icon>
+                <i class="pi pi-dollar text-green-500"></i>
                 <div>
                   <p class="font-medium text-[var(--color-foreground)]">Ingresos del Día</p>
                   <p class="text-sm text-[var(--color-muted-foreground)]"
@@ -316,11 +299,9 @@ import { CurrencyPipe } from '@angular/common'
             </div>
 
             <!-- Pending Tasks -->
-            <div
-              class="flex items-center justify-between p-3 rounded-lg bg-yellow-500/5 border border-yellow-500/20"
-            >
+            <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
               <div class="flex items-center gap-3">
-                <fa-icon class="text-yellow-500" [icon]="['fas', 'tasks']"></fa-icon>
+                <i class="pi pi-list text-yellow-500"></i>
                 <div>
                   <p class="font-medium text-[var(--color-foreground)]">Tareas Pendientes</p>
                   <p class="text-sm text-[var(--color-muted-foreground)]">Requieren atención</p>
@@ -330,11 +311,9 @@ import { CurrencyPipe } from '@angular/common'
             </div>
 
             <!-- Customer Satisfaction -->
-            <div
-              class="flex items-center justify-between p-3 rounded-lg bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20"
-            >
+            <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
               <div class="flex items-center gap-3">
-                <fa-icon class="text-[var(--color-primary)]" [icon]="['fas', 'smile']"></fa-icon>
+                <i class="pi pi-face-smile text-[var(--color-primary)]"></i>
                 <div>
                   <p class="font-medium text-[var(--color-foreground)]">Satisfacción Clientes</p>
                   <p class="text-sm text-[var(--color-muted-foreground)]"
@@ -501,7 +480,7 @@ export class TenantHomePage {
       completed: 'check-circle',
       'in-progress': 'wrench',
       pending: 'clock',
-      quote: 'file-invoice-dollar',
+      quote: 'file-edit', // Cambiado a un PrimeIcon válido
     }
     return icons[status as keyof typeof icons] || 'question'
   }

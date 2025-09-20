@@ -19,11 +19,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*.css",
-                "input": "src/app/core/themes",
-                "output": "/assets/themes/"
               }
             ],
             "styles": ["src/styles.css"],
@@ -99,11 +94,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*.css",
-                "input": "src/app/core/themes",
-                "output": "/assets/themes/"
               }
             ],
             "codeCoverageExclude": ["src/test/test.ts", "src/test/**/*.spec.ts", "src/**/*.spec.ts"]

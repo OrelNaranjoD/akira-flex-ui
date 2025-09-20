@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { FormsModule } from '@angular/forms'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { ButtonModule } from 'primeng/button'
 import { LandingLogin } from '../landing-login/landing-login'
 import { LandingRegister } from '../landing-register/landing-register'
 
@@ -9,7 +9,7 @@ import { LandingRegister } from '../landing-register/landing-register'
  */
 @Component({
   selector: 'app-landing-auth',
-  imports: [FormsModule, FontAwesomeModule, LandingLogin, LandingRegister],
+  imports: [FormsModule, ButtonModule, LandingLogin, LandingRegister],
   template: `
     <div class="relative flex items-center gap-2">
       <button
@@ -17,19 +17,21 @@ import { LandingRegister } from '../landing-register/landing-register'
         (click)="openDropdown(false)"
       >
         <span>Iniciar Sesión</span>
-        <fa-icon
+        <i
           class="inline-block text-xs text-[var(--color-muted-foreground)] transition-transform"
-          [icon]="['fas', 'chevron-down']"
           [style.transform]="isDropdownOpen && !isRegisterOpen ? 'rotate(180deg)' : 'none'"
-        ></fa-icon>
+          icon="pi pi-chevron-down"
+        ></i>
       </button>
 
       <button
-        class="px-4 py-2 text-sm text-white rounded-full hover:shadow-lg bg-linear-to-br from-[var(--color-primary)] to-[var(--color-accent)] border-white border hover:from-[var(--color-primary)]/70 hover:to-[var(--color-accent)]/70 hover:!text-white"
+        class="p-button-rounded p-button-lg"
         (click)="openDropdown(true)"
+        pButton
+        type="button"
+        style="background: var(--p-surface-200); color: var(--p-text-color); border: none;"
+        >Solicitar Demo</button
       >
-        Solicitar Demo
-      </button>
 
       <!-- Login panel -->
       <app-landing-login

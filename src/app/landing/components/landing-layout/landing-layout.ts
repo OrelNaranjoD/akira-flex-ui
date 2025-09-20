@@ -1,10 +1,9 @@
 import { Component, inject } from '@angular/core'
-import { LandingFooter } from './landing-footer/landing-footer'
-import { LandingHeader } from './landing-header/landing-header'
+import { LandingFooter } from '../landing-footer/landing-footer'
+import { LandingHeader } from '../landing-header/landing-header'
 import { LandingHome } from '../../pages/landing-home/landing-home'
 import { ThemeService } from '../../../core/services/theme.service'
 import { PageTitleService } from '../../../core/services/page-title.service'
-import { FontAwesomeService } from '../../../core/services/font-awesome.service'
 
 /**
  * Landing layout component.
@@ -29,7 +28,6 @@ import { FontAwesomeService } from '../../../core/services/font-awesome.service'
 })
 export class LandingLayout {
   private readonly themeService = inject(ThemeService)
-  private readonly fontAwesome = inject(FontAwesomeService)
   private readonly pageTitleService = inject(PageTitleService)
 
   constructor() {

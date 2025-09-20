@@ -1,10 +1,9 @@
 import { Component, signal, OnInit } from '@angular/core'
-import { ThemeSwitch } from '../../../../core/components/theme-switch/theme-switch'
-import { Logotype } from '../../../../core/components/logotype/logotype'
-import { Profile } from '../../../../core/components/profile/profile'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { SearchBox } from '../../../../core/components/search-box/search-box'
-import { NotificationButton } from '../../../../core/components/notification-button/notification-button'
+import { Logotype } from '../../../core/components/logotype/logotype'
+import { ThemeSwitch } from '../../../core/components/theme-switch/theme-switch'
+import { Profile } from '../../../core/components/profile/profile'
+import { SearchBox } from '../../../core/components/search-box/search-box'
+import { NotificationButton } from '../../../core/components/notification-button/notification-button'
 import { AppNotification } from '@flex-shared-lib'
 
 /**
@@ -12,32 +11,20 @@ import { AppNotification } from '@flex-shared-lib'
  */
 @Component({
   selector: 'app-platform-header',
-  imports: [ThemeSwitch, NotificationButton, Logotype, SearchBox, Profile, FontAwesomeModule],
+  imports: [Logotype, ThemeSwitch, Profile, SearchBox, NotificationButton],
   template: `
-    <header
-      class="flex items-center justify-between px-4 py-2 bg-[var(--color-card)] border-b border-[var(--color-border)]"
-    >
-      <!-- Left Section: Logo -->
-      <div class="flex items-center gap-4">
+    <header class="flex items-center justify-between w-full px-6 py-3 bg-p-surface">
+      <div>
         <app-logotype></app-logotype>
       </div>
-
-      <!-- Right Section: Actions and User -->
-      <div class="flex items-center gap-3">
-        <!-- Search -->
+      <div class="flex items-center gap-4">
         <app-search-box></app-search-box>
-
-        <!-- Notifications -->
         <app-notification-button
           [notifications]="notifications()"
           (notificationRead)="markAsRead($event)"
           (markAllRead)="markAllAsRead()"
         ></app-notification-button>
-
-        <!-- Theme Switch -->
         <app-theme-switch></app-theme-switch>
-
-        <!-- User Profile -->
         <app-profile></app-profile>
       </div>
     </header>

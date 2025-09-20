@@ -7,7 +7,7 @@ import { Component } from '@angular/core'
   selector: 'app-landing-home',
   template: `
     <div
-      class="bg-[var(--color-card)] text-[var(--color-foreground)] min-h-screen w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-20 flex items-start pt-26"
+      class="bg-[var(--p-surface-300)] text-[var(--p-on-surface-300)] min-h-screen w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-20 flex items-start pt-26"
     >
       <!-- Hero Section -->
       <div
@@ -20,7 +20,7 @@ import { Component } from '@angular/core'
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
               Gestiona el
               <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] relative inline-block"
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--p-primary-color)] to-[var(--p-accent-color)] relative inline-block"
               >
                 futuro
                 <!-- Hand-drawn underline -->
@@ -65,31 +65,29 @@ import { Component } from '@angular/core'
 
           <!-- Benefits -->
           <div class="space-y-4">
-            <h3 class="text-lg font-medium text-[var(--color-foreground)]">
-              Beneficios destacados:
-            </h3>
+            <h3 class="text-lg font-medium text-[var(--p-on-surface)]"> Beneficios destacados: </h3>
             <ul class="space-y-3">
               <li class="flex items-start space-x-3">
                 <div
-                  class="w-2 h-2 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"
+                  class="w-2 h-2 bg-[var(--p-primary-color)] rounded-full mt-2 flex-shrink-0"
                 ></div>
-                <span class="text-[var(--color-muted-foreground)]">
+                <span class="text-[var(--p-on-surface)]">
                   Módulos compatibles, adaptables y listos para escalar.
                 </span>
               </li>
               <li class="flex items-start space-x-3">
                 <div
-                  class="w-2 h-2 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"
+                  class="w-2 h-2 bg-[var(--p-primary-color)] rounded-full mt-2 flex-shrink-0"
                 ></div>
-                <span class="text-[var(--color-muted-foreground)]">
+                <span class="text-[var(--p-on-surface)]">
                   Integración simple, sin curva técnica compleja.
                 </span>
               </li>
               <li class="flex items-start space-x-3">
                 <div
-                  class="w-2 h-2 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"
+                  class="w-2 h-2 bg-[var(--p-primary-color)] rounded-full mt-2 flex-shrink-0"
                 ></div>
-                <span class="text-[var(--color-muted-foreground)]">
+                <span class="text-[var(--p-on-surface)]">
                   Seguridad operacional y protección de datos.
                 </span>
               </li>

@@ -7,22 +7,15 @@ import {
   provideCheckNoChangesConfig,
   NgModule,
 } from '@angular/core'
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faTachometerAlt, faUserCircle, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 @NgModule({
-  imports: [BrowserTestingModule, FontAwesomeModule],
+  imports: [BrowserTestingModule],
   providers: [
     provideZonelessChangeDetection(),
     provideCheckNoChangesConfig({ exhaustive: true, interval: 1000 }),
   ],
 })
-class TestEnvironmentModule {
-  constructor(library: FaIconLibrary) {
-    library.addIcons(faGithub, faTwitter, faTachometerAlt, faUserCircle, faQuestionCircle)
-  }
-}
+class TestEnvironmentModule {}
 
 getTestBed().initTestEnvironment(TestEnvironmentModule, platformBrowserTesting(), {
   errorOnUnknownElements: true,

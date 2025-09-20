@@ -2,12 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>AkiraFlex</title>
+    <title>AkiraFlex - Sistema de Gestión Empresarial</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      // Initialize theme before Angular loads to prevent flashing
+      ;(function () {
+        // Cookie utility functions
+        function getCookie(name) {
+          const nameEQ = name + '='
+          const ca = document.cookie.split(';')
+          for (const cookie of ca) {
+            let c = cookie
+            while (c.startsWith(' ')) c = c.substring(1)
+            if (c.startsWith(nameEQ)) return c.substring(nameEQ.length)
+          }
+          return null
+        }
+
+        function setCookie(name, value, days = 365) {
+          const expires = new Date()
+          expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000)
+          document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/;SameSite=Lax'
+        }
+
+        const hostname = window.location.hostname
+        let domain = 'landing'
+
+        if (hostname.includes('platform') || hostname.includes('app')) {
+          domain = 'platform'
+        } else if (hostname.includes('tenant') || hostname.includes('client')) {
+          domain = 'tenant'
+        }
+
+        // Store domain in cookie if not already set
+        const storedDomain = getCookie('akira-theme-domain')
+        if (!storedDomain) {
+          setCookie('akira-theme-domain', domain)
+        } else {
+          domain = storedDomain
+        }
+
+        // Apply domain class immediately
+        document.documentElement.classList.add('domain-' + domain)
+
+        // Store domain for later use
+        window.__AKIRA_DOMAIN__ = domain
+
+        // Get theme mode from cookie
+        const modeCookieName = 'akira-theme-mode-' + domain
+        let storedMode = getCookie(modeCookieName)
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+        // If no stored mode, detect system preference and save it
+        if (!storedMode) {
+          storedMode = systemPrefersDark ? 'dark' : 'light'
+          setCookie(modeCookieName, storedMode)
+        }
+
+        // Apply dark mode if needed
+        if (storedMode === 'dark' || (storedMode === 'system' && systemPrefersDark)) {
+          document.documentElement.classList.add('dark-mode')
+        }
+
+        // Store theme mode for later use
+        window.__AKIRA_THEME_MODE__ = storedMode
+      })()
+    </script>
   </head>
-  <body class="bg-background min-h-screen">
+  <body>
     <app-root></app-root>
   </body>
 </html>

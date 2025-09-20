@@ -1,265 +1,195 @@
 import { Component } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { CardModule } from 'primeng/card'
+import { CommonModule } from '@angular/common'
+import { DividerModule } from 'primeng/divider'
+import { BadgeModule } from 'primeng/badge'
+import { ProgressBarModule } from 'primeng/progressbar'
+import { AvatarModule } from 'primeng/avatar'
+import { ButtonModule } from 'primeng/button'
 
 /**
  * Platform Home Dashboard Component - Main dashboard with analytics and statistics.
  */
 @Component({
   selector: 'app-platform-home',
-  imports: [FontAwesomeModule],
   standalone: true,
+  imports: [
+    CommonModule,
+    CardModule,
+    DividerModule,
+    BadgeModule,
+    ProgressBarModule,
+    AvatarModule,
+    ButtonModule,
+  ],
   template: `
-    <div class="space-y-6">
-      <!-- Dashboard Header with System Status -->
-      <div class="mb-6">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div>
-            <h1 class="text-2xl font-bold text-[var(--color-foreground)]">Dashboard</h1>
-          </div>
-
-          <!-- System Status Bar -->
-          <div class="bg-[var(--color-card)] rounded-lg py-2 px-4 border border-[var(--color-border)] lg:w-3/4 lg:max-w-3xl">
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex items-center gap-3">
-                <fa-icon class="text-green-500 text-sm" [icon]="['fas', 'shield-alt']"></fa-icon>
-                <h3 class="text-sm font-semibold text-[var(--color-foreground)]">System Status</h3>
-                <div class="w-px h-6 bg-[var(--color-border)]"></div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">Database</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">API Services</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">Payment Processing</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">Authentication</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">Redis Cache</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                <div>
-                  <p class="text-xs font-medium text-[var(--color-foreground)]">File Storage</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="w-full max-w-7xl mx-auto px-4 py-6">
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold mb-2">Dashboard</h1>
+        <p-divider></p-divider>
       </div>
-
-      <!-- Key Performance Indicators -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Total Users -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Total Users</p>
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">12,847</p>
-              <div class="flex items-center mt-2 text-sm">
-                <fa-icon
-                  class="text-green-500 mr-1"
-                  [icon]="['fas', 'arrow-up']"
-                ></fa-icon>
-                <span class="text-green-500">+12.3%</span>
-                <span class="text-[var(--color-muted-foreground)] ml-1">vs last month</span>
+      <!-- Indicadores principales -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        @for (kpi of kpis; track kpi.label; let i = $index) {
+          <p-card class="px-4 py-2">
+            <ng-template pTemplate="header">
+              <span class="font-medium">{{ kpi.label }}</span>
+            </ng-template>
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-2xl font-bold">{{ kpi.value }}</div>
+                <div class="mt-2">
+                  @if (kpi.trend === 'up') {
+                    <span class="text-green-600 mr-2">
+                      <i class="pi pi-arrow-up"></i> {{ kpi.percent }}%
+                    </span>
+                  }
+                  @if (kpi.trend === 'down') {
+                    <span class="text-red-600 mr-2">
+                      <i class="pi pi-arrow-down"></i> {{ kpi.percent }}%
+                    </span>
+                  }
+                  @if (kpi.trend === 'neutral') {
+                    <span class="text-yellow-600 mr-2">
+                      <i class="pi pi-minus"></i> {{ kpi.percent }}%
+                    </span>
+                  }
+                  <span class="text-gray-500">vs last month</span>
+                </div>
               </div>
+              <p-avatar class="p-4" [icon]="kpi.icon" shape="circle" size="large"></p-avatar>
             </div>
-            <div class="w-12 h-12 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] rounded-lg flex items-center justify-center">
-              <fa-icon class="text-white" [icon]="['fas', 'users']"></fa-icon>
-            </div>
-          </div>
-        </div>
-
-        <!-- Active Tenants -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Active Tenants</p>
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">347</p>
-              <div class="flex items-center mt-2 text-sm">
-                <fa-icon
-                  class="text-green-500 mr-1"
-                  [icon]="['fas', 'arrow-up']"
-                ></fa-icon>
-                <span class="text-green-500">+8.1%</span>
-                <span class="text-[var(--color-muted-foreground)] ml-1">vs last month</span>
-              </div>
-            </div>
-            <div class="w-12 h-12 bg-gradient-to-br from-[var(--color-secondary)] to-[var(--color-primary)] rounded-lg flex items-center justify-center">
-              <fa-icon class="text-white" [icon]="['fas', 'building']"></fa-icon>
-            </div>
-          </div>
-        </div>
-
-        <!-- System Health -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">System Health</p>
-              <p class="text-2xl font-bold text-green-500 mt-1">99.8%</p>
-              <div class="flex items-center mt-2 text-sm">
-                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                <span class="text-[var(--color-muted-foreground)]">All systems operational</span>
-              </div>
-            </div>
-            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-400 rounded-lg flex items-center justify-center">
-              <fa-icon class="text-white" [icon]="['fas', 'heart-pulse']"></fa-icon>
-            </div>
-          </div>
-        </div>
-
-        <!-- Monthly Revenue -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Monthly Revenue</p>
-              <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">$48,923</p>
-              <div class="flex items-center mt-2 text-sm">
-                <fa-icon
-                  class="text-yellow-500 mr-1"
-                  [icon]="['fas', 'minus']"
-                ></fa-icon>
-                <span class="text-yellow-500">-2.4%</span>
-                <span class="text-[var(--color-muted-foreground)] ml-1">vs last month</span>
-              </div>
-            </div>
-            <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-400 rounded-lg flex items-center justify-center">
-              <fa-icon class="text-white" [icon]="['fas', 'chart-line']"></fa-icon>
-            </div>
-          </div>
-        </div>
+          </p-card>
+        }
       </div>
-
-      <!-- Charts and Analytics Section -->
+      <!-- Actividad reciente y top tenants -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Recent Activity -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-[var(--color-foreground)]">Recent Activity</h3>
-            <button class="text-[var(--color-primary)] hover:text-[var(--color-accent)] text-sm font-medium">
-              View All
-            </button>
-          </div>
-          <div class="space-y-4">
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center justify-center">
-                <fa-icon class="text-[var(--color-primary)] text-base" [icon]="['fas', 'user']"></fa-icon>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-medium text-[var(--color-foreground)]">New user registered</p>
-                <p class="text-xs text-[var(--color-muted-foreground)]">john.doe@email.com • 2 min ago</p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center justify-center">
-                <fa-icon class="text-green-500 text-base" [icon]="['fas', 'check-circle']"></fa-icon>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-medium text-[var(--color-foreground)]">System backup completed</p>
-                <p class="text-xs text-[var(--color-muted-foreground)]">Automated backup • 15 min ago</p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center justify-center">
-                <fa-icon class="text-yellow-500 text-base" [icon]="['fas', 'exclamation-triangle']"></fa-icon>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-medium text-[var(--color-foreground)]">High CPU usage detected</p>
-                <p class="text-xs text-[var(--color-muted-foreground)]">Server-01 • 1 hour ago</p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="flex items-center justify-center">
-                <fa-icon class="text-[var(--color-secondary)] text-base" [icon]="['fas', 'building']"></fa-icon>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-medium text-[var(--color-foreground)]">New tenant onboarded</p>
-                <p class="text-xs text-[var(--color-muted-foreground)]">Acme Corp • 2 hours ago</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Top Tenants -->
-        <div class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-[var(--color-foreground)]">Top Tenants</h3>
-            <button class="text-[var(--color-primary)] hover:text-[var(--color-accent)] text-sm font-medium">
-              View All
-            </button>
-          </div>
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-bold">AC</span>
-                </div>
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-foreground)]">Acme Corporation</p>
-                  <p class="text-xs text-[var(--color-muted-foreground)]">1,247 users</p>
-                </div>
-              </div>
-              <span class="text-sm font-medium text-green-500">$12,450/mo</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-bold">GT</span>
-                </div>
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-foreground)]">Global Tech</p>
-                  <p class="text-xs text-[var(--color-muted-foreground)]">892 users</p>
-                </div>
-              </div>
-              <span class="text-sm font-medium text-green-500">$8,930/mo</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-bold">IS</span>
-                </div>
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-foreground)]">Innovation Systems</p>
-                  <p class="text-xs text-[var(--color-muted-foreground)]">634 users</p>
-                </div>
-              </div>
-              <span class="text-sm font-medium text-green-500">$6,340/mo</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
-                  <span class="text-white text-xs font-bold">DS</span>
-                </div>
-                <div>
-                  <p class="text-sm font-medium text-[var(--color-foreground)]">Digital Solutions</p>
-                  <p class="text-xs text-[var(--color-muted-foreground)]">421 users</p>
-                </div>
-              </div>
-              <span class="text-sm font-medium text-green-500">$4,210/mo</span>
-            </div>
-          </div>
-        </div>
+        <p-card header="Recent Activity">
+          <ng-template pTemplate="content">
+            <ul class="p-0 m-0" style="list-style:none;">
+              @for (activity of recentActivity; track activity.title) {
+                <li class="mb-3 flex items-center">
+                  <p-avatar class="mr-2" [icon]="activity.icon" shape="circle"></p-avatar>
+                  <div>
+                    <div class="font-medium">{{ activity.title }}</div>
+                    <div class="text-sm text-gray-500">{{ activity.subtitle }}</div>
+                  </div>
+                </li>
+              }
+            </ul>
+            <button
+              class="p-button-text p-button-sm mt-2"
+              pButton
+              type="button"
+              label="View All"
+            ></button>
+          </ng-template>
+        </p-card>
+        <p-card header="Top Tenants">
+          <ng-template pTemplate="content">
+            <ul class="p-0 m-0" style="list-style:none;">
+              @for (tenant of topTenants; track tenant.initials) {
+                <li class="mb-3 flex items-center justify-between">
+                  <div class="flex items-center">
+                    <p-avatar class="mr-2 bg-primary" [label]="tenant.initials"></p-avatar>
+                    <div>
+                      <div class="font-medium">{{ tenant.name }}</div>
+                      <div class="text-sm text-gray-500">{{ tenant.users }} users</div>
+                    </div>
+                  </div>
+                  <span class="font-medium text-green-600">{{ tenant.revenue }}</span>
+                </li>
+              }
+            </ul>
+            <button
+              class="p-button-text p-button-sm mt-2"
+              pButton
+              type="button"
+              label="View All"
+            ></button>
+          </ng-template>
+        </p-card>
       </div>
     </div>
   `,
 })
-export class PlatformHomePage {}
+export class PlatformHomePage {
+  kpis = [
+    {
+      label: 'Total Users',
+      value: '12,847',
+      percent: 12.3,
+      trend: 'up',
+      icon: 'pi pi-users',
+    },
+    {
+      label: 'Active Tenants',
+      value: '347',
+      percent: 8.1,
+      trend: 'up',
+      icon: 'pi pi-building',
+    },
+    {
+      label: 'System Health',
+      value: '99.8%',
+      percent: 0,
+      trend: 'neutral',
+      icon: 'pi pi-heart',
+    },
+    {
+      label: 'Monthly Revenue',
+      value: '$48,923',
+      percent: -2.4,
+      trend: 'down',
+      icon: 'pi pi-chart-line',
+    },
+  ]
+  recentActivity = [
+    {
+      icon: 'pi pi-user',
+      title: 'New user registered',
+      subtitle: 'john.doe@email.com • 2 min ago',
+    },
+    {
+      icon: 'pi pi-check-circle',
+      title: 'System backup completed',
+      subtitle: 'Automated backup • 15 min ago',
+    },
+    {
+      icon: 'pi pi-exclamation-triangle',
+      title: 'High CPU usage detected',
+      subtitle: 'Server-01 • 1 hour ago',
+    },
+    {
+      icon: 'pi pi-building',
+      title: 'New tenant onboarded',
+      subtitle: 'Acme Corp • 2 hours ago',
+    },
+  ]
+  topTenants = [
+    {
+      initials: 'AC',
+      name: 'Acme Corporation',
+      users: 1247,
+      revenue: '$12,450/mo',
+    },
+    {
+      initials: 'GT',
+      name: 'Global Tech',
+      users: 892,
+      revenue: '$8,930/mo',
+    },
+    {
+      initials: 'IS',
+      name: 'Innovation Systems',
+      users: 634,
+      revenue: '$6,340/mo',
+    },
+    {
+      initials: 'DS',
+      name: 'Digital Solutions',
+      users: 421,
+      revenue: '$4,210/mo',
+    },
+  ]
+}

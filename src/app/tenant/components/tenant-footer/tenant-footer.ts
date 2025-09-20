@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { NgClass } from '@angular/common'
 
 /**
  * Tenant Footer Component - Operational information and status.
@@ -7,74 +7,49 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
  */
 @Component({
   selector: 'app-tenant-footer',
-  imports: [FontAwesomeModule],
+  imports: [NgClass],
   template: `
-    <footer
-      class="px-6 py-3 bg-[var(--color-card)] text-[var(--color-muted-foreground)] border-t border-[var(--color-border)]"
-    >
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 text-sm">
-        <!-- Left Section: Branch Information -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-          <!-- Active Branch -->
+    <footer class="px-5 py-3 p-surface-card text-color-secondary border-top-1 p-shadow-1">
+      <div class="flex flex-row justify-between items-center gap-6 text-sm w-full">
+        <!-- Izquierda: Sucursal y horario -->
+        <div class="flex flex-row items-center gap-6">
           <div class="flex items-center gap-2">
-            <fa-icon
-              class="text-[var(--color-primary)] text-sm"
-              [icon]="['fas', 'map-marker-alt']"
-            ></fa-icon>
-            <span class="font-medium text-[var(--color-foreground)]">{{ branchInfo.name }}</span>
-            <span class="text-[var(--color-muted-foreground)]">•</span>
+            <i class="pi pi-map-marker text-primary text-sm"></i>
+            <span class="font-medium text-color">{{ branchInfo.name }}</span>
+            <span class="text-color-secondary">•</span>
             <span>{{ branchInfo.address }}</span>
           </div>
-
-          <!-- Business Hours -->
           <div class="flex items-center gap-2">
-            <fa-icon
-              class="text-[var(--color-secondary)] text-sm"
-              [icon]="['fas', 'clock']"
-            ></fa-icon>
-            <span [class]="isWithinBusinessHours ? 'text-green-500' : 'text-yellow-500'">
+            <i class="pi pi-clock text-secondary text-sm"></i>
+            <span [ngClass]="isWithinBusinessHours ? 'text-green-500' : 'text-yellow-500'">
               {{ currentHoursStatus }}
             </span>
-            <span class="text-[var(--color-muted-foreground)]">•</span>
+            <span class="text-color-secondary">•</span>
             <span>{{ businessHours }}</span>
           </div>
         </div>
-
-        <!-- Center Section: System Status -->
-        <div class="flex items-center gap-4">
-          <!-- Connection Status -->
+        <!-- Centro: Estado del sistema -->
+        <div class="flex flex-row items-center gap-4 justify-center flex-1">
           <div class="flex items-center gap-2">
-            <div [class]="connectionStatus.color + ' w-2 h-2 rounded-full animate-pulse'"></div>
+            <span [ngClass]="connectionStatus.color + ' w-2 h-2 rounded-full animate-pulse'"></span>
             <span class="text-xs">{{ connectionStatus.text }}</span>
           </div>
-
-          <!-- Last Sync -->
           <div class="flex items-center gap-2">
-            <fa-icon
-              class="text-[var(--color-muted-foreground)] text-xs"
-              [icon]="['fas', 'sync-alt']"
-            ></fa-icon>
+            <i class="pi pi-sync-alt text-color-secondary text-xs"></i>
             <span class="text-xs">Sync: {{ lastSyncTime }}</span>
           </div>
         </div>
-
-        <!-- Right Section: User Session & Version -->
-        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-          <!-- Current User Session -->
+        <!-- Derecha: Usuario y tenant -->
+        <div class="flex flex-row items-center gap-6">
           <div class="flex items-center gap-2">
-            <fa-icon
-              class="text-[var(--color-accent)] text-sm"
-              [icon]="['fas', 'user-circle']"
-            ></fa-icon>
-            <span class="font-medium text-[var(--color-foreground)]">{{ currentUser.name }}</span>
-            <span class="text-[var(--color-muted-foreground)]">•</span>
+            <i class="pi pi-user-circle text-accent text-sm"></i>
+            <span class="font-medium text-color">{{ currentUser.name }}</span>
+            <span class="text-color-secondary">•</span>
             <span class="text-xs">{{ currentUser.role }}</span>
           </div>
-
-          <!-- Version & Company -->
           <div class="flex items-center gap-2">
             <span class="text-xs">{{ companyInfo.name }}</span>
-            <span class="text-[var(--color-muted-foreground)]">•</span>
+            <span class="text-color-secondary">•</span>
             <span class="text-xs">v{{ appVersion }}</span>
           </div>
         </div>

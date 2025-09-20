@@ -1,14 +1,13 @@
 import { Component } from '@angular/core'
 import { RouterLink } from '@angular/router'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { Logotype } from '../../../../core/components/logotype/logotype'
+import { Logotype } from '../../../core/components/logotype/logotype'
 
 /**
  * Landing Footer Component.
  */
 @Component({
   selector: 'app-landing-footer',
-  imports: [RouterLink, FontAwesomeModule, Logotype],
+  imports: [RouterLink, Logotype],
   template: `
     <footer
       class="bg-[var(--color-background)] text-[var(--color-muted-foreground)] border-t border-[var(--border)] mt-auto"
@@ -37,25 +36,25 @@ import { Logotype } from '../../../../core/components/logotype/logotype'
               <ul class="space-y-2">
                 <li>
                   <a class="flex items-center" routerLink="" fragment="features">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'flag']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-flag"></i>
                     Características
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="" fragment="pricing">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'money-bill-1']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-money-bill-1"></i>
                     Precios
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="integrations">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'handshake']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-handshake"></i>
                     Integraciones
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="changelog">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'clock']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-clock"></i>
                     Novedades
                   </a>
                 </li>
@@ -68,25 +67,25 @@ import { Logotype } from '../../../../core/components/logotype/logotype'
               <ul class="space-y-2">
                 <li>
                   <a class="flex items-center" routerLink="documentation">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'bookmark']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-bookmark"></i>
                     Documentación
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="help">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'circle-question']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-circle-question"></i>
                     Centro de Ayuda
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="contact">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'envelope']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-envelope"></i>
                     Contacto
                   </a>
                 </li>
                 <li>
                   <a class="flex items-center" routerLink="status">
-                    <fa-icon class="mr-2 w-4" [icon]="['far', 'heart']"></fa-icon>
+                    <i class="mr-2 w-4" icon="pi pi-heart"></i>
                     Estado del Sistema
                   </a>
                 </li>

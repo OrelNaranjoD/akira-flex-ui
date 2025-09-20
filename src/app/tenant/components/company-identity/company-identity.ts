@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 /**
  * Component to display company identity with logo, name and slogan.
@@ -7,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 @Component({
   selector: 'app-tenant-company-identity',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [],
   template: `
     <div class="flex items-center gap-2">
       @if (logo()) {
@@ -20,17 +19,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
         <div
           class="h-10 w-10 rounded bg-[var(--color-muted)] flex items-center justify-center text-[var(--color-muted-foreground)]"
         >
-          <fa-icon [icon]="['fas', 'building']"></fa-icon>
+          <i class="fas fa-building"></i>
         </div>
       }
       <div class="flex flex-col">
-        <span [class]="'font-bold text-[var(--color-primary)] ' + textClass()">
+        <span [class]="'font-bold text-[var(--p-primary-color)] ' + textClass()">
           {{ name() }}
         </span>
         @if (slogan()) {
-          <span class="text-xs text-[var(--color-muted-foreground)] font-medium">{{
-            slogan()
-          }}</span>
+          <span class="text-xs text-[var(--p-primary-color)] font-medium">{{ slogan() }}</span>
         }
       </div>
     </div>

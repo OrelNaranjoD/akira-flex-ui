@@ -14,7 +14,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/akira-flex-platform/public",
+            "input": "libs/public",
             "output": "."
           }
         ],
@@ -95,7 +95,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/akira-flex-platform/public",
+            "input": "libs/public",
             "output": "."
           }
         ],

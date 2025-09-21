@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700;800&display=swap");
+
+/* Definir capas de CSS para evitar conflictos entre Tailwind y PrimeNG */
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @import "tailwindcss";
+}
+
+@import "primeicons/primeicons.css";
+
+@theme {
+  --font-poppins: Poppins, sans-serif;
+  --font-source-sans: "Source Sans 3", sans-serif;
+  --font-roboto: Roboto, sans-serif;
+  --color-company: oklch(0.4 0.1 260);
+  --p-menubar-gap: 0 !important;
+}
+
+/* Global styles for the all domains */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-source-sans);
+}
+
+* {
+  box-sizing: border-box;
+}

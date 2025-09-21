@@ -9,7 +9,15 @@ import globals from 'globals'
 
 export default [
   {
-    ignores: ['node_modules/', 'dist/', '.angular/', 'coverage/', 'eslint.config.mjs'],
+    ignores: [
+      'node_modules/',
+      'dist/',
+      '.angular/',
+      'coverage/',
+      'eslint.config.mjs',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   {
     files: ['**/*.js', '**/*.mjs'],

@@ -1,6 +1,6 @@
 {
   "name": "akira-flex-ui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "lint": "nx run-many --target=lint --all --fix",
     "lint:l": "nx lint akira-flex-landing --fix",

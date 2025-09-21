@@ -62,9 +62,8 @@ jobs:
 
       - name: Check build artifacts (Nx multi-app)
         run: |
-          APPS=(akira-flex-landing akira-flex-platform akira-flex-tenant)
-          for APP in "${APPS[@]}"; do
-            BUILD_DIR="dist/apps/$APP"
+          for APP in "akira-flex-landing" "akira-flex-platform" "akira-flex-tenant"; do
+            BUILD_DIR="dist/apps/$APP/browser"
             echo "Checking build artifacts in $BUILD_DIR"
             if [ ! -f "$BUILD_DIR/index.html" ] || [ -z "$(ls $BUILD_DIR/main*.js 2>/dev/null)" ] || [ -z "$(ls $BUILD_DIR/styles*.css 2>/dev/null)" ]; then
               echo "Build failed - missing essential files in $BUILD_DIR"

@@ -24,7 +24,7 @@
         "ssr": {
           "entry": "apps/akira-flex-landing/src/server.ts"
         },
-        "outputPath": "dist/app/akira-flex-landing"
+        "outputPath": "dist/apps/akira-flex-landing"
       },
       "configurations": {
         "production": {

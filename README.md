@@ -43,15 +43,21 @@ Steps:
 ## 🛠️ Available Scripts
 
 ```bash
-npm start               # Start development server (http://localhost:4200)
-npm run build           # Build the app for production
-npm run watch           # Build with file watching for development
-npm test                # Run unit tests once
-npm run test:watch      # Run tests in watch mode
-npm run test:coverage   # Run tests with coverage report
-npm run lint            # Run ESLint with auto-fix
-npm run format          # Apply Prettier formatting
-npm run validate        # Run linting and tests
+  npm start                 # Serve all apps in parallel (default ports)
+  npm run start:l           # Serve akira-flex-landing (http://localhost:4200)
+  npm run start:p           # Serve akira-flex-platform (http://localhost:4201)
+  npm run start:t           # Serve akira-flex-tenant (http://localhost:4202)
+  npm run lint              # Lint all apps and libs (autofix)
+  npm run lint:l            # Lint landing app only
+  npm run lint:p            # Lint platform app only
+  npm run lint:t            # Lint tenant app only
+  npm run lint:lib          # Lint core/shared libs
+  npm test                  # Run all unit tests (headless)
+  npm run test:l            # Unit tests for landing app
+  npm run test:p            # Unit tests for platform app
+  npm run test:t            # Unit tests for tenant app
+  npm run test:lib          # Unit tests for core/shared libs
+  npm run test:cov          # Generate coverage report for all tests
 ```
 
 ---
@@ -60,29 +66,34 @@ npm run validate        # Run linting and tests
 
 ```bash
 akira-flex-ui/
-├── src/
-│   ├── app/
-│   │   ├── core/                 # Core application modules
-│   │   │   ├── components/       # Shared components (header, footer, layout)
-│   │   │   └── services/         # Core services and utilities
-│   │   ├── pages/                # Feature pages
-│   │   │   └── home/            # Home page components
-│   │   ├── app.config.ts        # Application configuration
-│   │   └── app.routes.ts        # Routing configuration
-│   ├── styles.css               # Global styles
-│   ├── main.ts                  # Application bootstrap
-│   └── index.html               # Main HTML template
-├── public/
-│   └── favicon.ico              # Application icon
+├── apps/
+│   ├── akira-flex-landing/      # Landing app (SPA/SSR)
+│   ├── akira-flex-platform/     # Platform app (SPA/SSR)
+│   ├── akira-flex-tenant/       # Tenant app (SPA/SSR)
+├── libs/
+│   ├── components/              # Shared UI components (checkbox, loading, logotype, etc.)
+│   ├── services/                # Shared services (theme, page-title, etc.)
+│   ├── utils/                   # Utility functions (cookie-utils, etc.)
+│   ├── test/                    # Shared test utilities
+│   ├── flex-shared-lib/         # Shared library entry point
+│   └── index.ts                 # Libs barrel file
 ├── .github/
 │   └── workflows/               # CI/CD automation
-├── angular.json                 # Angular workspace configuration
-├── tailwind.config.js          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
-├── eslint.config.mjs           # ESLint configuration with JSDoc validation
-├── .commitlintrc.mjs           # Commit message linting rules
-├── .lintstagedrc.json          # Pre-commit hooks configuration
-└── README.md                   # Project documentation
+├── .commitlintrc.mjs            # Commit message linting rules
+├── .editorconfig                # Code editor configuration
+├── .gitignore                   # Git ignore file
+├── .postcssrc.json              # PostCSS configuration
+├── .prettierignore              # Prettier ignore file
+├── .prettierrc                  # Prettier configuration
+├── CHANGELOG.md                 # Project changelog
+├── CONTRIBUTING.md               # Contribution guidelines
+├── css-custom-data.json          # CSS custom properties for Tailwind IntelliSense
+├── eslint.config.mjs            # ESLint configuration
+├── nx.json                      # Nx workspace configuration
+├── package-lock.json            # NPM lock file
+├── package.json                 # NPM scripts and dependencies
+├── README.md                    # Project documentation
+└── tsconfig.base.json           # Base TypeScript config
 ```
 
 ---
@@ -91,7 +102,11 @@ akira-flex-ui/
 
 - **Frontend Framework**: Angular 20+ with standalone components
 - **Styling**: Tailwind CSS 4.x for utility-first styling
-- **Icons**: Font Awesome with Angular integration
+- **Theming**: PrimeNg Themes for consistent Theming
+- **Components**: PrimeNg Components for reusable UI elements
+- **Icons**: PrimeNg Icons for lightweight iconography
+- **State Management**: Ngxs for reactive state management
+- **Monorepo**: Nx for managing the monorepo structure
 - **Testing**: Jasmine + Karma for unit testing
 - **Linting**: ESLint + Prettier with JSDoc validation
 - **Build**: Angular CLI with modern build system
@@ -101,14 +116,16 @@ akira-flex-ui/
 
 ## 🔧 Development
 
-### Starting the Development Server
+### Starting the all Development Servers
 
 ```bash
 npm start
 ```
 
-The application will be available at `http://localhost:4200`. The app will
-automatically reload when you change any source files.
+The application will be available at `http://localhost:4200` for the landing
+app, `http://localhost:4201` for the platform app, and `http://localhost:4202`
+for the tenant app. The app will automatically reload when you change any source
+files.
 
 ### Building for Production
 
@@ -116,8 +133,12 @@ automatically reload when you change any source files.
 npm run build
 ```
 
-The build artifacts will be stored in the `dist/akira-flex-ui/browser/`
-directory.
+The build artifacts will be stored in:
+
+- `dist/apps/akira-flex-landing/browser/` for the landing app
+- `dist/apps/akira-flex-platform/browser/` for the platform app
+- `dist/apps/akira-flex-tenant/browser/` for the tenant app
+- `dist/libs/<lib-name>/` for libraries
 
 ### Running Tests
 
@@ -125,14 +146,22 @@ directory.
 # Run tests once
 npm test
 
-# Run tests in watch mode during development
-npm run test:watch
+# Run tests for a specific app
+npm run test:l   # Landing app
+npm run test:p   # Platform app
+npm run test:t   # Tenant app
+npm run test:lib # Core/shared libs
 
 # Generate coverage report
-npm run test:coverage
+npm run test:cov
 ```
 
-Coverage reports will be generated in the `coverage/` directory.
+Coverage reports will be generated in the `coverage/` directory:
+
+- `coverage/apps/akira-flex-landing/`
+- `coverage/apps/akira-flex-platform/`
+- `coverage/apps/akira-flex-tenant/`
+- `coverage/libs/<lib-name>/`
 
 ### Code Quality
 
@@ -199,6 +228,7 @@ The build process:
 Create environment files for different stages:
 
 - `src/environments/environment.ts` - Development configuration
+- `src/environments/environment.staging.ts` - Staging configuration
 - `src/environments/environment.prod.ts` - Production configuration
 
 Example environment configuration:

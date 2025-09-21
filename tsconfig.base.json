@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2023",
+    "module": "preserve",
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@flex-shared-lib": ["libs/flex-shared-lib/index.ts"],
+      "@flex-shared-lib/*": ["libs/flex-shared-lib/*"],
+      "@shared": ["libs"],
+      "@shared/*": ["libs/*"]
+    }
+  }
+}

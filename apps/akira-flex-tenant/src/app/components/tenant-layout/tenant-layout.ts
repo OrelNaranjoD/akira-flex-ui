@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { PageTitleService } from '@shared'
 import { TenantMenu } from '../tenant-menu'
@@ -12,6 +12,7 @@ import { TenantHeader } from '../tenant-header/tenant-header'
 @Component({
   selector: 'app-tenant-layout',
   imports: [RouterOutlet, TenantHeader, TenantMenu, TenantFooter],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="min-h-screen flex flex-col">
       <!-- Header -->
@@ -32,7 +33,7 @@ import { TenantHeader } from '../tenant-header/tenant-header'
     </div>
   `,
 })
-export class TenantLayout {
+export class TenantLayout implements OnInit {
   private readonly pageTitleService = inject(PageTitleService)
 
   // Hardcoded company data for AkiraFlex example
@@ -45,7 +46,10 @@ export class TenantLayout {
     address: 'Av. Principal 1234, Santiago',
   }
 
-  constructor() {
+  /**
+   * Sets the tenant page title on component initialization.
+   */
+  ngOnInit() {
     this.pageTitleService.setTenantTitle(this.companyData.name, this.companyData.slogan)
   }
 }

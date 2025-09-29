@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core'
+import { Component, input, ChangeDetectionStrategy } from '@angular/core'
 import { RouterLink } from '@angular/router'
 
 /**
@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router'
 @Component({
   selector: 'app-logotype',
   imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a class="flex flex-row align-center items-center gap-1" routerLink="/">
       <img [class]="'w-auto ' + logoSize()" src="/logotype.svg" alt="AkiraFlex Logo" />

@@ -1,4 +1,4 @@
-@import "../../../../libs/public/styles/base.css";
+@import "../../../libs/public/styles/base.css";
 
 /* Definir capas de CSS para evitar conflictos entre Tailwind y PrimeNG */
 @layer tailwind-base, primeng, tailwind-utilities;

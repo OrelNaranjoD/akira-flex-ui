@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core'
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core'
 
 /**
  * Reusable checkbox component with theme support.
@@ -6,6 +6,7 @@ import { Component, input, output } from '@angular/core'
 @Component({
   selector: 'app-checkbox',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <label class="flex items-center cursor-pointer group">
       <div class="relative flex items-center justify-center">

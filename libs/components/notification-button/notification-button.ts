@@ -1,4 +1,12 @@
-import { Component, input, output, signal, OnInit, OnChanges } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  OnChanges,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core'
 import { AppNotification } from '@flex-shared-lib'
 
 /**
@@ -7,6 +15,7 @@ import { AppNotification } from '@flex-shared-lib'
 @Component({
   selector: 'app-notification-button',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="relative">
       <!-- Notification button -->

@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router'
-import { TenantLayout } from './components/tenant-layout/tenant-layout'
-import { TenantHomePage } from './pages/tenant-home/tenant-home'
 
 export const TENANT_ROUTES: Routes = [
   {
     path: '',
-    component: TenantLayout,
-    children: [{ path: '', component: TenantHomePage }],
+    loadComponent: () =>
+      import('./components/tenant-layout/tenant-layout').then((m) => m.TenantLayout),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/tenant-home/tenant-home').then((m) => m.TenantHomePage),
+      },
+    ],
   },
 ]

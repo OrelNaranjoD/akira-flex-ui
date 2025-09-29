@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core'
 import { PanelMenuModule } from 'primeng/panelmenu'
-import { NgClass } from '@angular/common'
 
 /**
  * Tenant Menu Component - Business workflow-oriented navigation.
@@ -8,12 +7,12 @@ import { NgClass } from '@angular/common'
  */
 @Component({
   selector: 'app-tenant-menu',
-  imports: [PanelMenuModule, NgClass],
+  imports: [PanelMenuModule],
   template: `
     <p-panelmenu
       class="w-full md:w-60 p-0 border-0 shadow-none bg-transparent"
       [model]="items"
-      [ngClass]="{ 'tenant-menu-collapsed': isCollapsed() }"
+      [class]="isCollapsed() ? 'tenant-menu-collapsed' : ''"
       [multiple]="true"
     ></p-panelmenu>
   `,

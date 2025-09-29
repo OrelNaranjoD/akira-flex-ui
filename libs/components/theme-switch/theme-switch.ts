@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ThemeService } from '@shared'
 import { ButtonModule } from 'primeng/button'
@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button'
 @Component({
   selector: 'app-theme-switch',
   imports: [ButtonModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p-button
       class="relative z-10 flex items-center justify-center scale-80"

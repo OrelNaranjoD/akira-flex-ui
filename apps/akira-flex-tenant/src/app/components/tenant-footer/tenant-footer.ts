@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { NgClass } from '@angular/common'
 
 /**
  * Tenant Footer Component - Operational information and status.
@@ -7,7 +6,6 @@ import { NgClass } from '@angular/common'
  */
 @Component({
   selector: 'app-tenant-footer',
-  imports: [NgClass],
   template: `
     <footer class="px-5 py-3 p-surface-card text-color-secondary border-top-1 p-shadow-1">
       <div class="flex flex-row justify-between items-center gap-6 text-sm w-full">
@@ -21,7 +19,7 @@ import { NgClass } from '@angular/common'
           </div>
           <div class="flex items-center gap-2">
             <i class="pi pi-clock text-secondary text-sm"></i>
-            <span [ngClass]="isWithinBusinessHours ? 'text-green-500' : 'text-yellow-500'">
+            <span [class]="isWithinBusinessHours ? 'text-green-500' : 'text-yellow-500'">
               {{ currentHoursStatus }}
             </span>
             <span class="text-color-secondary">•</span>
@@ -31,7 +29,7 @@ import { NgClass } from '@angular/common'
         <!-- Centro: Estado del sistema -->
         <div class="flex flex-row items-center gap-4 justify-center flex-1">
           <div class="flex items-center gap-2">
-            <span [ngClass]="connectionStatus.color + ' w-2 h-2 rounded-full animate-pulse'"></span>
+            <span [class]="connectionStatus.color + ' w-2 h-2 rounded-full animate-pulse'"></span>
             <span class="text-xs">{{ connectionStatus.text }}</span>
           </div>
           <div class="flex items-center gap-2">

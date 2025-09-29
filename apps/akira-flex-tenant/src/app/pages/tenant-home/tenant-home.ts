@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { CurrencyPipe, NgClass } from '@angular/common'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { CurrencyPipe } from '@angular/common'
 import { CardModule } from 'primeng/card'
 import { ButtonModule } from 'primeng/button'
 
@@ -8,7 +8,8 @@ import { ButtonModule } from 'primeng/button'
  */
 @Component({
   selector: 'app-tenant-home',
-  imports: [CurrencyPipe, CardModule, ButtonModule, NgClass],
+  imports: [CurrencyPipe, CardModule, ButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="space-y-6 p-surface-ground">
       <!-- Page Header -->
@@ -30,7 +31,7 @@ import { ButtonModule } from 'primeng/button'
               >
                 <i
                   class="pi pi-box flex items-center justify-center text-xl"
-                  [ngClass]="cashRegister.isOpen ? 'text-green-500' : 'text-red-500'"
+                  [class]="cashRegister.isOpen ? 'text-green-500' : 'text-red-500'"
                 ></i>
               </div>
               <div>
@@ -74,7 +75,7 @@ import { ButtonModule } from 'primeng/button'
                 <div class="flex items-center mt-2 text-sm">
                   <i
                     class="pi"
-                    [ngClass]="
+                    [class]="
                       dailyKPIs.sales.trend === 'up'
                         ? 'pi-arrow-up text-green-500 mr-1'
                         : 'pi-arrow-down text-red-500 mr-1'
@@ -255,7 +256,7 @@ import { ButtonModule } from 'primeng/button'
                   >
                     <i
                       class="pi text-sm"
-                      [ngClass]="
+                      [class]="
                         'pi-' + getStatusIcon(order.status) + ' ' + getStatusColor(order.status)
                       "
                     ></i>

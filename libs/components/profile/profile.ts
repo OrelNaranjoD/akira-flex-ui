@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core'
 
 /**
  * Component for displaying user profile information.
@@ -6,6 +6,7 @@ import { Component } from '@angular/core'
 @Component({
   selector: 'app-profile',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="relative">
       <button
@@ -27,12 +28,12 @@ import { Component } from '@angular/core'
         </div>
         <i
           class="text-xs text-[var(--color-muted-foreground)] transition-transform"
-          [class.rotate-180]="isDropdownOpen"
+          [class.rotate-180]="isDropdownOpen()"
           icon="pi pi-chevron-down"
         ></i>
       </button>
 
-      @if (isDropdownOpen) {
+      @if (isDropdownOpen()) {
         <div
           class="absolute right-0 top-full mt-2 w-40 bg-[var(--color-background)] border border-[var(--border)] rounded-lg shadow-lg z-50"
         >
@@ -69,7 +70,7 @@ export class Profile {
   /**
    * Controls the visibility of the profile dropdown menu.
    */
-  isDropdownOpen = false
+  isDropdownOpen = signal(false)
 
   /**
    * Hardcoded profile user.
@@ -97,27 +98,27 @@ export class Profile {
    * Toggles the dropdown menu visibility.
    */
   toggleDropdown(): void {
-    this.isDropdownOpen = !this.isDropdownOpen
+    this.isDropdownOpen.update((open) => !open)
   }
 
   /**
    * Handles view profile action.
    */
   viewProfile(): void {
-    this.isDropdownOpen = false
+    this.isDropdownOpen.set(false)
   }
 
   /**
    * Handles settings action.
    */
   settings(): void {
-    this.isDropdownOpen = false
+    this.isDropdownOpen.set(false)
   }
 
   /**
    * Handles user logout action.
    */
   logout(): void {
-    this.isDropdownOpen = false
+    this.isDropdownOpen.set(false)
   }
 }

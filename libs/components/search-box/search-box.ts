@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core'
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 
 /**
@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'
 @Component({
   selector: 'app-search-box',
   imports: [FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="relative" [style.width]="width()">
       <i

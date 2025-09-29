@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core'
 import { PlatformFooter } from '../platform-footer/platform-footer'
 import { PlatformHeader } from '../platform-header/platform-header'
 import { PlatformMenu } from '../platform-menu/platform-menu'
@@ -11,6 +11,7 @@ import { PageTitleService } from '@shared'
 @Component({
   selector: 'app-platform-layout',
   imports: [RouterOutlet, PlatformHeader, PlatformMenu, PlatformFooter],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="flex flex-col min-h-screen">
       <!-- Header -->
@@ -29,10 +30,13 @@ import { PageTitleService } from '@shared'
     </div>
   `,
 })
-export class PlatformLayout {
+export class PlatformLayout implements OnInit {
   private readonly pageTitleService = inject(PageTitleService)
 
-  constructor() {
-    this.pageTitleService.setLandingTitle()
+  /**
+   * Sets the platform page title on component initialization.
+   */
+  ngOnInit() {
+    this.pageTitleService.setPlatformTitle()
   }
 }

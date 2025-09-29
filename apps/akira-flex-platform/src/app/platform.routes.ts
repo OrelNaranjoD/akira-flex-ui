@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router'
-import { PlatformLayout } from './components/platform-layout/platform-layout'
-import { PlatformHomePage } from './pages/platform-home/platform-home'
 
 /**
  * Platform routes configuration.
@@ -8,7 +6,14 @@ import { PlatformHomePage } from './pages/platform-home/platform-home'
 export const PLATFORM_ROUTES: Routes = [
   {
     path: '',
-    component: PlatformLayout,
-    children: [{ path: '', component: PlatformHomePage }],
+    loadComponent: () =>
+      import('./components/platform-layout/platform-layout').then((m) => m.PlatformLayout),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/platform-home/platform-home').then((m) => m.PlatformHomePage),
+      },
+    ],
   },
 ]

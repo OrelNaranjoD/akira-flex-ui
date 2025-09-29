@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { CardModule } from 'primeng/card'
 import { CommonModule } from '@angular/common'
 import { DividerModule } from 'primeng/divider'
@@ -22,6 +22,7 @@ import { ButtonModule } from 'primeng/button'
     AvatarModule,
     ButtonModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="w-full max-w-7xl mx-auto px-4 py-6">
       <div class="mb-8">

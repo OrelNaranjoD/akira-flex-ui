@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { RouterLink } from '@angular/router'
 import { Logotype } from '@shared'
 
@@ -8,10 +8,9 @@ import { Logotype } from '@shared'
 @Component({
   selector: 'app-landing-footer',
   imports: [RouterLink, Logotype],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer
-      class="bg-[var(--color-background)] text-[var(--color-muted-foreground)] border-t border-[var(--border)] mt-auto"
-    >
+    <footer class="border-t mt-auto">
       <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-20 py-4">
         <div class="flex justify-between items-start">
           <!-- Company Info - Left side -->
@@ -95,7 +94,7 @@ import { Logotype } from '@shared'
         </div>
 
         <!-- Bottom Border -->
-        <div class="mt-4 pt-4 border-t border-[var(--border)]">
+        <div class="mt-4 pt-4 border-t">
           <div class="flex flex-col sm:flex-row justify-between items-center">
             <div class="flex space-x-6 mb-4 sm:mb-0">
               <a class="text-sm" routerLink="privacy">Política de Privacidad</a>

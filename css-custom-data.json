@@ -28,6 +28,10 @@
     {
       "name": "@custom-variant",
       "description": "Tailwind CSS v4 custom variant directive for defining custom variants"
+    },
+    {
+      "name": "@plugin",
+      "description": "Tailwind CSS v4 plugin directive for including plugins"
     }
   ]
 }

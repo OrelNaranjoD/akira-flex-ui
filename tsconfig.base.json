@@ -10,7 +10,7 @@
     "paths": {
       "@flex-shared-lib": ["libs/flex-shared-lib/index.ts"],
       "@flex-shared-lib/*": ["libs/flex-shared-lib/*"],
-      "@shared": ["libs"],
+      "@shared": ["libs/index.ts"],
       "@shared/*": ["libs/*"]
     }
   }

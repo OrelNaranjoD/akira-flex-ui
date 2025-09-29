@@ -10,6 +10,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
 import { TenantTheme } from './themes/tenant-theme.preset'
+import { provideStore } from '@ngrx/store'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,5 +33,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    provideStore(),
   ],
 }

@@ -1,70 +1,86 @@
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/poppins-regular-webfont.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 100 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/poppins-italic-webfont.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 100 400 900;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/fonts/roboto-variablefont_wdthwght-webfont.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("/fonts/roboto-regular-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/fonts/roboto-italic-variablefont_wdthwght-webfont.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("/fonts/roboto-italic-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/fonts/montserrat-variablefont_wght-webfont.woff2") format("woff2");
+  src: url("/fonts/montserrat-regular-webfont.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("/fonts/montserrat-italic-variablefont_wght-webfont.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("/fonts/montserrat-italic-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Raleway";
-  src: url("/fonts/raleway-variablefont_wght-webfont.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("/fonts/raleway-regular-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Raleway";
-  src: url("/fonts/raleway-italic-variablefont_wght-webfont.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("/fonts/raleway-italic-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("/fonts/lato-regular-webfont.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 100 400 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Lato";
   src: url("/fonts/lato-italic-webfont.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 100 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-regular-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-italic-webfont.woff2") format("woff2");
+  font-weight: 100 400 900;
   font-style: italic;
   font-display: swap;
 }
@@ -75,4 +91,7 @@
   --font-montserrat: Montserrat, sans-serif;
   --font-raleway: Raleway, sans-serif;
   --font-lato: Lato, sans-serif;
+  --font-inter: Inter, sans-serif;
+
+  --default-font-family: var(--font-inter);
 }

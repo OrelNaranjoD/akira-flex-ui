@@ -9,9 +9,13 @@ import { RouterLink } from '@angular/router'
   selector: 'app-logotype',
   imports: [RouterLink],
   template: `
-    <a class="flex items-center gap-1" routerLink="/">
+    <a class="flex flex-row align-center items-center gap-1" routerLink="/">
       <img [class]="'w-auto ' + logoSize()" src="/logotype.svg" alt="AkiraFlex Logo" />
-      <span [class]="'font-poppins font-bold text-[var(--color-company)] ' + textSize()">
+      <span
+        [class]="
+          'font-poppins font-extrabold text-[var(--color-company)] tracking-wide ' + textSize()
+        "
+      >
         AkiraFlex
       </span>
     </a>
@@ -30,9 +34,9 @@ export class Logotype {
    */
   logoSize(): string {
     const sizeMap = {
-      small: 'h-6',
-      normal: 'h-9',
-      large: 'h-11',
+      small: 'h-4',
+      normal: 'h-6',
+      large: 'h-8',
     }
     return sizeMap[this.size()]
   }

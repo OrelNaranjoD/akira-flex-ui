@@ -1,69 +1,51 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, ChangeDetectionStrategy, inject, output, signal } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ButtonModule } from 'primeng/button'
 import { LandingLogin } from '../landing-login/landing-login'
 import { LandingRegister } from '../landing-register/landing-register'
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog'
 
 /**
  * Component that manages the login/register dropdown in the landing page header.
  */
 @Component({
   selector: 'app-landing-auth',
-  imports: [FormsModule, ButtonModule, LandingLogin, LandingRegister],
+  imports: [FormsModule, ButtonModule, DynamicDialogModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DialogService],
   template: `
     <div class="relative flex items-center gap-2">
-      <button
-        class="px-3 py-2 text-sm font-medium text-[var(--color-foreground)] hover:text-[var(--color-primary)] transition-colors rounded-lg"
-        (click)="openDropdown(false)"
-      >
+      <p-button class="px-3 py-2 text-sm font-medium mouse-pointer" (click)="openLoginDialog()">
         <span>Iniciar Sesión</span>
-        <i
-          class="inline-block text-xs text-[var(--color-muted-foreground)] transition-transform"
-          [style.transform]="isDropdownOpen && !isRegisterOpen ? 'rotate(180deg)' : 'none'"
-          icon="pi pi-chevron-down"
-        ></i>
-      </button>
+        <i class="inline-block text-xs" icon="pi pi-sign-in"></i>
+      </p-button>
 
-      <button
-        class="p-button-rounded p-button-lg"
-        (click)="openDropdown(true)"
-        pButton
-        type="button"
-        style="background: var(--p-surface-200); color: var(--p-text-color); border: none;"
-        >Solicitar Demo</button
-      >
-
-      <!-- Login panel -->
-      <app-landing-login
-        [isDropdownOpen]="isDropdownOpen"
-        [isRegisterOpen]="isRegisterOpen"
-        (submitLogin)="handleLogin()"
-        (requestSwitch)="openDropdown($event)"
-      ></app-landing-login>
-
-      <!-- Register panel -->
-      <app-landing-register
-        [isDropdownOpen]="isDropdownOpen"
-        [isRegisterOpen]="isRegisterOpen"
-        (requestSwitch)="openDropdown($event)"
-      ></app-landing-register>
+      <p-button
+        [raised]="true"
+        [rounded]="true"
+        (click)="openRegisterDialog()"
+        size="small"
+        aria-label="Solicitar Demo"
+        label="Solicitar Demo"
+      />
     </div>
   `,
-  styleUrls: ['./landing-auth.css'],
 })
 export class LandingAuth {
-  @Output() loginSuccess = new EventEmitter<void>()
+  private readonly dialogService = inject(DialogService)
 
-  isRegisterOpen = false
-  isDropdownOpen = false
+  loginSuccess = output<void>()
+
+  isRegisterOpen = signal(false)
+  isDropdownOpen = signal(false)
 
   /**
    * Toggles the visibility of the login/register dropdown.
    */
   toggleDropdown(): void {
-    this.isDropdownOpen = !this.isDropdownOpen
-    if (!this.isDropdownOpen) {
-      this.isRegisterOpen = false
+    this.isDropdownOpen.set(!this.isDropdownOpen())
+    if (!this.isDropdownOpen()) {
+      this.isRegisterOpen.set(false)
     }
   }
 
@@ -72,21 +54,71 @@ export class LandingAuth {
    * @param showRegister True to open the register form, false for login.
    */
   openDropdown(showRegister: boolean): void {
-    if (this.isDropdownOpen && this.isRegisterOpen === showRegister) {
-      this.isDropdownOpen = false
-      this.isRegisterOpen = false
+    if (this.isDropdownOpen() && this.isRegisterOpen() === showRegister) {
+      this.isDropdownOpen.set(false)
+      this.isRegisterOpen.set(false)
       return
     }
 
-    this.isDropdownOpen = true
-    this.isRegisterOpen = showRegister
+    this.isDropdownOpen.set(true)
+    this.isRegisterOpen.set(showRegister)
   }
 
   /**
    * Handle successful login event emitted by the login child component.
    */
   handleLogin(): void {
-    this.isDropdownOpen = false
+    this.isDropdownOpen.set(false)
     this.loginSuccess.emit()
+  }
+
+  /**
+   * Opens the registration form in a dialog.
+   */
+  openRegisterDialog(): void {
+    const ref = this.dialogService.open(LandingRegister, {
+      header: 'Crear Cuenta',
+      width: '95vw',
+      style: { maxWidth: '480px' },
+      modal: true,
+      dismissableMask: true,
+      contentStyle: { padding: '0' },
+      baseZIndex: 1100,
+      breakpoints: { '640px': '98vw' },
+      focusTrap: false,
+    })
+
+    ref.onClose.subscribe((result) => {
+      if (result === 'login') {
+        this.openLoginDialog()
+      } else if (result) {
+        this.handleLogin()
+      }
+    })
+  }
+
+  /**
+   * Opens the login form in a dialog.
+   */
+  openLoginDialog(): void {
+    const ref = this.dialogService.open(LandingLogin, {
+      header: 'Iniciar Sesión',
+      width: '95vw',
+      style: { maxWidth: '400px' },
+      modal: true,
+      dismissableMask: true,
+      contentStyle: { padding: '0' },
+      baseZIndex: 1100,
+      breakpoints: { '640px': '98vw' },
+      focusTrap: false,
+    })
+
+    ref.onClose.subscribe((result) => {
+      if (result === 'register') {
+        this.openRegisterDialog()
+      } else if (result) {
+        this.loginSuccess.emit()
+      }
+    })
   }
 }

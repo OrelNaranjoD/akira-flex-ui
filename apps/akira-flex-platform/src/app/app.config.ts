@@ -9,6 +9,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 import { providePrimeNG } from 'primeng/config'
 import { PlatformTheme } from './themes/platform-theme.preset'
+import { provideStore } from '@ngrx/store'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,5 +32,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    provideStore(),
   ],
 }

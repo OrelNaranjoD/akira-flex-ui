@@ -1,5 +1,4 @@
-import { Component, HostListener } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core'
 import { LandingMenu } from '../landing-menu/landing-menu'
 import { LandingAuth } from '../landing-auth/landing-auth'
 import { Logotype, Profile, ThemeSwitch } from '@shared'
@@ -9,73 +8,70 @@ import { Logotype, Profile, ThemeSwitch } from '@shared'
  */
 @Component({
   selector: 'app-landing-header',
-  imports: [CommonModule, LandingMenu, LandingAuth, Logotype, Profile, ThemeSwitch],
+  imports: [LandingMenu, LandingAuth, Logotype, Profile, ThemeSwitch],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:scroll)': 'onWindowScroll()',
+  },
   template: `
-    <header
-      class="fixed top-0 left-0 right-0 z-5 text-color px-2 w-full shadow-1"
-      [ngStyle]="headerStyles"
-    >
-      <div class="flex align-items-center justify-content-between">
+    <header class="fixed top-0 left-0 z-5 px-2 w-full h-15" [style]="headerStyles()">
+      <div class="flex flex-row items-center">
         <div class="flex-shrink-0">
           <app-logotype></app-logotype>
         </div>
 
-        <div class="flex-1 flex justify-content-end mx-2">
+        <div class="flex-1 flex justify-end">
           <app-landing-menu></app-landing-menu>
         </div>
 
-        <div
-          class="flex align-items-center gap-2 sm:gap-3 relative"
-          [ngClass]="{ 'opacity-0 invisible': isScrolled }"
-        >
+        <div class="flex items-center gap-2 sm:gap-3">
           <app-theme-switch></app-theme-switch>
-          <ng-container *ngIf="!isLoggedIn; else logged">
+          @if (!isLoggedIn()) {
             <app-landing-auth (loginSuccess)="onLogin()"></app-landing-auth>
-          </ng-container>
-          <ng-template #logged>
+          } @else {
             <app-profile></app-profile>
-          </ng-template>
+          }
         </div>
       </div>
     </header>
   `,
 })
 export class LandingHeader {
-  isLoggedIn = false
-  isScrolled = false
+  isLoggedIn = signal(false)
+  isScrolled = signal(false)
 
   /**
    * Dynamic CSS styles for the header based on scroll state.
    * @returns CSS styles object.
    */
-  get headerStyles(): { [key: string]: string } {
-    if (this.isScrolled) {
+  headerStyles = computed(() => {
+    if (this.isScrolled()) {
       return {
         'backdrop-filter': 'blur(2px)',
-        'border-bottom': 'none',
-        background: `color-mix(in srgb, var(--p-accent-color) 15%, transparent)`,
+        'border-bottom': '1px solid rgba(228, 228, 231, 0.8)',
+        background: `color-mix(in srgb, #f59e0b 5%, transparent)`,
+        transition: 'all 0.3s ease',
       }
     } else {
       return {
-        'border-bottom': '1px solid rgba(var(--border-rgb, 228, 228, 231), 0.5)',
-        'backdrop-filter': 'none',
+        'border-bottom': '1px solid rgba(228, 228, 231, 0.8)',
         background: 'var(--p-surface-color)',
+        transition: 'all 0.3s ease',
       }
     }
-  }
+  })
 
   /**
    * Listen to window scroll events to update header state.
    */
-  @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    this.isScrolled = window.pageYOffset > 10
+    this.isScrolled.set(window.pageYOffset > 10)
   }
 
   /**
    * Sets the login state to true.
    */
   onLogin(): void {
-    this.isLoggedIn = true
+    this.isLoggedIn.set(true)
   }
 }

@@ -1,238 +1,221 @@
-import { CommonModule } from '@angular/common'
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  inject,
-  input,
-  output,
-  ViewChild,
-} from '@angular/core'
+import { Component, ChangeDetectionStrategy, inject, output, signal } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Checkbox } from '@shared'
 import { LandingLoginService } from './landing-login.service'
 import { LoginRequest, LoginResponse } from '@flex-shared-lib'
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { InputTextModule } from 'primeng/inputtext'
+import { IconFieldModule } from 'primeng/iconfield'
+import { InputIconModule } from 'primeng/inputicon'
+import { CheckboxModule } from 'primeng/checkbox'
+import { ButtonModule } from 'primeng/button'
+import { MessageService } from 'primeng/api'
+import { MessageModule } from 'primeng/message'
+import { PasswordModule } from 'primeng/password'
 
 /**
  * Component for the login form in the landing page header.
  */
 @Component({
   selector: 'app-landing-login',
-  imports: [CommonModule, ReactiveFormsModule, Checkbox],
-  providers: [LandingLoginService],
+  imports: [
+    CheckboxModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    IconFieldModule,
+    InputIconModule,
+    MessageModule,
+    ButtonModule,
+    PasswordModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [LandingLoginService, MessageService],
   template: `
-    @if (isDropdownOpen() && !isRegisterOpen()) {
-      <div
-        class="absolute right-0 top-full mt-4 w-80 bg-[var(--color-background)] border border-[var(--border)] rounded-lg shadow-lg z-50"
-        [animate.enter]="'flip-in'"
-        [animate.leave]="'flip-out'"
+    <div class="p-6">
+      <form
+        class="flex flex-col gap-4"
+        [formGroup]="loginForm"
+        (ngSubmit)="loginSubmit(); $event.preventDefault()"
       >
-        <div class="p-4 max-h-[calc(100vh-120px)] overflow-auto">
-          <form class="space-y-4" [formGroup]="form" (ngSubmit)="loginSubmit()" novalidate>
-            <div>
-              <label
-                class="block text-sm font-medium text-[var(--color-foreground)] mb-1"
-                for="login-email"
-              >
-                Email
-              </label>
-              <div class="relative">
-                <i
-                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
-                  icon="pi pi-envelope"
-                ></i>
-                <input
-                  class="w-full px-3 py-2 pl-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
-                  id="login-email"
-                  formControlName="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                  placeholder="email@dominio.com"
-                />
-              </div>
-              @if (
-                form.get('email')?.invalid &&
-                (form.get('email')?.dirty || form.get('email')?.touched)
-              ) {
-                <div class="text-red-500 text-xs mt-1">
-                  @if (form.get('email')?.hasError('required')) {
-                    <p>El email es requerido.</p>
-                  }
-                  @if (form.get('email')?.hasError('email')) {
-                    <p>Por favor, introduce un email válido.</p>
-                  }
-                </div>
-              }
-            </div>
-
-            <div>
-              <label
-                class="block text-sm font-medium text-[var(--color-foreground)] mb-1"
-                for="login-password"
-              >
-                Contraseña
-              </label>
-              <div class="relative">
-                <i
-                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] text-sm"
-                  icon="pi pi-lock"
-                ></i>
-                <input
-                  class="w-full px-3 py-2 pl-10 pr-10 border border-[var(--border)] rounded-lg bg-[var(--color-background)] text-[var(--color-foreground)] placeholder-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:border-transparent"
-                  id="login-password"
-                  #loginPassword
-                  formControlName="password"
-                  type="password"
-                  autocomplete="current-password"
-                  required
-                />
-                <button
-                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
-                  (click)="togglePasswordVisibility()"
-                  type="button"
+        <!-- Email Input -->
+        <div class="flex flex-col gap-2">
+          <label class="font-medium" for="email-input">Email</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-envelope" />
+            <input
+              id="email-input"
+              formControlName="email"
+              type="email"
+              pInputText
+              autocomplete="email"
+              placeholder="email@dominio.com"
+              required
+              fluid
+            />
+          </p-iconfield>
+          @if (
+            loginForm.get('email')?.invalid &&
+            (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)
+          ) {
+            <div class="text-xs mt-1">
+              @if (loginForm.get('email')?.hasError('required')) {
+                <p-message severity="error" variant="simple" size="small"
+                  >El email es requerido.</p-message
                 >
-                  <i [ngClass]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
-                </button>
-              </div>
-              @if (
-                form.get('password')?.invalid &&
-                (form.get('password')?.dirty || form.get('password')?.touched)
-              ) {
-                <div class="text-red-500 text-xs mt-1">
-                  @if (form.get('password')?.hasError('required')) {
-                    <p>La contraseña es requerida.</p>
-                  }
-                  @if (form.get('password')?.hasError('minlength')) {
-                    <p>La contraseña debe tener al menos 6 caracteres.</p>
-                  }
-                </div>
               }
-            </div>
-
-            <div class="flex items-center justify-between">
-              <app-checkbox
-                [checked]="form.get('remember')?.value ?? false"
-                (checkedChange)="form.get('remember')?.setValue($event)"
-                label="Recordarme"
-              ></app-checkbox>
-              <button
-                class="text-sm text-[var(--color-primary)] hover:underline"
-                (click)="forgotPassword()"
-                type="button"
-              >
-                ¿Olvidaste tu contraseña?
-              </button>
-            </div>
-
-            @if (serverError) {
-              <div class="text-red-500 text-xs -mt-2 mb-2 text-center">
-                <p>{{ serverError }}</p>
-              </div>
-            }
-
-            <button
-              class="w-full bg-[var(--color-primary)] text-[var(--color-foreground)] py-2 px-4 rounded-lg font-medium hover:bg-[var(--color-primary)]/90 focus:outline-none focus:ring-2 focus:ring-[var(--ring)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              [disabled]="form.invalid || isLoading"
-              type="submit"
-            >
-              @if (!isLoading) {
-                <i class="mr-2" [ngClass]="['pi', 'pi-sign-in-alt']"></i>
-                <span>Iniciar Sesión</span>
-              } @else {
-                <span>Conectando...</span>
-              }
-            </button>
-
-            <div class="pt-4 border-t border-[var(--border)] text-center">
-              <p class="text-sm text-[var(--color-foreground)]">
-                ¿No tienes cuenta?
-                <button
-                  class="text-[var(--color-primary)] hover:underline ml-1"
-                  (click)="openDropdown(true)"
-                  type="button"
+              @if (loginForm.get('email')?.hasError('email')) {
+                <p-message severity="error" variant="simple" size="small"
+                  >Por favor, introduce un email válido.</p-message
                 >
-                  Crear cuenta
-                </button>
-              </p>
+              }
             </div>
-          </form>
+          }
         </div>
-      </div>
-    }
+
+        <!-- Password Input -->
+        <div class="flex flex-col gap-2">
+          <label class="font-medium" for="password-input">Contraseña</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-lock" />
+            <p-password
+              [toggleMask]="true"
+              [feedback]="false"
+              inputId="password-input"
+              fluid
+              formControlName="password"
+              autocomplete="current-password"
+              required
+              placeholder="********"
+            />
+          </p-iconfield>
+          @if (
+            loginForm.get('password')?.invalid &&
+            (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
+          ) {
+            <div class="text-xs mt-1">
+              @if (loginForm.get('password')?.hasError('required')) {
+                <p-message severity="error" variant="simple" size="small"
+                  >La contraseña es requerida.</p-message
+                >
+              }
+              @if (loginForm.get('password')?.hasError('minlength')) {
+                <p-message severity="error" variant="simple" size="small"
+                  >La contraseña debe tener al menos 6 caracteres.</p-message
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center gap-2">
+            <p-checkbox [binary]="true" formControlName="remember" inputId="remember" />
+            <label class="text-sm cursor-pointer" for="remember">Recordarme</label>
+          </div>
+
+          <p-button
+            (onClick)="forgotPassword()"
+            label="Olvidé mi contraseña"
+            styleClass="p-button-link text-sm hover:underline"
+            aria-label="Olvidé mi contraseña"
+            type="button"
+          />
+        </div>
+
+        <!-- Server Error Message -->
+        @if (serverError()) {
+          <div class="mt-2">
+            <p-message styleClass="w-full" severity="error" variant="simple" size="small">
+              {{ serverError() }}
+            </p-message>
+          </div>
+        }
+
+        <!-- Submit Button -->
+        <p-button
+          [rounded]="true"
+          [raised]="true"
+          [disabled]="loginForm.invalid"
+          [label]="'Iniciar Sesión'"
+          styleClass="w-full mt-4"
+          type="submit"
+          aria-label="Iniciar Sesión"
+        />
+
+        <!-- Register Link -->
+        <div class="pt-4 border-t text-center mt-4">
+          <p class="text-sm">
+            ¿No tienes cuenta?
+            <p-button
+              (click)="onRequestRegister()"
+              label="Crear cuenta"
+              styleClass="p-button-link text-sm hover:underline"
+              aria-label="Crear cuenta"
+              type="button"
+            />
+          </p>
+        </div>
+      </form>
+    </div>
   `,
 })
 export class LandingLogin {
-  isDropdownOpen = input(false)
-  isRegisterOpen = input(false)
-
-  submitLogin = output<LoginResponse>()
-  requestSwitch = output<boolean>()
+  loginSuccess = output<LoginResponse>()
+  requestRegister = output<void>()
   forgot = output<void>()
 
-  @ViewChild('loginPassword', { static: false })
-  loginPasswordRef?: ElementRef<HTMLInputElement>
+  serverError = signal<string | null>(null)
+  messageService = inject(MessageService)
+  private loginService = inject(LandingLoginService)
+  private fb = inject(FormBuilder)
+  public ref = inject(DynamicDialogRef)
+  public config = inject(DynamicDialogConfig)
 
-  private readonly formBuilder = inject(FormBuilder)
-  private readonly loginService = inject(LandingLoginService)
-  private readonly cdr = inject(ChangeDetectorRef)
-
-  showPassword = false
-  isLoading = false
-  serverError: string | null = null
-
-  form = this.formBuilder.group({
+  loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     remember: [false],
   })
 
   /**
-   * Toggle the password visibility using ViewChild/dom fallback.
-   */
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword
-    if (this.loginPasswordRef?.nativeElement) {
-      this.loginPasswordRef.nativeElement.type = this.showPassword ? 'text' : 'password'
-    }
-  }
-
-  /**
-   * Handles form submission, validation, and API calls for login.
+   * Handles the login form submission.
    */
   loginSubmit(): void {
-    this.form.markAllAsTouched()
-    if (this.form.invalid || this.isLoading) return
+    this.loginForm.markAllAsTouched()
+    if (this.loginForm.invalid) return
 
-    this.isLoading = true
-    this.serverError = null
+    this.serverError.set(null)
 
-    const payload = this.form.value as LoginRequest
+    const payload = this.loginForm.value as LoginRequest
 
     this.loginService.login(payload).subscribe({
       next: (response) => {
-        this.isLoading = false
-        this.submitLogin.emit(response)
-        this.form.reset()
+        this.loginSuccess.emit(response)
+        this.loginForm.reset()
+        this.ref.close(response)
       },
       error: (err) => {
-        this.isLoading = false
-        this.serverError = err.message
-        this.cdr.detectChanges()
+        this.serverError.set(err.message)
       },
+    })
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Form is submitted',
+      life: 3000,
     })
   }
 
   /**
-   * Emit request to switch panel (login/register).
-   * @param showRegister Whether to open the register panel.
+   * Handles the request to open the registration form.
    */
-  openDropdown(showRegister: boolean): void {
-    this.requestSwitch.emit(showRegister)
+  onRequestRegister(): void {
+    this.requestRegister.emit()
+    this.ref.close('register')
   }
 
   /**
-   * Emit forgot password action to parent.
+   * Handles the forgot password action.
    */
   forgotPassword(): void {
     this.forgot.emit()

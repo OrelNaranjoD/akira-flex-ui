@@ -1,4 +1,11 @@
-import { Component, inject } from '@angular/core'
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core'
 import { Router } from '@angular/router'
 import { MenubarModule } from 'primeng/menubar'
 import { MenuItem } from 'primeng/api'
@@ -9,7 +16,15 @@ import { MenuItem } from 'primeng/api'
 @Component({
   selector: 'app-landing-menu',
   imports: [MenubarModule],
-  template: ` <p-menubar class="font-roboto text-sm" [model]="items"></p-menubar> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <p-menubar
+      class="font-roboto text-sm no-wrap"
+      #menubar
+      [model]="items"
+      [breakpoint]="dynamicBreakpoint"
+    ></p-menubar>
+  `,
   styles: [
     `
       :host ::ng-deep .p-menubar {
@@ -19,6 +34,7 @@ import { MenuItem } from 'primeng/api'
 
       :host ::ng-deep .p-menubar-root-list {
         gap: 0;
+        flex-wrap: nowrap;
       }
 
       :host ::ng-deep .p-menubar-item-link:hover {
@@ -37,24 +53,46 @@ import { MenuItem } from 'primeng/api'
       :host ::ng-deep .p-menubar-item-content:hover {
         background: transparent;
       }
+
+      :host ::ng-deep .p-menubar-item-label {
+        white-space: nowrap;
+      }
     `,
   ],
 })
-export class LandingMenu {
+export class LandingMenu implements AfterViewInit {
+  @ViewChild('menubar', { static: true }) menubar!: ElementRef
+
+  dynamicBreakpoint = '1030px'
+
   items: MenuItem[] = [
     {
-      label: '¿Por qué AkiraFlex?',
+      label: 'Beneficios',
       icon: 'pi pi-building-columns',
       command: () => this.scrollTo('features'),
     },
-    { label: 'Módulos', icon: 'pi pi-th-large', command: () => this.scrollTo('modules') },
-    { label: 'Sectores', icon: 'pi pi-briefcase', command: () => this.scrollTo('sectors') },
+    { label: 'Características', icon: 'pi pi-th-large', command: () => this.scrollTo('modules') },
+    { label: 'Industrias', icon: 'pi pi-briefcase', command: () => this.scrollTo('sectors') },
     { label: 'Tecnología', icon: 'pi pi-desktop', command: () => this.scrollTo('technology') },
-    { label: 'Precios', icon: 'pi pi-tag', command: () => this.scrollTo('pricing') },
-    { label: 'Testimonios', icon: 'pi pi-comments', command: () => this.scrollTo('testimonials') },
+    { label: 'Planes', icon: 'pi pi-tag', command: () => this.scrollTo('pricing') },
   ]
 
   private readonly router: Router = inject(Router)
+
+  /**
+   * Lifecycle hook that is called after Angular has fully initialized the component's view.
+   */
+  ngAfterViewInit() {
+    const observer = new ResizeObserver(() => {
+      const list = this.menubar.nativeElement.querySelector('.p-menubar-root-list')
+      if (list) {
+        const containerWidth = this.menubar.nativeElement.clientWidth
+        const listWidth = list.scrollWidth
+        this.dynamicBreakpoint = listWidth > containerWidth ? '9999px' : '0px'
+      }
+    })
+    observer.observe(this.menubar.nativeElement)
+  }
 
   /**
    * Scroll to a specific fragment on the page.

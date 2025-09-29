@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core'
+import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core'
+import { RouterOutlet } from '@angular/router'
 import { LandingFooter } from '../landing-footer/landing-footer'
 import { LandingHeader } from '../landing-header/landing-header'
-import { LandingHome } from '../../pages/landing-home/landing-home'
 import { PageTitleService } from '@shared'
 
 /**
@@ -9,7 +9,8 @@ import { PageTitleService } from '@shared'
  */
 @Component({
   selector: 'app-landing-layout',
-  imports: [LandingHeader, LandingFooter, LandingHome],
+  imports: [RouterOutlet, LandingHeader, LandingFooter],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="min-h-screen flex flex-col">
       <!-- Header -->
@@ -17,7 +18,7 @@ import { PageTitleService } from '@shared'
 
       <!-- Main Content Area -->
       <main class="flex-1 w-full">
-        <app-landing-home></app-landing-home>
+        <router-outlet></router-outlet>
       </main>
 
       <!-- Footer -->
@@ -25,10 +26,13 @@ import { PageTitleService } from '@shared'
     </div>
   `,
 })
-export class LandingLayout {
+export class LandingLayout implements OnInit {
   private readonly pageTitleService = inject(PageTitleService)
 
-  constructor() {
+  /**
+   * Sets the landing page title on component initialization.
+   */
+  ngOnInit() {
     this.pageTitleService.setLandingTitle()
   }
 }

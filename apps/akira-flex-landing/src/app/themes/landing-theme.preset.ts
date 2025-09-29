@@ -4,16 +4,17 @@ import Aura from '@primeuix/themes/aura'
 export const LandingTheme = definePreset(Aura, {
   semantic: {
     primary: {
-      50: '{sky.50}',
-      100: '{sky.100}',
-      200: '{sky.200}',
-      300: '{sky.300}',
-      400: '{sky.400}',
-      500: '{sky.500}',
-      600: '{sky.600}',
-      700: '{sky.700}',
-      800: '{sky.800}',
-      900: '{sky.900}',
+      50: '{blue.50}',
+      100: '{blue.100}',
+      200: '{blue.200}',
+      300: '{blue.300}',
+      400: '{blue.400}',
+      500: '{blue.500}',
+      600: '{blue.600}',
+      700: '{blue.700}',
+      800: '{blue.800}',
+      900: '{blue.900}',
+      950: '{blue.950}',
     },
     accent: {
       50: '{amber.50}',
@@ -26,46 +27,69 @@ export const LandingTheme = definePreset(Aura, {
       700: '{amber.700}',
       800: '{amber.800}',
       900: '{amber.900}',
-    },
-    surface: {
-      0: '{indigo.950}',
-      100: '{indigo.100}',
+      950: '{amber.950}',
     },
     colorScheme: {
       light: {
         surface: {
-          0: '#ffffff',
-          100: '{indigo.100}',
+          0: '{gray.50}',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
         },
-        primary: {
-          color: '{sky.700}',
-          contrastColor: '#ffffff',
-          hoverColor: '{sky.800}',
-          activeColor: '{sky.900}',
+        text: {
+          color: '{gray.800}',
+          muted: {
+            color: '{gray.600}',
+          },
         },
-        accent: {
-          color: '{amber.500}',
-          contrastColor: '#ffffff',
-          hoverColor: '{amber.600}',
-          activeColor: '{amber.700}',
+        border: {
+          color: '{gray.200}',
+        },
+        content: {
+          background: '{gray.0}',
+          hover: {
+            background: '{gray.100}',
+          },
         },
       },
       dark: {
         surface: {
-          0: '{indigo.950}',
-          100: '{indigo.800}',
+          0: '{gray.950}',
+          50: '{gray.950}',
+          100: '{gray.800}',
+          200: '{gray.700}',
+          300: '{gray.600}',
+          400: '{gray.500}',
+          500: '{gray.400}',
+          600: '{gray.300}',
+          700: '{gray.200}',
+          800: '{gray.100}',
+          900: '{gray.50}',
+          950: '{gray.50}',
         },
-        primary: {
-          color: '{sky.300}',
-          contrastColor: '{indigo.950}',
-          hoverColor: '{sky.200}',
-          activeColor: '{sky.100}',
+        text: {
+          color: '{gray.50}',
+          muted: {
+            color: '{gray.400}',
+          },
         },
-        accent: {
-          color: '{amber.300}',
-          contrastColor: '{indigo.950}',
-          hoverColor: '{amber.200}',
-          activeColor: '{amber.100}',
+        border: {
+          color: '{gray.700}',
+        },
+        content: {
+          background: '{gray.900}',
+          hover: {
+            background: '{gray.800}',
+          },
         },
       },
     },

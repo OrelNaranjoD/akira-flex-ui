@@ -8,10 +8,11 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@flex-shared-lib": ["libs/flex-shared-lib/index.ts"],
-      "@flex-shared-lib/*": ["libs/flex-shared-lib/*"],
-      "@shared": ["libs/index.ts"],
-      "@shared/*": ["libs/*"]
+      "@shared": ["libs/core/src/lib/index.ts"],
+      "@shared/*": ["libs/core/src/lib/*"],
+      "@landing/*": ["apps/akira-flex-landing/*"],
+      "@platform/*": ["apps/akira-flex-platform/*"],
+      "@tenant/*": ["apps/akira-flex-tenant/*"]
     }
   }
 }

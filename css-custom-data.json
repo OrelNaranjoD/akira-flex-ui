@@ -2,6 +2,10 @@
   "version": 1.1,
   "atDirectives": [
     {
+      "name": "@use",
+      "description": "Tailwind CSS v4 use directive for importing stylesheets"
+    },
+    {
       "name": "@theme",
       "description": "Tailwind CSS v4 theme definition for defining design tokens"
     },

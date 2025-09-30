@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, output, signal } from '@angular/core'
+import { Component, inject, output, signal } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { ButtonModule } from 'primeng/button'
 import { LandingLogin } from '../landing-login/landing-login'
@@ -11,13 +11,12 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog'
 @Component({
   selector: 'app-landing-auth',
   imports: [FormsModule, ButtonModule, DynamicDialogModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DialogService],
   template: `
     <div class="relative flex items-center gap-2">
       <p-button class="px-3 py-2 text-sm font-medium mouse-pointer" (click)="openLoginDialog()">
         <span>Iniciar Sesión</span>
-        <i class="inline-block text-xs" icon="pi pi-sign-in"></i>
+        <i class="pi pi-sign-in ml-2 text-xs"></i>
       </p-button>
 
       <p-button
@@ -78,23 +77,21 @@ export class LandingAuth {
   openRegisterDialog(): void {
     const ref = this.dialogService.open(LandingRegister, {
       header: 'Crear Cuenta',
-      width: '95vw',
-      style: { maxWidth: '480px' },
+      width: '480px',
       modal: true,
       dismissableMask: true,
-      contentStyle: { padding: '0' },
-      baseZIndex: 1100,
-      breakpoints: { '640px': '98vw' },
-      focusTrap: false,
+      baseZIndex: 1000,
     })
 
-    ref.onClose.subscribe((result) => {
-      if (result === 'login') {
-        this.openLoginDialog()
-      } else if (result) {
-        this.handleLogin()
-      }
-    })
+    if (ref) {
+      ref.onClose.subscribe((result) => {
+        if (result === 'login') {
+          this.openLoginDialog()
+        } else if (result) {
+          this.handleLogin()
+        }
+      })
+    }
   }
 
   /**
@@ -103,22 +100,20 @@ export class LandingAuth {
   openLoginDialog(): void {
     const ref = this.dialogService.open(LandingLogin, {
       header: 'Iniciar Sesión',
-      width: '95vw',
-      style: { maxWidth: '400px' },
+      width: '400px',
       modal: true,
       dismissableMask: true,
-      contentStyle: { padding: '0' },
-      baseZIndex: 1100,
-      breakpoints: { '640px': '98vw' },
-      focusTrap: false,
+      baseZIndex: 1000,
     })
 
-    ref.onClose.subscribe((result) => {
-      if (result === 'register') {
-        this.openRegisterDialog()
-      } else if (result) {
-        this.loginSuccess.emit()
-      }
-    })
+    if (ref) {
+      ref.onClose.subscribe((result) => {
+        if (result === 'register') {
+          this.openRegisterDialog()
+        } else if (result) {
+          this.loginSuccess.emit()
+        }
+      })
+    }
   }
 }

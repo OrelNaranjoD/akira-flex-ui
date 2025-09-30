@@ -13,8 +13,8 @@ them to maintain code quality and project structure.
 - Use JSDoc format (`/** */`) in multi-line style for all documentation
   comments, including classes, methods, properties, parameters, and explanatory
   blocks.
-- Do not include long explanatory comments within the body of methods; use
-  descriptive variable and function names instead.
+- Avoid explanatory comments within the body of methods, even short ones, unless
+  strictly necessary; use descriptive variable and function names instead.
 - Example:
 
 ```typescript
@@ -96,6 +96,13 @@ export class User {
 - Create separate environment files for development, staging, and production.
 - Use environment variables for API URLs, tokens, etc.
 - Do not hardcode sensitive values; use external configuration.
+- Configure API endpoints using the Global Configuration Service pattern:
+  - Each application defines endpoints in `src/app/config/api-endpoints.ts`
+  - Endpoints are configured via `provideAppInitializer` in `app.config.ts`
+  - Shared services like `AuthService` read configuration from
+    `GlobalConfigService`
+  - This ensures apps can be separated in the future while maintaining shared
+    logic.
 
 ## CI/CD and Code Quality
 
@@ -126,17 +133,27 @@ export class User {
   - This enables automatic formatting on save and paste, ensuring inserted code
     follows Prettier rules without manual intervention.
 
-## Shared Libraries
+## Shared Services Configuration
 
-- Use the `libs/flex-shared-lib/` folder as a temporary shared library with the
-  API. All types, interfaces, utilities, and data shared between frontend and
-  backend must go here initially.
-- Add hardcoded codes (such as constants, enums, mock data) in this folder as if
-  they came from the API, to avoid direct hardcoding in components and
-  facilitate future integrations.
-- When requested, export the content of `flex-shared-lib` to the external
-  library `@OrelNaranjoD/akira-flex-shared-lib` to maintain synchronization.
-- To migrate: Change imports from `flex-shared-lib` to
-  `@OrelNaranjoD/akira-flex-shared-lib`, ensuring the code remains the same.
-  This allows local development without external dependencies and easy
-  transition.
+- Use the `GlobalConfigService` for configuring shared services with
+  app-specific settings.
+- Each application configures the `GlobalConfigService` during initialization
+  via `provideAppInitializer`.
+- Shared services (like `AuthService`) read their configuration from
+  `GlobalConfigService.apiEndpoints`.
+- This pattern allows services to remain in the shared library while being
+  configurable per application.
+
+Example implementation:
+
+```typescript
+// In app.config.ts
+function initializeApp(globalConfig: GlobalConfigService): () => void {
+  return () => {
+    globalConfig.configureApiEndpoints(API_ENDPOINTS)
+  }
+}
+
+// Provider configuration
+provideAppInitializer(initializeApp, [GlobalConfigService])
+```

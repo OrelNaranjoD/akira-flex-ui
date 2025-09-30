@@ -240,35 +240,8 @@ describe('AuthService', () => {
 
 ### File Organization
 
-```bash
-src/
-  app/
-    core/                  # Core functionality (singletons)
-      components/          # Layout components (header, footer, etc.)
-      services/            # Core services (auth, http, etc.)
-    flex-shared-lib/       # Temp shared library for flexible components
-    landing/               # Landing module
-      components/          # Landing components
-      pages/               # Landing pages
-    platform/              # Platform-specific code
-      components/          # Platform components
-      pages/               # Platform pages
-    tenant/                # Tenant-specific code
-      components/          # Tenant components
-      pages/               # Tenant pages
-test/                      # Test files
-  core/
-    services/
-  landing/
-    components/
-    pages/
-  platform/
-    components/
-    pages/
-  tenant/
-    components/
-    pages/
-```
+See [.github/project-structure.md](.github/project-structure.md) for the
+complete project structure.
 
 ### Styling Guidelines
 

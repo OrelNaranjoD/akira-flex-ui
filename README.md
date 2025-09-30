@@ -1,9 +1,9 @@
 # 🎨 AkiraFlex UI
 
-Frontend application for AkiraFlex projects, built with
-[Angular](https://angular.io/) and TypeScript. This application provides a
-modern, responsive user interface for managing projects, tasks, and team
-collaboration.
+A modern Angular monorepo built with Nx, featuring multiple applications for
+AkiraFlex projects. This workspace provides a scalable architecture with shared
+components and services, supporting landing pages, platform dashboards, and
+tenant-specific applications.
 
 ---
 
@@ -64,48 +64,19 @@ Steps:
 
 ## 📦 Project Structure
 
-```bash
-akira-flex-ui/
-├── apps/
-│   ├── akira-flex-landing/      # Landing app (SPA/SSR)
-│   ├── akira-flex-platform/     # Platform app (SPA/SSR)
-│   ├── akira-flex-tenant/       # Tenant app (SPA/SSR)
-├── libs/
-│   ├── components/              # Shared UI components (checkbox, loading, logotype, etc.)
-│   ├── services/                # Shared services (theme, page-title, etc.)
-│   ├── utils/                   # Utility functions (cookie-utils, etc.)
-│   ├── test/                    # Shared test utilities
-│   ├── flex-shared-lib/         # Shared library entry point
-│   └── index.ts                 # Libs barrel file
-├── .github/
-│   └── workflows/               # CI/CD automation
-├── .commitlintrc.mjs            # Commit message linting rules
-├── .editorconfig                # Code editor configuration
-├── .gitignore                   # Git ignore file
-├── .postcssrc.json              # PostCSS configuration
-├── .prettierignore              # Prettier ignore file
-├── .prettierrc                  # Prettier configuration
-├── CHANGELOG.md                 # Project changelog
-├── CONTRIBUTING.md               # Contribution guidelines
-├── css-custom-data.json          # CSS custom properties for Tailwind IntelliSense
-├── eslint.config.mjs            # ESLint configuration
-├── nx.json                      # Nx workspace configuration
-├── package-lock.json            # NPM lock file
-├── package.json                 # NPM scripts and dependencies
-├── README.md                    # Project documentation
-└── tsconfig.base.json           # Base TypeScript config
-```
+See [.github/project-structure.md](.github/project-structure.md) for the
+complete project structure.
 
 ---
 
 ## 🎨 Tech Stack
 
 - **Frontend Framework**: Angular 20+ with standalone components
+- **State Management**: Signals for local component state, NgRx for global state
 - **Styling**: Tailwind CSS 4.x for utility-first styling
-- **Theming**: PrimeNg Themes for consistent Theming
-- **Components**: PrimeNg Components for reusable UI elements
-- **Icons**: PrimeNg Icons for lightweight iconography
-- **State Management**: Ngxs for reactive state management
+- **Theming**: PrimeNG Themes for consistent theming
+- **Components**: PrimeNG Components for reusable UI elements
+- **Icons**: PrimeNG Icons for lightweight iconography
 - **Monorepo**: Nx for managing the monorepo structure
 - **Testing**: Jasmine + Karma for unit testing
 - **Linting**: ESLint + Prettier with JSDoc validation
@@ -225,22 +196,101 @@ The build process:
 
 ## 🔐 Environment Configuration
 
-Create environment files for different stages:
+This project uses Angular's built-in environment configuration system for
+managing environment-specific settings.
 
-- `src/environments/environment.ts` - Development configuration
-- `src/environments/environment.staging.ts` - Staging configuration
-- `src/environments/environment.prod.ts` - Production configuration
+### Environment Files
 
-Example environment configuration:
+Each application has its own environment configuration:
+
+- `apps/[app-name]/src/environments/environment.ts` - Development environment
+- `apps/[app-name]/src/environments/environment.prod.ts` - Production
+  environment
+
+### Available Variables
+
+| Variable     | Description      | Landing Default                | Platform Default               | Tenant Default                 |
+| ------------ | ---------------- | ------------------------------ | ------------------------------ | ------------------------------ |
+| `production` | Environment flag | `false`                        | `false`                        | `false`                        |
+| `apiBaseUrl` | Base API URL     | `http://localhost:3000/api/v1` | `http://localhost:3001/api/v1` | `http://localhost:3002/api/v1` |
+
+### Usage in Code
+
+Environment variables are imported directly from the environment files:
 
 ```typescript
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3000/api',
-  appName: 'AkiraFlex',
-  version: '0.0.2',
+import { environment } from '../environments/environment'
+
+console.log('API Base URL:', environment.apiBaseUrl)
+```
+
+### API Endpoints Configuration
+
+Each application configures its API endpoints using the Global Configuration
+Service:
+
+```typescript
+// apps/[app-name]/src/app/config/api-endpoints.ts
+import { environment } from '../../environments/environment'
+
+export const API_BASE_URL = environment.apiBaseUrl
+
+export const API_ENDPOINTS = {
+  auth: {
+    login: `${API_BASE_URL}/auth/login`,
+    register: `${API_BASE_URL}/auth/register`,
+    verifyEmail: `${API_BASE_URL}/auth/verify-email`,
+    me: `${API_BASE_URL}/auth/me`,
+  },
+  // Additional modules can be added here
+  // users: {
+  //   list: `${API_BASE_URL}/users`,
+  //   create: `${API_BASE_URL}/users`,
+  // },
 }
 ```
+
+### Automatic Configuration
+
+The GlobalConfigService automatically loads endpoint configuration when each
+application starts using `provideAppInitializer`, allowing shared services like
+AuthService to work with app-specific API URLs.
+
+---
+
+## 🏗️ Architecture
+
+This is an Nx monorepo with a consolidated shared library approach:
+
+### Applications
+
+- **akira-flex-landing**: Public landing page and authentication
+- **akira-flex-platform**: Main platform dashboard and features
+- **akira-flex-tenant**: Tenant-specific customizations and features
+
+### Shared Library
+
+- **libs/core**: Consolidated library containing all reusable code
+  - Components (UI elements, forms, etc.)
+  - Services (authentication, theming, HTTP interceptors)
+  - Utilities (cookies, validation, helpers)
+  - Configuration types and interfaces
+
+### Configuration Pattern
+
+Each application maintains its own configuration while sharing common services:
+
+- App-specific `api-endpoints.ts` files define API URLs
+- `GlobalConfigService` provides configuration to shared services
+- Environment files contain app-specific settings
+- Shared services remain agnostic of app-specific details
+
+This architecture enables:
+
+- **Code reuse** across applications
+- **Independent deployment** of each app
+- **Future separation** into individual repositories
+- **Consistent development** experience
 
 ---
 

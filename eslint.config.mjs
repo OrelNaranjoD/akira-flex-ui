@@ -17,6 +17,7 @@ export default [
       'eslint.config.mjs',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      '**/*.md',
     ],
   },
   {

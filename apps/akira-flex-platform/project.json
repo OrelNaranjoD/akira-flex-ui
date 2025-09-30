@@ -14,7 +14,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "libs/public",
+            "input": "libs/core/src/lib/public",
             "output": "."
           }
         ],
@@ -95,7 +95,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "libs/public",
+            "input": "libs/core/src/lib/public",
             "output": "."
           }
         ],

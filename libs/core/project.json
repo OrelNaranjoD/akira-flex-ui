@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "prefix": "app",
-  "sourceRoot": "libs",
+  "sourceRoot": "libs/core/src",
   "tags": [],
   "generators": {},
   "targets": {
@@ -11,21 +11,21 @@
       "executor": "@nx/js:tsc",
       "options": {
         "outputPath": "dist/libs/akira-flex-core",
-        "main": "libs/index.ts",
-        "tsConfig": "libs/tsconfig.lib.json"
+        "main": "libs/core/src/lib/index.ts",
+        "tsConfig": "libs/core/tsconfig.lib.json"
       }
     },
     "test": {
       "executor": "@angular-devkit/build-angular:karma",
       "options": {
-        "main": "libs/test/test.ts",
-        "tsConfig": "libs/tsconfig.spec.json"
+        "main": "libs/core/src/test/test.ts",
+        "tsConfig": "libs/core/tsconfig.spec.json"
       }
     },
     "lint": {
       "executor": "@angular-eslint/builder:lint",
       "options": {
-        "lintFilePatterns": ["libs/**/*.ts", "libs/**/*.html"]
+        "lintFilePatterns": ["libs/core/**/*.ts", "libs/core/**/*.html"]
       },
       "outputs": ["{options.outputFile}"]
     }

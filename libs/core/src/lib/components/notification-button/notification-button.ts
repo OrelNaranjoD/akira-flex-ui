@@ -7,38 +7,39 @@ import {
   output,
   signal,
 } from '@angular/core'
-import { AppNotification } from '@flex-shared-lib'
+import { ButtonModule } from 'primeng/button'
+import { BadgeModule } from 'primeng/badge'
+import { AppNotification } from '../../shared'
 
 /**
  * Notification button component with dropdown.
  */
 @Component({
   selector: 'app-notification-button',
-  imports: [],
+  imports: [ButtonModule, BadgeModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="relative">
       <!-- Notification button -->
-      <button
+      <p-button
         class="p-2 rounded-md bg-[var(--color-muted)] hover:bg-[var(--color-card)] transition-colors duration-200 group relative"
-        [class.bg-[var(--color-card)]]="isOpen()"
+        [styleClass]="isOpen() ? 'bg-[var(--color-card)]' : ''"
+        [text]="true"
+        [rounded]="true"
         (click)="toggleDropdown()"
+        icon="pi pi-bell"
         title="Notifications"
         aria-label="Notifications"
       >
-        <i
-          class="pi pi-bell text-[var(--color-muted-foreground)] group-hover:text-[var(--color-foreground)] text-sm"
-        ></i>
-
         <!-- Badge counter -->
         @if (unreadCount() > 0) {
-          <span
-            class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center shadow"
-          >
-            {{ unreadCount() }}
-          </span>
+          <p-badge
+            class="absolute -top-1 -right-1"
+            [value]="unreadCount().toString()"
+            severity="danger"
+          ></p-badge>
         }
-      </button>
+      </p-button>
 
       <!-- Notifications dropdown -->
       @if (isOpen()) {
@@ -69,10 +70,10 @@ import { AppNotification } from '@flex-shared-lib'
                         <i class="pi pi-exclamation-triangle text-yellow-500"></i>
                       }
                       @case ('success') {
-                        <i class="text-green-500" icon="pi pi-check-circle"></i>
+                        <i class="pi pi-check-circle text-green-500"></i>
                       }
                       @case ('error') {
-                        <i class="text-red-500" icon="pi pi-times-circle"></i>
+                        <i class="pi pi-times-circle text-red-500"></i>
                       }
                     }
                   </div>
@@ -96,7 +97,7 @@ import { AppNotification } from '@flex-shared-lib'
               </div>
             } @empty {
               <div class="p-8 text-center text-[var(--color-muted-foreground)]">
-                <i class="text-2xl mb-2" icon="pi pi-bell-slash"></i>
+                <i class="pi pi-bell-slash text-2xl mb-2"></i>
                 <p>No notifications</p>
               </div>
             }
@@ -104,12 +105,13 @@ import { AppNotification } from '@flex-shared-lib'
 
           <!-- Footer -->
           <div class="p-3 border-t border-[var(--color-border)]">
-            <button
+            <p-button
               class="w-full text-sm text-[var(--color-primary)] hover:underline"
+              [text]="true"
+              [link]="true"
               (click)="markAllAsRead()"
-            >
-              Mark all as read
-            </button>
+              label="Mark all as read"
+            ></p-button>
           </div>
         </div>
       }

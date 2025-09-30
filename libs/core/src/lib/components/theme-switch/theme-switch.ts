@@ -1,6 +1,6 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core'
 import { FormsModule } from '@angular/forms'
-import { ThemeService } from '@shared'
+import { ThemeService } from '../../services'
 import { ButtonModule } from 'primeng/button'
 
 /**

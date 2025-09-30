@@ -1,4 +1,4 @@
-@import "../../../libs/public/styles/base.css";
+@import "../../../libs/core/src/lib/public/styles/base.css";
 
 @layer tailwind-base, primeng, tailwind-utilities;
 

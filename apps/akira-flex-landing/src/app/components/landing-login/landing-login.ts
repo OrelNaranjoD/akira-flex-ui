@@ -1,16 +1,15 @@
-import { Component, ChangeDetectionStrategy, inject, output, signal } from '@angular/core'
+import { Component, inject, output, signal, AfterViewInit } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { LandingLoginService } from './landing-login.service'
-import { LoginRequest, LoginResponse } from '@flex-shared-lib'
+import { LoginRequest, AuthTokenResponse } from '@shared'
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog'
 import { InputTextModule } from 'primeng/inputtext'
 import { IconFieldModule } from 'primeng/iconfield'
 import { InputIconModule } from 'primeng/inputicon'
 import { CheckboxModule } from 'primeng/checkbox'
 import { ButtonModule } from 'primeng/button'
-import { MessageService } from 'primeng/api'
 import { MessageModule } from 'primeng/message'
 import { PasswordModule } from 'primeng/password'
+import { AuthService } from '@shared/services'
 
 /**
  * Component for the login form in the landing page header.
@@ -27,8 +26,6 @@ import { PasswordModule } from 'primeng/password'
     ButtonModule,
     PasswordModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [LandingLoginService, MessageService],
   template: `
     <div class="p-6">
       <form
@@ -46,10 +43,11 @@ import { PasswordModule } from 'primeng/password'
               formControlName="email"
               type="email"
               pInputText
-              autocomplete="email"
+              autocomplete="username"
               placeholder="email@dominio.com"
               required
               fluid
+              autofocus
             />
           </p-iconfield>
           @if (
@@ -159,17 +157,16 @@ import { PasswordModule } from 'primeng/password'
     </div>
   `,
 })
-export class LandingLogin {
-  loginSuccess = output<LoginResponse>()
+export class LandingLogin implements AfterViewInit {
+  loginSuccess = output<AuthTokenResponse>()
   requestRegister = output<void>()
   forgot = output<void>()
 
   serverError = signal<string | null>(null)
-  messageService = inject(MessageService)
-  private loginService = inject(LandingLoginService)
   private fb = inject(FormBuilder)
   public ref = inject(DynamicDialogRef)
   public config = inject(DynamicDialogConfig)
+  private authService = inject(AuthService)
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -188,21 +185,15 @@ export class LandingLogin {
 
     const payload = this.loginForm.value as LoginRequest
 
-    this.loginService.login(payload).subscribe({
-      next: (response) => {
+    this.authService.login(payload).subscribe({
+      next: (response: AuthTokenResponse) => {
         this.loginSuccess.emit(response)
         this.loginForm.reset()
         this.ref.close(response)
       },
-      error: (err) => {
-        this.serverError.set(err.message)
+      error: (err: unknown) => {
+        this.serverError.set(err instanceof Error ? err.message : 'Error al iniciar sesión.')
       },
-    })
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Form is submitted',
-      life: 3000,
     })
   }
 
@@ -219,5 +210,22 @@ export class LandingLogin {
    */
   forgotPassword(): void {
     this.forgot.emit()
+  }
+
+  /**
+   * Lifecycle hook that runs after the view has been initialized.
+   * Ensures the email input is focusable after modal opens.
+   */
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const emailInput = document.getElementById('email-input') as HTMLInputElement
+      if (emailInput) {
+        emailInput.focus()
+        const originalDisplay = emailInput.style.display
+        emailInput.style.display = 'none'
+        void emailInput.offsetHeight
+        emailInput.style.display = originalDisplay
+      }
+    }, 100)
   }
 }

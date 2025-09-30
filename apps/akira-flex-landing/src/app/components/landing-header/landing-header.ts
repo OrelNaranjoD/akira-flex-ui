@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core'
+import { Component, ChangeDetectionStrategy, signal, computed, inject } from '@angular/core'
 import { LandingMenu } from '../landing-menu/landing-menu'
 import { LandingAuth } from '../landing-auth/landing-auth'
-import { Logotype, Profile, ThemeSwitch } from '@shared'
+import { Logotype, Profile, ThemeSwitch, AuthService } from '@shared'
 
 /**
  * Landing header component.
@@ -27,7 +27,7 @@ import { Logotype, Profile, ThemeSwitch } from '@shared'
         <div class="flex items-center gap-2 sm:gap-3">
           <app-theme-switch></app-theme-switch>
           @if (!isLoggedIn()) {
-            <app-landing-auth (loginSuccess)="onLogin()"></app-landing-auth>
+            <app-landing-auth></app-landing-auth>
           } @else {
             <app-profile></app-profile>
           }
@@ -37,8 +37,13 @@ import { Logotype, Profile, ThemeSwitch } from '@shared'
   `,
 })
 export class LandingHeader {
-  isLoggedIn = signal(false)
   isScrolled = signal(false)
+  private authService = inject(AuthService)
+
+  /**
+   * Computed signal that checks if user is authenticated.
+   */
+  isLoggedIn = computed(() => this.authService.isAuthenticated())
 
   /**
    * Dynamic CSS styles for the header based on scroll state.
@@ -66,12 +71,5 @@ export class LandingHeader {
    */
   onWindowScroll(): void {
     this.isScrolled.set(window.pageYOffset > 10)
-  }
-
-  /**
-   * Sets the login state to true.
-   */
-  onLogin(): void {
-    this.isLoggedIn.set(true)
   }
 }

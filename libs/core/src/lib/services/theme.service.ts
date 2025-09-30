@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, signal, computed, effect, inject } from '@angular/core'
 import { isPlatformBrowser } from '@angular/common'
 import { setCookie, getCookie } from '../utils/cookie-utils'
-import { ThemeMode, THEME_COOKIES } from '../flex-shared-lib'
+import { ThemeMode, THEME_COOKIES } from '../shared'
 
 /**
  * Service to manage application theme (light, dark, system).

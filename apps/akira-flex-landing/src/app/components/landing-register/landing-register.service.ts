@@ -1,16 +1,15 @@
 import { Injectable, inject } from '@angular/core'
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { catchError, map, Observable, throwError } from 'rxjs'
-import { RegisterRequest, RegisterResponse } from '@flex-shared-lib'
-import { environment } from '../../../environments/environment'
+import { HttpErrorResponse } from '@angular/common/http'
+import { catchError, Observable, throwError } from 'rxjs'
+import { RegisterRequest, RegisterResponse } from '@shared'
+import { AuthService } from '@shared'
 
 /**
  * Service for handling user registration via the landing page.
  */
 @Injectable()
 export class LandingRegisterService {
-  private readonly registerUrl = environment.apiBaseUrl + '/auth/register'
-  private readonly http = inject(HttpClient)
+  private readonly authService = inject(AuthService)
 
   /**
    * Send register request to API and normalize errors.
@@ -19,8 +18,7 @@ export class LandingRegisterService {
    * @returns Observable that emits RegisterResponse on success or throws a normalized error.
    */
   register(payload: RegisterRequest): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(this.registerUrl, payload).pipe(
-      map((res) => res),
+    return this.authService.register(payload).pipe(
       catchError((err: HttpErrorResponse) => {
         let message = err.error?.message ?? err.message
         if (err.status === 409) {

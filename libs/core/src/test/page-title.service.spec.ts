@@ -1,7 +1,7 @@
 import './test'
 import { TestBed } from '@angular/core/testing'
 import { Title } from '@angular/platform-browser'
-import { PageTitleService } from '../services/page-title.service'
+import { PageTitleService } from '../lib/services/page-title.service'
 
 describe('PageTitleService', () => {
   let service: PageTitleService

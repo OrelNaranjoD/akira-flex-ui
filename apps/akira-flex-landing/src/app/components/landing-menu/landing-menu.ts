@@ -5,8 +5,10 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  PLATFORM_ID,
 } from '@angular/core'
 import { Router } from '@angular/router'
+import { isPlatformBrowser } from '@angular/common'
 import { MenubarModule } from 'primeng/menubar'
 import { MenuItem } from 'primeng/api'
 
@@ -78,20 +80,27 @@ export class LandingMenu implements AfterViewInit {
   ]
 
   private readonly router: Router = inject(Router)
+  private readonly platformId = inject(PLATFORM_ID)
 
   /**
    * Lifecycle hook that is called after Angular has fully initialized the component's view.
    */
   ngAfterViewInit() {
-    const observer = new ResizeObserver(() => {
-      const list = this.menubar.nativeElement.querySelector('.p-menubar-root-list')
-      if (list) {
-        const containerWidth = this.menubar.nativeElement.clientWidth
-        const listWidth = list.scrollWidth
-        this.dynamicBreakpoint = listWidth > containerWidth ? '9999px' : '0px'
-      }
-    })
-    observer.observe(this.menubar.nativeElement)
+    if (isPlatformBrowser(this.platformId)) {
+      requestAnimationFrame(() => {
+        if (this.menubar?.nativeElement && this.menubar.nativeElement instanceof Element) {
+          const observer = new ResizeObserver(() => {
+            const list = this.menubar.nativeElement.querySelector('.p-menubar-root-list')
+            if (list) {
+              const containerWidth = this.menubar.nativeElement.clientWidth
+              const listWidth = list.scrollWidth
+              this.dynamicBreakpoint = listWidth > containerWidth ? '9999px' : '0px'
+            }
+          })
+          observer.observe(this.menubar.nativeElement)
+        }
+      })
+    }
   }
 
   /**

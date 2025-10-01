@@ -2,15 +2,18 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
+  provideAppInitializer,
 } from '@angular/core'
 import { provideRouter } from '@angular/router'
 import { LANDING_ROUTES } from './landing.routes'
-import { provideHttpClient, withFetch } from '@angular/common/http'
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
 import { LandingTheme } from './themes/landing-theme.preset'
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { provideStore } from '@ngrx/store'
+import { authInterceptor, errorInterceptor, initializeApp } from '@shared'
+import { API_ENDPOINTS } from './config/api-endpoints'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,20 +21,22 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay()),
     provideRouter(LANDING_ROUTES),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, errorInterceptor])),
+    provideAppInitializer(() => initializeApp(API_ENDPOINTS)),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: LandingTheme,
         options: {
+          ripple: true,
           darkModeSelector: '.dark',
+          prefix: 'p',
           cssLayer: {
             name: 'primeng',
             order: 'theme, base, primeng',
           },
         },
       },
-      ripple: true,
     }),
     provideStore(),
   ],

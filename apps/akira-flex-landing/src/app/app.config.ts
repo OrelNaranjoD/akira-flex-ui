@@ -12,7 +12,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config'
 import { LandingTheme } from './themes/landing-theme.preset'
 import { provideStore } from '@ngrx/store'
-import { authInterceptor, errorInterceptor, initializeApp } from '@shared'
+import { provideEffects } from '@ngrx/effects'
+import { provideStoreDevtools } from '@ngrx/store-devtools'
+import { isDevMode } from '@angular/core'
+import { authInterceptor, errorInterceptor, initializeApp, authReducer, AuthEffects } from '@shared'
 import { API_ENDPOINTS } from './config/api-endpoints'
 
 export const appConfig: ApplicationConfig = {
@@ -38,6 +41,13 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
-    provideStore(),
+    provideStore({
+      auth: authReducer,
+    }),
+    provideEffects(AuthEffects),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+    }),
   ],
 }

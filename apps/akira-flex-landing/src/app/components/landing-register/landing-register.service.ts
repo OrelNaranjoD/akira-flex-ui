@@ -1,15 +1,14 @@
 import { Injectable, inject } from '@angular/core'
-import { HttpErrorResponse } from '@angular/common/http'
-import { catchError, Observable, throwError } from 'rxjs'
+import { Observable } from 'rxjs'
 import { RegisterRequest, RegisterResponse } from '@shared'
-import { AuthService } from '@shared'
+import { AuthStoreService } from '@shared'
 
 /**
  * Service for handling user registration via the landing page.
  */
 @Injectable()
 export class LandingRegisterService {
-  private readonly authService = inject(AuthService)
+  private readonly authStore = inject(AuthStoreService)
 
   /**
    * Send register request to API and normalize errors.
@@ -18,19 +17,42 @@ export class LandingRegisterService {
    * @returns Observable that emits RegisterResponse on success or throws a normalized error.
    */
   register(payload: RegisterRequest): Observable<RegisterResponse> {
-    return this.authService.register(payload).pipe(
-      catchError((err: HttpErrorResponse) => {
-        let message = err.error?.message ?? err.message
-        if (err.status === 409) {
-          message = 'Este correo electrónico ya está registrado.'
+    // Dispatch register action
+    this.authStore.register(payload)
+
+    // Return observable that waits for the result
+    return new Observable<RegisterResponse>((observer) => {
+      const subscription = this.authStore.isLoading$.subscribe((isLoading) => {
+        if (!isLoading) {
+          let errorMessage = ''
+          this.authStore.error$
+            .subscribe((error) => {
+              errorMessage = error || ''
+            })
+            .unsubscribe()
+
+          if (!errorMessage) {
+            // Registration successful - create a mock response since we don't have the actual data
+            const response: RegisterResponse = {
+              id: '',
+              email: payload.email,
+              status: 'pending',
+              token: '',
+            }
+            observer.next(response)
+            observer.complete()
+          } else {
+            // Handle error
+            // Normalize error messages
+            let message = errorMessage
+            if (errorMessage.includes('409') || errorMessage.includes('Conflict')) {
+              message = 'Este correo electrónico ya está registrado.'
+            }
+            observer.error(new Error(message))
+          }
+          subscription.unsubscribe()
         }
-        const normalized = {
-          status: err.status,
-          message: message,
-          fields: err.error?.fields ?? null,
-        }
-        return throwError(() => normalized)
       })
-    )
+    })
   }
 }

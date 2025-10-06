@@ -159,6 +159,46 @@ export default [
     },
   },
 
+  {
+    files: ['**/store/**/*.ts'],
+    ignores: ['**/store/**/index.ts'],
+    plugins: {
+      jsdoc: jsdocPlugin,
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+      'jsdoc/require-jsdoc': [
+        'error',
+        {
+          require: {
+            FunctionDeclaration: true,
+            MethodDefinition: true,
+            ClassDeclaration: true,
+            ArrowFunctionExpression: false,
+            FunctionExpression: false,
+          },
+          contexts: ['ExportNamedDeclaration', 'ExportDefaultDeclaration'],
+          exemptEmptyConstructors: true,
+          exemptEmptyFunctions: false,
+          checkConstructors: false,
+        },
+      ],
+      'jsdoc/require-description': 'error',
+      'jsdoc/require-description-complete-sentence': 'warn',
+      'jsdoc/require-param': 'warn',
+      'jsdoc/require-returns': 'warn',
+      'jsdoc/require-param-description': 'warn',
+      'jsdoc/require-returns-description': 'warn',
+      'jsdoc/check-alignment': 'warn',
+      'jsdoc/check-indentation': 'warn',
+      'jsdoc/check-tag-names': 'warn',
+      'jsdoc/check-types': 'warn',
+      'jsdoc/empty-tags': 'error',
+      'jsdoc/no-blank-blocks': 'error',
+    },
+  },
+
   ...angular.configs.templateRecommended.map((config) => ({
     ...config,
     files: ['**/*.html'],

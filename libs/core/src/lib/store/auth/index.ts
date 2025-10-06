@@ -1,0 +1,6 @@
+export * from './auth.actions'
+export * from './auth.reducer'
+export * from './auth.effects'
+export * from './auth.selectors'
+export { authReducer as AuthReducer } from './auth.reducer'
+export { AuthEffects } from './auth.effects'

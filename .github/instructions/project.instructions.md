@@ -91,6 +91,13 @@ export class User {
 - **Commits**: Use Conventional Commits in English with prefixes like `feat:`,
   `fix:`, `docs:`, etc. Include ticket references (e.g., `AFU-101`).
 
+## Provider Configuration
+
+- Do not include comments in provider configurations (e.g., `provideStore`,
+  `provideEffects`, `provideStoreDevtools`).
+- Keep provider configurations clean and minimal without explanatory comments.
+- Use descriptive provider names and rely on code clarity rather than comments.
+
 ## Environment Configuration
 
 - Create separate environment files for development, staging, and production.

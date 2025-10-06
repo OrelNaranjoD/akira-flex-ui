@@ -1,6 +1,6 @@
 import { Component, inject, output, signal, AfterViewInit } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { LoginRequest, AuthTokenResponse } from '@shared'
+import { LoginRequest, LoginResponse } from '@shared'
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog'
 import { InputTextModule } from 'primeng/inputtext'
 import { IconFieldModule } from 'primeng/iconfield'
@@ -9,7 +9,7 @@ import { CheckboxModule } from 'primeng/checkbox'
 import { ButtonModule } from 'primeng/button'
 import { MessageModule } from 'primeng/message'
 import { PasswordModule } from 'primeng/password'
-import { AuthService } from '@shared/services'
+import { LandingLoginService } from './landing-login.service'
 
 /**
  * Component for the login form in the landing page header.
@@ -26,6 +26,7 @@ import { AuthService } from '@shared/services'
     ButtonModule,
     PasswordModule,
   ],
+  providers: [LandingLoginService],
   template: `
     <div class="p-6">
       <form
@@ -158,7 +159,7 @@ import { AuthService } from '@shared/services'
   `,
 })
 export class LandingLogin implements AfterViewInit {
-  loginSuccess = output<AuthTokenResponse>()
+  loginSuccess = output<LoginResponse>()
   requestRegister = output<void>()
   forgot = output<void>()
 
@@ -166,7 +167,7 @@ export class LandingLogin implements AfterViewInit {
   private fb = inject(FormBuilder)
   public ref = inject(DynamicDialogRef)
   public config = inject(DynamicDialogConfig)
-  private authService = inject(AuthService)
+  private loginService = inject(LandingLoginService)
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -185,8 +186,8 @@ export class LandingLogin implements AfterViewInit {
 
     const payload = this.loginForm.value as LoginRequest
 
-    this.authService.login(payload).subscribe({
-      next: (response: AuthTokenResponse) => {
+    this.loginService.login(payload).subscribe({
+      next: (response: LoginResponse) => {
         this.loginSuccess.emit(response)
         this.loginForm.reset()
         this.ref.close(response)
@@ -214,17 +215,13 @@ export class LandingLogin implements AfterViewInit {
 
   /**
    * Lifecycle hook that runs after the view has been initialized.
-   * Ensures the email input is focusable after modal opens.
+   * Ensures the email input gets focus after modal opens.
    */
   ngAfterViewInit(): void {
     setTimeout(() => {
       const emailInput = document.getElementById('email-input') as HTMLInputElement
       if (emailInput) {
         emailInput.focus()
-        const originalDisplay = emailInput.style.display
-        emailInput.style.display = 'none'
-        void emailInput.offsetHeight
-        emailInput.style.display = originalDisplay
       }
     }, 100)
   }

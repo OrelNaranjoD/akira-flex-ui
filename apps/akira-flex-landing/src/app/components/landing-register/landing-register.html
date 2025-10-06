@@ -1,6 +1,36 @@
 <div class="p-4">
-  @if (!registrationCompleted()) {
-  <form class="flex flex-col gap-3" [formGroup]="form" (ngSubmit)="registerSubmit(); $event.preventDefault()">
+  <form
+    class="flex flex-col gap-3"
+    [formGroup]="form"
+    (ngSubmit)="registerSubmit(); $event.preventDefault()"
+    autocomplete="on"
+  >
+    <div class="flex flex-col gap-1">
+      <label class="font-medium" for="register-email">Email</label>
+      <p-iconfield>
+        <p-inputIcon class="pi pi-envelope" />
+        <input
+          id="register-email"
+          formControlName="email"
+          type="email"
+          pInputText
+          autocomplete="email"
+          placeholder="email@dominio.com"
+          required
+          fluid
+        />
+      </p-iconfield>
+      @if ( form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) ) {
+      <div class="text-xs">
+        @if (form.get('email')?.hasError('required')) {
+        <p-message severity="error" variant="simple" size="small">El email es requerido.</p-message>
+        } @if (form.get('email')?.hasError('email')) {
+        <p-message severity="error" variant="simple" size="small">Por favor, introduce un email válido.</p-message>
+        }
+      </div>
+      }
+    </div>
+
     <div class="grid grid-cols-2 gap-2">
       <div class="flex flex-col gap-1">
         <label class="font-medium" for="register-firstname">Nombre</label>
@@ -43,32 +73,6 @@
     </div>
 
     <div class="flex flex-col gap-1">
-      <label class="font-medium" for="register-email">Email</label>
-      <p-iconfield>
-        <p-inputIcon class="pi pi-envelope" />
-        <input
-          id="register-email"
-          formControlName="email"
-          type="email"
-          pInputText
-          autocomplete="email"
-          placeholder="email@dominio.com"
-          required
-          fluid
-        />
-      </p-iconfield>
-      @if ( form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) ) {
-      <div class="text-xs">
-        @if (form.get('email')?.hasError('required')) {
-        <p-message severity="error" variant="simple" size="small">El email es requerido.</p-message>
-        } @if (form.get('email')?.hasError('email')) {
-        <p-message severity="error" variant="simple" size="small">Por favor, introduce un email válido.</p-message>
-        }
-      </div>
-      }
-    </div>
-
-    <div class="flex flex-col gap-1">
       <label class="font-medium" for="register-phone">Teléfono (opcional)</label>
       <p-iconfield>
         <p-inputIcon class="pi pi-phone" />
@@ -87,16 +91,19 @@
     <div class="grid grid-cols-2 gap-2">
       <div class="flex flex-col gap-1">
         <label class="font-medium" for="register-password">Contraseña</label>
-        <p-password
-          [toggleMask]="true"
-          [feedback]="false"
-          inputId="register-password"
-          formControlName="password"
-          autocomplete="new-password"
-          placeholder="********"
-          required
-          fluid
-        />
+        <p-icon-field>
+          <i class="pi pi-lock"></i>
+          <p-password
+            id="register-password"
+            formControlName="password"
+            name="password"
+            autocomplete="new-password"
+            placeholder="********"
+            toggleMask="true"
+            fluid
+            required
+          ></p-password>
+        </p-icon-field>
         @if ( form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched) ) {
         <div class="text-xs">
           @if (form.get('password')?.hasError('required')) {
@@ -112,23 +119,24 @@
 
       <div class="flex flex-col gap-1">
         <label class="font-medium" for="register-confirm">Confirmar contraseña</label>
-        <p-password
-          [toggleMask]="true"
-          [feedback]="false"
-          inputId="register-confirm"
-          formControlName="confirmPassword"
-          autocomplete="new-password"
-          placeholder="********"
-          required
-          fluid
-        />
+        <p-icon-field>
+          <i class="pi pi-lock"></i>
+          <p-password
+            id="register-confirm"
+            formControlName="confirmPassword"
+            name="confirmPassword"
+            autocomplete="new-password"
+            placeholder="********"
+            toggleMask="true"
+            [feedback]="false"
+            fluid
+            required
+          ></p-password>
+        </p-icon-field>
       </div>
     </div>
 
-    @if ( form.hasError('passwordsMismatch') && (form.get('confirmPassword')?.dirty ||
-    form.get('confirmPassword')?.touched) ) {
-    <p-message severity="error" variant="simple" size="small"> Las contraseñas no coinciden. </p-message>
-    } @if (serverError()) {
+    @if (serverError()) {
     <p-message styleClass="w-full" severity="error" variant="simple" size="small"> {{ serverError() }} </p-message>
     }
 
@@ -155,5 +163,4 @@
       </p>
     </div>
   </form>
-  }
 </div>

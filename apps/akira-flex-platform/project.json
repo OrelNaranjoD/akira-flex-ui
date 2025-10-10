@@ -64,6 +64,14 @@
       "options": {
         "lintFilePatterns": ["apps/akira-flex-platform/**/*.ts", "apps/akira-flex-platform/**/*.html"]
       }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "apps/akira-flex-platform/vitest.config.ts",
+        "reportsDirectory": "../../coverage/akira-flex-platform"
+      },
+      "outputs": ["{workspaceRoot}/coverage/akira-flex-platform"]
     }
   }
 }

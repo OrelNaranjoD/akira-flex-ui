@@ -5,42 +5,38 @@
   "sourceRoot": "libs/core/src",
   "prefix": "app",
   "tags": ["shared", "angular", "core"],
-  "generators": {},
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
+      "outputs": ["{workspaceRoot}/dist/libs/core"],
       "options": {
+        "main": "libs/core/index.ts",
+        "outputPath": "dist/libs/core",
         "tsConfig": "libs/core/tsconfig.lib.json",
-        "outputPath": "dist/libs/akira-flex-core",
-        "main": "libs/core/src/index.ts"
-      }
+        "assets": ["libs/core/*.md"]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/core/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/core/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "test": {
-      "executor": "@nx/jest:jest",
+      "executor": "@nx/vite:test",
       "options": {
-        "jestConfig": "libs/core/jest.config.ts",
-        "passWithNoTests": true
+        "config": "libs/core/vitest.config.ts",
+        "reportsDirectory": "../../coverage/akira-flex-core"
       },
-      "outputs": ["{workspaceRoot}/coverage/libs/core"]
+      "outputs": ["{workspaceRoot}/coverage/akira-flex-core"]
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/core/**/*.ts", "libs/core/**/*.html"]
-      }
-    },
-    "storybook": {
-      "executor": "@nx/storybook:storybook",
-      "options": {
-        "configDir": "libs/core/.storybook",
-        "browserTarget": "akira-flex-core:build"
-      }
-    },
-    "build-storybook": {
-      "executor": "@nx/storybook:build",
-      "options": {
-        "outputPath": "dist/storybook/akira-flex-core",
-        "configDir": "libs/core/.storybook"
       }
     }
   }

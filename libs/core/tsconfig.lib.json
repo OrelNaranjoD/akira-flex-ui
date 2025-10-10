@@ -1,12 +1,10 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc/libs/akira-flex-core",
     "declaration": true,
     "declarationMap": true,
-    "types": ["node"],
-    "skipLibCheck": true
+    "types": []
   },
-  "include": ["src/lib/**/*.ts"],
-  "exclude": ["**/*.spec.ts", "src/test/**/*.ts"]
+  "include": ["src/**/*.ts", "index.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }

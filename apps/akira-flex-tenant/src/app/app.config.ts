@@ -2,6 +2,7 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
+  isDevMode,
 } from '@angular/core'
 import { provideRouter } from '@angular/router'
 import { TENANT_ROUTES } from './tenant.routes'
@@ -14,20 +15,20 @@ import { TenantTheme } from './themes/tenant-theme.preset'
 import { provideStore } from '@ngrx/store'
 import { provideEffects } from '@ngrx/effects'
 import { provideStoreDevtools } from '@ngrx/store-devtools'
-import { isDevMode } from '@angular/core'
-import { authInterceptor, errorInterceptor, initializeApp, authReducer, AuthEffects } from '@shared'
+import { authInterceptor, errorInterceptor, initializeApp, authReducer, AuthEffects } from '@core'
 import { API_ENDPOINTS } from './config/api-endpoints'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay()),
+    ...(isDevMode() ? [] : [provideClientHydration(withEventReplay())]),
     provideRouter(TENANT_ROUTES),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor, errorInterceptor])),
     provideAppInitializer(() => initializeApp(API_ENDPOINTS)),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
       theme: {
         preset: TenantTheme,
         options: {

@@ -4,114 +4,66 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/akira-flex-tenant/src",
-  "generators": {},
+  "i18n": {
+    "sourceLocale": { "code": "en", "subPath": "en" },
+    "locales": {
+      "es": {
+        "translation": "libs/core/src/lib/i18n/locale/messages.es.xlf",
+        "subPath": "es"
+      }
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
+        "outputPath": "dist/apps/akira-flex-tenant",
         "browser": "apps/akira-flex-tenant/src/main.ts",
         "tsConfig": "apps/akira-flex-tenant/tsconfig.app.json",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "libs/core/src/lib/public",
-            "output": "."
-          }
-        ],
         "styles": ["apps/akira-flex-tenant/src/styles.css"],
         "server": "apps/akira-flex-tenant/src/main.server.ts",
-        "outputMode": "server",
         "ssr": {
           "entry": "apps/akira-flex-tenant/src/server.ts"
-        },
-        "outputPath": "dist/apps/akira-flex-tenant"
+        }
       },
       "configurations": {
         "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
-            }
-          ],
-          "outputHashing": "all",
           "fileReplacements": [
             {
               "replace": "apps/akira-flex-tenant/src/environments/environment.ts",
               "with": "apps/akira-flex-tenant/src/environments/environment.prod.ts"
             }
           ]
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        },
-        "staging": {
-          "optimization": true,
-          "extractLicenses": true,
-          "sourceMap": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/akira-flex-tenant/src/environments/environment.ts",
-              "with": "apps/akira-flex-tenant/src/environments/environment.staging.ts"
-            }
-          ]
         }
-      },
-      "defaultConfiguration": "production",
-      "outputs": ["{options.outputPath}"]
+      }
     },
     "serve": {
       "executor": "@angular/build:dev-server",
       "options": {
         "port": 4202
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "akira-flex-tenant:build:production"
-        },
-        "development": {
-          "buildTarget": "akira-flex-tenant:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
+      }
+    },
+    "serve:ssr": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node dist/apps/akira-flex-tenant/server/server.mjs"
+      }
     },
     "extract-i18n": {
-      "executor": "@angular/build:extract-i18n"
-    },
-    "test": {
-      "executor": "@angular/build:karma",
+      "executor": "@angular/build:extract-i18n",
       "options": {
-        "main": "apps/akira-flex-tenant/src/test/test.ts",
-        "tsConfig": "apps/akira-flex-tenant/tsconfig.spec.json",
-        "styles": ["apps/akira-flex-tenant/src/styles.css"],
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "libs/core/src/lib/public",
-            "output": "."
-          }
-        ],
-        "codeCoverageExclude": [
-          "apps/akira-flex-tenant/src/test/test.ts",
-          "apps/akira-flex-tenant/src/test/**/*.spec.ts",
-          "apps/akira-flex-tenant/src/**/*.spec.ts"
-        ]
+        "buildTarget": "akira-flex-tenant:build:development",
+        "format": "xlf2",
+        "outputPath": "libs/core/src/lib/i18n/locale/tenant"
       }
     },
     "lint": {
       "executor": "@angular-eslint/builder:lint",
       "options": {
-        "lintFilePatterns": ["apps/akira-flex-tenant/src/**/*.ts", "apps/akira-flex-tenant/src/**/*.html"]
-      },
-      "outputs": ["{options.outputFile}"]
+        "lintFilePatterns": ["apps/akira-flex-tenant/**/*.ts", "apps/akira-flex-tenant/**/*.html"]
+      }
     }
   }
 }

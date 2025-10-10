@@ -13,8 +13,10 @@ them to maintain code quality and project structure.
 - Use JSDoc format (`/** */`) in multi-line style for all documentation
   comments, including classes, methods, properties, parameters, and explanatory
   blocks.
-- Avoid explanatory comments within the body of methods, even short ones, unless
-  strictly necessary; use descriptive variable and function names instead.
+- **Do NOT use inline comments (`//`) or explanatory comments within the body of
+  methods.** Use descriptive variable and function names instead. Code should be
+  self-explanatory.
+- Only use JSDoc for public API documentation (classes, methods, properties).
 - Example:
 
 ```typescript
@@ -164,3 +166,78 @@ function initializeApp(globalConfig: GlobalConfigService): () => void {
 // Provider configuration
 provideAppInitializer(initializeApp, [GlobalConfigService])
 ```
+
+## Internationalization (i18n)
+
+### General Rules
+
+- The base language for internationalization is **English**. All source texts in
+  the code must be in English.
+- Use Angular's built-in i18n system with `$localize` for TypeScript code and
+  `i18n` attributes for HTML templates.
+- Extract translations using `npm run i18n` to generate XLF files per domain.
+- Merge translations using `npm run i18n:merge` to create consolidated XLF with
+  `<target>` tags for Spanish.
+- Translation files are located in `libs/core/src/lib/i18n/locale/`.
+
+### Translation ID Conventions
+
+- **Always use camelCase** for translation IDs (e.g., `@@mainPanel`,
+  `@@cashAndBanks`, `@@toggleTheme`)
+- Use camelCase consistently in both TypeScript and HTML for easier maintenance
+  and refactoring
+- **Never use kebab-case** for IDs to maintain consistency with JavaScript
+  naming conventions
+
+### Default Text Conventions
+
+- **Always use lowercase** for default text values (e.g., `main panel`,
+  `cash and banks`, `toggle theme`)
+- Angular and CSS handle capitalization through `text-transform` (e.g.,
+  `capitalize`, `uppercase`)
+- For buttons or UI elements requiring capitalization, use Tailwind CSS classes
+  like `capitalize`, `uppercase`, or `lowercase`
+- Alternative: Use Angular's `titlecase` pipe for dynamic capitalization in
+  templates
+
+### Examples
+
+**TypeScript (camelCase IDs, lowercase text):**
+
+```typescript
+const label = $localize`:@@mainPanel:main panel`
+const title = $localize`:@@cashAndBanks:cash and banks`
+const action = $localize`:@@newSale:new sale`
+```
+
+**HTML Templates (camelCase IDs, lowercase text):**
+
+```html
+<h1 i18n="@@pageTitle">dashboard</h1>
+<button i18n-title="@@toggleTheme" i18n-aria-label="@@themeSwitcher">
+  Theme
+</button>
+<label i18n="@@emailLabel">email address</label>
+```
+
+**Capitalization with CSS:**
+
+```html
+<!-- Capitalize first letter of each word -->
+<h1 class="capitalize" i18n="@@mainPanel">main panel</h1>
+
+<!-- Uppercase all letters -->
+<button class="uppercase" i18n="@@saveButton">save</button>
+
+<!-- Capitalize with pipe -->
+<span>{{ 'mainPanel' | titlecase }}</span>
+```
+
+### Workflow
+
+1. Developer writes code with `$localize`:@@camelCaseId:lowercase text``
+2. Run `npm run i18n` → Extracts to `locale/{domain}/messages.xlf`
+3. Run `npm run i18n:merge` → Merges all XLF files into `locale/messages.es.xlf`
+4. Translator edits `messages.es.xlf` and replaces `[TRANSLATE]` placeholders
+5. Build generates localized versions for English and Spanish
+6. CSS or pipes handle text capitalization as needed

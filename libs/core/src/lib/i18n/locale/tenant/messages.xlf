@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="mainPanel">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:17</note>
+      </notes>
+      <segment>
+        <source>main panel</source>
+      </segment>
+    </unit>
+    <unit id="finance">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:22</note>
+      </notes>
+      <segment>
+        <source>finance</source>
+      </segment>
+    </unit>
+    <unit id="cashAndBanks">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:26</note>
+      </notes>
+      <segment>
+        <source>cash and banks</source>
+      </segment>
+    </unit>
+    <unit id="receivables">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:31</note>
+      </notes>
+      <segment>
+        <source>receivables</source>
+      </segment>
+    </unit>
+    <unit id="payables">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:36</note>
+      </notes>
+      <segment>
+        <source>payables</source>
+      </segment>
+    </unit>
+    <unit id="sales">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:43</note>
+      </notes>
+      <segment>
+        <source>sales</source>
+      </segment>
+    </unit>
+    <unit id="newSale">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:47</note>
+      </notes>
+      <segment>
+        <source>new sale</source>
+      </segment>
+    </unit>
+    <unit id="salesHistory">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:52</note>
+      </notes>
+      <segment>
+        <source>sales history</source>
+      </segment>
+    </unit>
+    <unit id="customers">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:57</note>
+      </notes>
+      <segment>
+        <source>customers</source>
+      </segment>
+    </unit>
+    <unit id="inventory">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:64</note>
+      </notes>
+      <segment>
+        <source>inventory</source>
+      </segment>
+    </unit>
+    <unit id="products">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:68</note>
+      </notes>
+      <segment>
+        <source>products</source>
+      </segment>
+    </unit>
+    <unit id="stock">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:73</note>
+      </notes>
+      <segment>
+        <source>stock</source>
+      </segment>
+    </unit>
+    <unit id="suppliers">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:78</note>
+      </notes>
+      <segment>
+        <source>suppliers</source>
+      </segment>
+    </unit>
+    <unit id="reports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:85</note>
+      </notes>
+      <segment>
+        <source>reports</source>
+      </segment>
+    </unit>
+    <unit id="salesReports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:89</note>
+      </notes>
+      <segment>
+        <source>sales reports</source>
+      </segment>
+    </unit>
+    <unit id="generalReports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:94</note>
+      </notes>
+      <segment>
+        <source>general reports</source>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/tenant-menu/tenant-menu.ts:101</note>
+      </notes>
+      <segment>
+        <source>settings</source>
+      </segment>
+    </unit>
+    <unit id="Email">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-login.ts:68,69</note>
+      </notes>
+      <segment>
+        <source> Correo electrónico </source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.es">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:43</note>
+      </notes>
+      <segment>
+        <source>Switch to Spanish</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.en">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:45</note>
+      </notes>
+      <segment>
+        <source>Cambiar a Inglés</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.en">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:51</note>
+      </notes>
+      <segment>
+        <source>English flag</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.es">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:53</note>
+      </notes>
+      <segment>
+        <source>Bandera de España</source>
+      </segment>
+    </unit>
+    <unit id="notifications">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:31,32</note>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:33,34</note>
+      </notes>
+      <segment>
+        <source>notifications</source>
+      </segment>
+    </unit>
+    <unit id="toggleTheme">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:20,21</note>
+      </notes>
+      <segment>
+        <source>toggle theme</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:22,23</note>
+      </notes>
+      <segment>
+        <source>theme switcher</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

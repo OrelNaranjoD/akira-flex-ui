@@ -1,27 +1,19 @@
 @import "../../../libs/core/src/lib/public/styles/base.css";
 
-@import "tailwindcss";
-@plugin "tailwindcss-primeui";
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+  @import "tailwindcss";
+}
+
 @import "primeicons/primeicons.css";
 
 @theme {
-  --color-company: rgb(26, 61, 124);
+  --color-company: oklch(0.4 0.1 260);
   --p-menubar-gap: 0 !important;
 }
 
 /* Global styles for the all domains */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--p-surface-0);
-  color: var(--p-text-color);
-}
-
 * {
   box-sizing: border-box;
-}
-
-:root {
-  --p-dialog-header-padding: 1rem 1.5rem 0 1.5rem;
 }

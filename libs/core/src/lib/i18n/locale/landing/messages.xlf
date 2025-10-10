@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="Email">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-login/landing-login.ts:39,40</note>
+      </notes>
+      <segment>
+        <source>Correo electrónico</source>
+      </segment>
+    </unit>
+    <unit id="benefits">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-menu/landing-menu.ts:72</note>
+      </notes>
+      <segment>
+        <source>benefits</source>
+      </segment>
+    </unit>
+    <unit id="features">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-menu/landing-menu.ts:77</note>
+      </notes>
+      <segment>
+        <source>features</source>
+      </segment>
+    </unit>
+    <unit id="industries">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-menu/landing-menu.ts:82</note>
+      </notes>
+      <segment>
+        <source>industries</source>
+      </segment>
+    </unit>
+    <unit id="technology">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-menu/landing-menu.ts:87</note>
+      </notes>
+      <segment>
+        <source>technology</source>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/landing-menu/landing-menu.ts:91</note>
+      </notes>
+      <segment>
+        <source>plans</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.es">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:43</note>
+      </notes>
+      <segment>
+        <source>Switch to Spanish</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.en">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:45</note>
+      </notes>
+      <segment>
+        <source>Cambiar a Inglés</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.en">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:51</note>
+      </notes>
+      <segment>
+        <source>English flag</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.es">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:53</note>
+      </notes>
+      <segment>
+        <source>Bandera de España</source>
+      </segment>
+    </unit>
+    <unit id="notifications">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:31,32</note>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:33,34</note>
+      </notes>
+      <segment>
+        <source>notifications</source>
+      </segment>
+    </unit>
+    <unit id="toggleTheme">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:20,21</note>
+      </notes>
+      <segment>
+        <source>toggle theme</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:22,23</note>
+      </notes>
+      <segment>
+        <source>theme switcher</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

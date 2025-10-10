@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-US" trgLang="es">
+  <file id="ngi18n" original="ng.template">
+    <unit id="Email">
+      <segment>
+        <source>Correo electrónico</source>
+        <target>correo electrónico</target>
+      </segment>
+    </unit>
+    <unit id="benefits">
+      <segment>
+        <source>benefits</source>
+        <target>beneficios</target>
+      </segment>
+    </unit>
+    <unit id="cashAndBanks">
+      <segment>
+        <source>cash and banks</source>
+        <target>caja y bancos</target>
+      </segment>
+    </unit>
+    <unit id="customers">
+      <segment>
+        <source>customers</source>
+        <target>clientes</target>
+      </segment>
+    </unit>
+    <unit id="features">
+      <segment>
+        <source>features</source>
+        <target>características</target>
+      </segment>
+    </unit>
+    <unit id="finance">
+      <segment>
+        <source>finance</source>
+        <target>finanzas</target>
+      </segment>
+    </unit>
+    <unit id="fiveMinutesAgo">
+      <segment>
+        <source>5 minutes ago</source>
+        <target>hace 5 minutos</target>
+      </segment>
+    </unit>
+    <unit id="generalReports">
+      <segment>
+        <source>general reports</source>
+        <target>reportes generales</target>
+      </segment>
+    </unit>
+    <unit id="industries">
+      <segment>
+        <source>industries</source>
+        <target>industrias</target>
+      </segment>
+    </unit>
+    <unit id="inventory">
+      <segment>
+        <source>inventory</source>
+        <target>inventario</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.en">
+      <segment>
+        <source>English flag</source>
+        <target>Bandera de Estados Unidos</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt.es">
+      <segment>
+        <source>Bandera de España</source>
+        <target>Bandera de España</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.en">
+      <segment>
+        <source>Cambiar a Inglés</source>
+        <target>Cambiar a Inglés</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip.es">
+      <segment>
+        <source>Switch to Spanish</source>
+        <target>Cambiar a Español</target>
+      </segment>
+    </unit>
+    <unit id="mainPanel">
+      <segment>
+        <source>main panel</source>
+        <target>panel principal</target>
+      </segment>
+    </unit>
+    <unit id="monthlyReportCompleted">
+      <segment>
+        <source>the &quot;Monthly Report&quot; task has been completed</source>
+        <target>la tarea &quot;Reporte Mensual&quot; ha sido completada</target>
+      </segment>
+    </unit>
+    <unit id="newMessage">
+      <segment>
+        <source>new message</source>
+        <target>nuevo mensaje</target>
+      </segment>
+    </unit>
+    <unit id="newMessageFrom">
+      <segment>
+        <source>you have a new message from Juan Pérez</source>
+        <target>tienes un nuevo mensaje de Juan Pérez</target>
+      </segment>
+    </unit>
+    <unit id="newSale">
+      <segment>
+        <source>new sale</source>
+        <target>nueva venta</target>
+      </segment>
+    </unit>
+    <unit id="notifications">
+      <segment>
+        <source>notifications</source>
+        <target>notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="oneHourAgo">
+      <segment>
+        <source>1 hour ago</source>
+        <target>hace 1 hora</target>
+      </segment>
+    </unit>
+    <unit id="payables">
+      <segment>
+        <source>payables</source>
+        <target>cuentas por pagar</target>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <segment>
+        <source>plans</source>
+        <target>planes</target>
+      </segment>
+    </unit>
+    <unit id="products">
+      <segment>
+        <source>products</source>
+        <target>productos</target>
+      </segment>
+    </unit>
+    <unit id="receivables">
+      <segment>
+        <source>receivables</source>
+        <target>cuentas por cobrar</target>
+      </segment>
+    </unit>
+    <unit id="reports">
+      <segment>
+        <source>reports</source>
+        <target>reportes</target>
+      </segment>
+    </unit>
+    <unit id="sales">
+      <segment>
+        <source>sales</source>
+        <target>ventas</target>
+      </segment>
+    </unit>
+    <unit id="salesHistory">
+      <segment>
+        <source>sales history</source>
+        <target>historial de ventas</target>
+      </segment>
+    </unit>
+    <unit id="salesReports">
+      <segment>
+        <source>sales reports</source>
+        <target>reportes de ventas</target>
+      </segment>
+    </unit>
+    <unit id="serverTemporaryIssues">
+      <segment>
+        <source>the server experienced temporary issues</source>
+        <target>el servidor experimentó problemas temporales</target>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <segment>
+        <source>settings</source>
+        <target>configuraciones</target>
+      </segment>
+    </unit>
+    <unit id="stock">
+      <segment>
+        <source>stock</source>
+        <target>existencia</target>
+      </segment>
+    </unit>
+    <unit id="suppliers">
+      <segment>
+        <source>suppliers</source>
+        <target>proveedores</target>
+      </segment>
+    </unit>
+    <unit id="systemAlert">
+      <segment>
+        <source>system alert</source>
+        <target>alerta del sistema</target>
+      </segment>
+    </unit>
+    <unit id="taskCompleted">
+      <segment>
+        <source>task completed</source>
+        <target>tarea completada</target>
+      </segment>
+    </unit>
+    <unit id="technology">
+      <segment>
+        <source>technology</source>
+        <target>tecnología</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <segment>
+        <source>theme switcher</source>
+        <target>cambiar tema</target>
+      </segment>
+    </unit>
+    <unit id="toggleTheme">
+      <segment>
+        <source>toggle theme</source>
+        <target>cambiar tema</target>
+      </segment>
+    </unit>
+    <unit id="twoHoursAgo">
+      <segment>
+        <source>2 hours ago</source>
+        <target>hace 2 horas</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

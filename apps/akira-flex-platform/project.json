@@ -36,6 +36,9 @@
               "with": "apps/akira-flex-platform/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "es": {
+          "localize": ["es"]
         }
       }
     },

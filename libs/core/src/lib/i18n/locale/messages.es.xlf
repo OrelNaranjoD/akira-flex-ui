@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-US" trgLang="es">
   <file id="ngi18n" original="ng.template">
-    <unit id="Email">
+    <unit id="accountLocked">
       <segment>
-        <source>Correo electrónico</source>
-        <target>correo electrónico</target>
+        <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
+            timeRemaining / 60
+          )"/> minutes.</source>
+        <target>Cuenta bloqueada. Inténtalo de nuevo en ${Math.ceil(timeRemaining / 60)} minutos.</target>
+      </segment>
+    </unit>
+    <unit id="accountLockedMultipleAttempts">
+      <segment>
+        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
+        <target>Cuenta bloqueada por múltiples intentos fallidos. Inténtalo de nuevo en 15 minutos.</target>
+      </segment>
+    </unit>
+    <unit id="accountLockedTemporarily">
+      <segment>
+        <source>Account temporarily locked. Try again later.</source>
+        <target>Cuenta bloqueada temporalmente. Inténtalo más tarde.</target>
+      </segment>
+    </unit>
+    <unit id="appSlogan">
+      <segment>
+        <source>Innovation and flexibility for your ORG</source>
+        <target>Innovación y flexibilidad para tu PyME</target>
       </segment>
     </unit>
     <unit id="benefits">
@@ -19,10 +39,52 @@
         <target>caja y bancos</target>
       </segment>
     </unit>
+    <unit id="createAccount">
+      <segment>
+        <source>Crear cuenta</source>
+        <target>Crear cuenta</target>
+      </segment>
+    </unit>
     <unit id="customers">
       <segment>
         <source>customers</source>
         <target>clientes</target>
+      </segment>
+    </unit>
+    <unit id="email">
+      <segment>
+        <source>Correo electrónico</source>
+        <target>Correo electrónico</target>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <segment>
+        <source>Por favor, introduce un email válido.</source>
+        <target>Introduce una dirección de correo electrónico válida.</target>
+      </segment>
+    </unit>
+    <unit id="emailPlaceholder">
+      <segment>
+        <source>example@email.com</source>
+        <target>ejemplo@email.com</target>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <segment>
+        <source>El email es requerido.</source>
+        <target>El correo electrónico es obligatorio.</target>
+      </segment>
+    </unit>
+    <unit id="error.login">
+      <segment>
+        <source>&apos;Error al iniciar sesión. Por favor, inténtalo de nuevo.&apos;</source>
+        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+      </segment>
+    </unit>
+    <unit id="errorSigningIn">
+      <segment>
+        <source>Error signing in. Try again.</source>
+        <target>Error al iniciar sesión. Inténtalo de nuevo.</target>
       </segment>
     </unit>
     <unit id="features">
@@ -43,10 +105,34 @@
         <target>hace 5 minutos</target>
       </segment>
     </unit>
+    <unit id="forgotPassword">
+      <segment>
+        <source>Olvidé mi contraseña</source>
+        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+      </segment>
+    </unit>
     <unit id="generalReports">
       <segment>
         <source>general reports</source>
         <target>reportes generales</target>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <segment>
+        <source>Go Back</source>
+        <target>Volver</target>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <segment>
+        <source>Go to Dashboard</source>
+        <target>Ir al Panel</target>
+      </segment>
+    </unit>
+    <unit id="incorrectCredentials">
+      <segment>
+        <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
+        <target>Credenciales incorrectas. Te quedan ${remainingAttempts} intento${remainingAttempts === 1 ? '' : 's'}.</target>
       </segment>
     </unit>
     <unit id="industries">
@@ -61,28 +147,32 @@
         <target>inventario</target>
       </segment>
     </unit>
-    <unit id="languageSwitcher.alt.en">
+    <unit id="languageSwitcher.alt">
       <segment>
         <source>English flag</source>
-        <target>Bandera de Estados Unidos</target>
-      </segment>
-    </unit>
-    <unit id="languageSwitcher.alt.es">
-      <segment>
-        <source>Bandera de España</source>
         <target>Bandera de España</target>
       </segment>
     </unit>
-    <unit id="languageSwitcher.tooltip.en">
-      <segment>
-        <source>Cambiar a Inglés</source>
-        <target>Cambiar a Inglés</target>
-      </segment>
-    </unit>
-    <unit id="languageSwitcher.tooltip.es">
+    <unit id="languageSwitcher.tooltip">
       <segment>
         <source>Switch to Spanish</source>
-        <target>Cambiar a Español</target>
+        <target>Cambiar a Ingles</target>
+      </segment>
+    </unit>
+    <unit id="login">
+      <segment>
+        <source>Iniciar Sesión</source>
+        <target>Iniciar sesión</target>
+      </segment>
+    </unit>
+    <unit id="loginHelp">
+      <segment>
+        <source>Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a
+              class=&quot;hover:underline&quot;
+              i18n-href=&quot;@@forgotPassword&quot;
+              routerLink=&quot;/auth/password-recovery&quot;
+            &gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
+        <target>¿Tienes problemas para iniciar sesión? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recupera tu contraseña </pc></target>
       </segment>
     </unit>
     <unit id="mainPanel">
@@ -127,6 +217,60 @@
         <target>hace 1 hora</target>
       </segment>
     </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <segment>
+        <source>You can return to the main dashboard or contact support if you believe this is an error.</source>
+        <target>Puedes volver al panel principal o contactar al soporte si crees que se trata de un error.</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundMessage">
+      <segment>
+        <source>The page you&apos;re looking for doesn&apos;t exist or has been moved.</source>
+        <target>La página que buscas no existe o ha sido movida.</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundTitle">
+      <segment>
+        <source>Page not found</source>
+        <target>Página no encontrada</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <segment>
+        <source>Please sign in to access the application or contact support if you need assistance.</source>
+        <target>Por favor inicia sesión para acceder a la aplicación o contacta al soporte si necesitas ayuda.</target>
+      </segment>
+    </unit>
+    <unit id="password">
+      <segment>
+        <source>Contraseña</source>
+        <target>Contraseña</target>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <segment>
+        <source>La contraseña debe tener al menos 6 caracteres.</source>
+        <target>La contraseña debe tener al menos 6 caracteres.</target>
+      </segment>
+    </unit>
+    <unit id="passwordPlaceholder">
+      <segment>
+        <source>Secret password</source>
+        <target>Contraseña secreta</target>
+      </segment>
+    </unit>
+    <unit id="passwordRecoveryTitle">
+      <segment>
+        <source>Recover your password</source>
+        <target>Recupera tu contraseña</target>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <segment>
+        <source>La contraseña es requerida.</source>
+        <target>La contraseña es obligatoria.</target>
+      </segment>
+    </unit>
     <unit id="payables">
       <segment>
         <source>payables</source>
@@ -151,10 +295,30 @@
         <target>cuentas por cobrar</target>
       </segment>
     </unit>
+    <unit id="remember">
+      <segment>
+        <source>Recordarme</source>
+        <target>Recordarme</target>
+      </segment>
+    </unit>
+    <unit id="rememberPassword">
+      <segment>
+        <source>Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;
+              &gt;" dispEnd="&lt;/a
+            &gt;">Sign in</pc></source>
+        <target>¿Recuerdas tu contraseña? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Inicia sesión</pc></target>
+      </segment>
+    </unit>
     <unit id="reports">
       <segment>
         <source>reports</source>
         <target>reportes</target>
+      </segment>
+    </unit>
+    <unit id="requestNewPassword">
+      <segment>
+        <source>Request new password</source>
+        <target>Solicitar nueva contraseña</target>
       </segment>
     </unit>
     <unit id="sales">
@@ -187,6 +351,18 @@
         <target>configuraciones</target>
       </segment>
     </unit>
+    <unit id="signIn">
+      <segment>
+        <source>Sign In</source>
+        <target>Iniciar Sesión</target>
+      </segment>
+    </unit>
+    <unit id="signInTitle">
+      <segment>
+        <source>Sign in</source>
+        <target>Iniciar sesión</target>
+      </segment>
+    </unit>
     <unit id="stock">
       <segment>
         <source>stock</source>
@@ -217,16 +393,16 @@
         <target>tecnología</target>
       </segment>
     </unit>
-    <unit id="themeSwitcher">
+    <unit id="themeSwitcher.tooltip">
       <segment>
-        <source>theme switcher</source>
-        <target>cambiar tema</target>
+        <source>Switch to <ph id="0" equiv="INTERPOLATION" disp="{{ isDarkMode() ? &apos;light&apos; : &apos;dark&apos; }}"/> mode</source>
+        <target>Cambiar a modo {{ isDarkMode() ? &apos;claro&apos; : &apos;oscuro&apos; }}</target>
       </segment>
     </unit>
-    <unit id="toggleTheme">
+    <unit id="tooManyAttempts">
       <segment>
-        <source>toggle theme</source>
-        <target>cambiar tema</target>
+        <source>Too many attempts. Try again later.</source>
+        <target>Demasiados intentos. Inténtalo de nuevo más tarde.</target>
       </segment>
     </unit>
     <unit id="twoHoursAgo">

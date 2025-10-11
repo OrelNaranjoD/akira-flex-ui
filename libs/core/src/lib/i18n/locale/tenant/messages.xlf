@@ -137,44 +137,202 @@
         <source>settings</source>
       </segment>
     </unit>
-    <unit id="Email">
+    <unit id="passwordRecoveryTitle">
       <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-login.ts:68,69</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:45,47</note>
       </notes>
       <segment>
-        <source> Correo electrónico </source>
+        <source> Recover your password </source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.tooltip.es">
+    <unit id="email">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:43</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:52,53</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:52,53</note>
+      </notes>
+      <segment>
+        <source>Email address</source>
+      </segment>
+    </unit>
+    <unit id="emailPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:62,63</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:62,63</note>
+      </notes>
+      <segment>
+        <source>example@email.com</source>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:69,70</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:69,70</note>
+      </notes>
+      <segment>
+        <source>Email is required</source>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:73,74</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:73,74</note>
+      </notes>
+      <segment>
+        <source>Enter a valid email address</source>
+      </segment>
+    </unit>
+    <unit id="requestNewPassword">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:109,110</note>
+      </notes>
+      <segment>
+        <source>Request new password</source>
+      </segment>
+    </unit>
+    <unit id="rememberPassword">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-password-recovery.ts:119,123</note>
+      </notes>
+      <segment>
+        <source> Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;
+              &gt;" dispEnd="&lt;/a
+            &gt;">Sign in</pc></source>
+      </segment>
+    </unit>
+    <unit id="signInTitle">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:46,47</note>
+      </notes>
+      <segment>
+        <source>Sign in</source>
+      </segment>
+    </unit>
+    <unit id="password">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:82,83</note>
+      </notes>
+      <segment>
+        <source> Password </source>
+      </segment>
+    </unit>
+    <unit id="passwordPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:94,95</note>
+      </notes>
+      <segment>
+        <source>Secret password</source>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:104,105</note>
+      </notes>
+      <segment>
+        <source>Password is required</source>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:112,114</note>
+      </notes>
+      <segment>
+        <source>Password must be at least 6 characters</source>
+      </segment>
+    </unit>
+    <unit id="signIn">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:137</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:59</note>
+      </notes>
+      <segment>
+        <source>Sign in</source>
+      </segment>
+    </unit>
+    <unit id="loginHelp">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:146,154</note>
+      </notes>
+      <segment>
+        <source> Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a
+              class=&quot;hover:underline&quot;
+              i18n-href=&quot;@@forgotPassword&quot;
+              routerLink=&quot;/auth/password-recovery&quot;
+            &gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
+      </segment>
+    </unit>
+    <unit id="accountLocked">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:196,198</note>
+      </notes>
+      <segment>
+        <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
+            timeRemaining / 60
+          )"/> minutes.</source>
+      </segment>
+    </unit>
+    <unit id="accountLockedTemporarily">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:222</note>
+      </notes>
+      <segment>
+        <source>Account temporarily locked. Try again later.</source>
+      </segment>
+    </unit>
+    <unit id="accountLockedMultipleAttempts">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:259</note>
+      </notes>
+      <segment>
+        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
+      </segment>
+    </unit>
+    <unit id="incorrectCredentials">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:264</note>
+      </notes>
+      <segment>
+        <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
+      </segment>
+    </unit>
+    <unit id="tooManyAttempts">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:268</note>
+      </notes>
+      <segment>
+        <source>Too many attempts. Try again later.</source>
+      </segment>
+    </unit>
+    <unit id="errorSigningIn">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:270</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/tenant-sign-in.ts:273</note>
+      </notes>
+      <segment>
+        <source>Error signing in. Try again.</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:21,24</note>
       </notes>
       <segment>
         <source>Switch to Spanish</source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.tooltip.en">
+    <unit id="languageSwitcher.alt">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:45</note>
-      </notes>
-      <segment>
-        <source>Cambiar a Inglés</source>
-      </segment>
-    </unit>
-    <unit id="languageSwitcher.alt.en">
-      <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:51</note>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:28,33</note>
       </notes>
       <segment>
         <source>English flag</source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.alt.es">
+    <unit id="appSlogan">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:53</note>
+        <note category="location">libs/core/src/lib/components/logotype/logotype.ts:40,41</note>
       </notes>
       <segment>
-        <source>Bandera de España</source>
+        <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
     <unit id="notifications">
@@ -186,20 +344,60 @@
         <source>notifications</source>
       </segment>
     </unit>
-    <unit id="toggleTheme">
+    <unit id="pageNotFoundTitle">
       <notes>
-        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:20,21</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:23,24</note>
       </notes>
       <segment>
-        <source>toggle theme</source>
+        <source> Page not found </source>
       </segment>
     </unit>
-    <unit id="themeSwitcher">
+    <unit id="pageNotFoundMessage">
       <notes>
-        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:22,23</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:30,33</note>
       </notes>
       <segment>
-        <source>theme switcher</source>
+        <source> The page you&apos;re looking for doesn&apos;t exist or has been moved. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:35,37</note>
+      </notes>
+      <segment>
+        <source> You can return to the main dashboard or contact support if you believe this is an error. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:40,42</note>
+      </notes>
+      <segment>
+        <source> Please sign in to access the application or contact support if you need assistance. </source>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:50,51</note>
+      </notes>
+      <segment>
+        <source>Go to Dashboard</source>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:67</note>
+      </notes>
+      <segment>
+        <source>Go Back</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher.tooltip">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:23,24</note>
+      </notes>
+      <segment>
+        <source>Switch to <ph id="0" equiv="INTERPOLATION" disp="{{ isDarkMode() ? &apos;light&apos; : &apos;dark&apos; }}"/> mode</source>
       </segment>
     </unit>
   </file>

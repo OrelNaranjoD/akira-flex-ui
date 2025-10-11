@@ -12,4 +12,8 @@ export const LANDING_ROUTES: Routes = [
       },
     ],
   },
+  {
+    path: '**',
+    loadComponent: () => import('@core').then((m) => m.PageNotFoundComponent),
+  },
 ]

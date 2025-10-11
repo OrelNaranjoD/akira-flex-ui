@@ -73,36 +73,28 @@
         <source>2 hours ago</source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.tooltip.es">
+    <unit id="languageSwitcher.tooltip">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:43</note>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:21,24</note>
       </notes>
       <segment>
         <source>Switch to Spanish</source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.tooltip.en">
+    <unit id="languageSwitcher.alt">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:45</note>
-      </notes>
-      <segment>
-        <source>Cambiar a Inglés</source>
-      </segment>
-    </unit>
-    <unit id="languageSwitcher.alt.en">
-      <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:51</note>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:28,33</note>
       </notes>
       <segment>
         <source>English flag</source>
       </segment>
     </unit>
-    <unit id="languageSwitcher.alt.es">
+    <unit id="appSlogan">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:53</note>
+        <note category="location">libs/core/src/lib/components/logotype/logotype.ts:40,41</note>
       </notes>
       <segment>
-        <source>Bandera de España</source>
+        <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
     <unit id="notifications">
@@ -114,20 +106,68 @@
         <source>notifications</source>
       </segment>
     </unit>
-    <unit id="toggleTheme">
+    <unit id="pageNotFoundTitle">
       <notes>
-        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:20,21</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:23,24</note>
       </notes>
       <segment>
-        <source>toggle theme</source>
+        <source> Page not found </source>
       </segment>
     </unit>
-    <unit id="themeSwitcher">
+    <unit id="pageNotFoundMessage">
       <notes>
-        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:22,23</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:30,33</note>
       </notes>
       <segment>
-        <source>theme switcher</source>
+        <source> The page you&apos;re looking for doesn&apos;t exist or has been moved. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:35,37</note>
+      </notes>
+      <segment>
+        <source> You can return to the main dashboard or contact support if you believe this is an error. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:40,42</note>
+      </notes>
+      <segment>
+        <source> Please sign in to access the application or contact support if you need assistance. </source>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:50,51</note>
+      </notes>
+      <segment>
+        <source>Go to Dashboard</source>
+      </segment>
+    </unit>
+    <unit id="signIn">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:59</note>
+      </notes>
+      <segment>
+        <source>Sign In</source>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:67</note>
+      </notes>
+      <segment>
+        <source>Go Back</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher.tooltip">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:23,24</note>
+      </notes>
+      <segment>
+        <source>Switch to <ph id="0" equiv="INTERPOLATION" disp="{{ isDarkMode() ? &apos;light&apos; : &apos;dark&apos; }}"/> mode</source>
       </segment>
     </unit>
   </file>

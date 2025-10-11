@@ -36,6 +36,9 @@
               "with": "apps/akira-flex-landing/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "es": {
+          "localize": ["es"]
         }
       }
     },

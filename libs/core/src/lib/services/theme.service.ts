@@ -1,20 +1,37 @@
-import { Injectable, PLATFORM_ID, signal, computed, effect, inject } from '@angular/core'
 import { isPlatformBrowser } from '@angular/common'
-import { setCookie, getCookie } from '../utils/cookie-utils'
-import { ThemeMode, THEME_COOKIES } from '../shared'
+import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core'
+import { THEME_COOKIES, ThemeMode } from '../shared'
+import { getCookie, setSecureCookie } from '../utils/cookie-utils'
 
 /**
- * Service to manage application theme (light, dark, system).
+ * Manages the application's visual theme (light, dark, or system-based).
+ * It persists the user's preference in a cookie and applies the effective
+ * theme by toggling a 'dark' class on the root HTML element. The service is
+ * server-side rendering (SSR) aware.
  */
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly platformId = inject(PLATFORM_ID)
-  private readonly isBrowser = isPlatformBrowser(this.platformId)
-  private readonly currentMode = signal<ThemeMode>(this.getInitialMode())
-  private readonly effectiveMode = computed<Exclude<ThemeMode, 'system'>>(() => {
-    const mode = this.currentMode()
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID))
+  private readonly userPreference = signal<ThemeMode>(this.getInitialMode())
+  private readonly systemPreferenceChanged = signal(0)
+
+  /**
+   * The user's selected theme preference ('light', 'dark', or 'system').
+   * This signal is readonly and should be modified only via the service's public API.
+   */
+  public readonly currentMode$ = this.userPreference.asReadonly()
+
+  /**
+   * The actual theme being applied ('light' or 'dark').
+   * This computes the theme based on the user's preference and the system's
+   * color scheme if 'system' is selected.
+   */
+  public readonly effectiveMode$ = computed<'light' | 'dark'>(() => {
+    this.systemPreferenceChanged()
+
+    const mode = this.userPreference()
     if (mode === 'system') {
-      if (this.isBrowser && typeof window !== 'undefined') {
+      if (this.isBrowser) {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
       }
       return 'light'
@@ -22,53 +39,40 @@ export class ThemeService {
     return mode
   })
 
-  public readonly themeReady = signal(false)
-  public currentMode$ = computed(() => this.currentMode())
-  public effectiveMode$ = computed(() => this.effectiveMode())
-
   constructor() {
     effect(() => {
-      const mode = this.effectiveMode()
-      this.applyTheme(mode)
+      this.applyTheme(this.effectiveMode$())
     })
+
     if (this.isBrowser) {
       this.setupSystemThemeListener()
     }
   }
 
   /**
-   * Sets the theme mode.
-   * @param mode The desired theme mode ('light', 'dark', 'system').
+   * Sets the user's desired theme mode and persists it in a cookie.
+   * @param mode The theme mode to set.
    */
-  setMode(mode: ThemeMode): void {
-    this.themeReady.set(false)
-    this.currentMode.set(mode)
+  public setMode(mode: ThemeMode): void {
+    this.userPreference.set(mode)
     if (this.isBrowser) {
-      setCookie(THEME_COOKIES.MODE, mode)
+      setSecureCookie(THEME_COOKIES.MODE, mode, { days: 365, secure: true, sameSite: 'Lax' })
     }
   }
 
   /**
-   * Toggles between theme modes ('light', 'dark', 'system').
+   * Toggles the effective theme between 'light' and 'dark' and sets it as the new
+   * user preference.
    */
-  toggleMode(): void {
-    this.currentMode.update((current) => {
-      let next: ThemeMode
-      if (current === 'system') {
-        next = this.effectiveMode() === 'light' ? 'dark' : 'light'
-      } else {
-        next = current === 'light' ? 'dark' : 'light'
-      }
-      if (this.isBrowser) {
-        setCookie(THEME_COOKIES.MODE, next)
-      }
-      return next
-    })
+  public toggleMode(): void {
+    const nextMode = this.effectiveMode$() === 'light' ? 'dark' : 'light'
+    this.setMode(nextMode)
   }
 
   /**
-   * Gets the initial theme mode from cookies (SSR friendly).
-   * @returns The initial theme mode ('light', 'dark' or 'system').
+   * Retrieves the initial theme mode from the browser cookie.
+   * Defaults to 'system' if no cookie is found or if running on the server.
+   * @returns The stored theme preference or 'system'.
    */
   private getInitialMode(): ThemeMode {
     if (this.isBrowser) {
@@ -81,25 +85,22 @@ export class ThemeService {
   }
 
   /**
-   * Listens to OS theme changes if in browser.
+   * Sets up a listener for changes in the operating system's color scheme.
+   * When a change is detected, it triggers an update to the effective theme.
    */
   private setupSystemThemeListener(): void {
-    if (typeof window === 'undefined') return
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      if (this.currentMode() === 'system') {
-        this.currentMode.set('system')
-      }
+      this.systemPreferenceChanged.update((v) => v + 1)
     })
   }
 
   /**
-   * Applies the theme class to the root HTML element.
-   * @param mode Theme mode ('light' | 'dark').
+   * Applies the theme to the document's root element by toggling the 'dark' class.
+   * @param mode The effective theme mode to apply ('light' or 'dark').
    */
   private applyTheme(mode: 'light' | 'dark'): void {
-    if (!this.isBrowser || typeof document === 'undefined') return
-    const htmlElement = document.documentElement
-    htmlElement.classList.toggle('dark', mode === 'dark')
-    this.themeReady.set(true)
+    if (this.isBrowser) {
+      document.documentElement.classList.toggle('dark', mode === 'dark')
+    }
   }
 }

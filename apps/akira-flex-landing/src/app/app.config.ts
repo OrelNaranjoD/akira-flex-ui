@@ -11,7 +11,7 @@ import { provideAppInitializer } from '@angular/core'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
-import { LandingTheme } from './themes/landing-theme.preset'
+import { SkyZincTheme } from './themes/custom-theme.preset'
 import { provideStore } from '@ngrx/store'
 import { provideEffects } from '@ngrx/effects'
 import { provideStoreDevtools } from '@ngrx/store-devtools'
@@ -30,13 +30,13 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
       ripple: true,
       theme: {
-        preset: LandingTheme,
+        preset: SkyZincTheme,
         options: {
           darkModeSelector: '.dark',
           prefix: 'p',
           cssLayer: {
             name: 'primeng',
-            order: 'tailwind-base, primeng, tailwind-utilities',
+            order: 'theme, base, primeng',
           },
         },
       },

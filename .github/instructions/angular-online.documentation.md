@@ -66,6 +66,7 @@ Angular — Deliver web apps with confidence 🚀
 - [Testing](https://angular.dev/guide/http/testing)
 
 ## Forms
+
 - [Forms overview](https://angular.dev/guide/forms)
 - [Reactive Forms](https://angular.dev/guide/forms/reactive-forms)
 - [Strictly types forms](https://angular.dev/guide/forms/typed-forms)
@@ -74,6 +75,7 @@ Angular — Deliver web apps with confidence 🚀
 - [Building dynamic forms](https://angular.dev/guide/forms/dynamic-forms)
 
 ## Routing
+
 - [Routing overview](https://angular.dev/guide/routing)
 - [Define routes](https://angular.dev/guide/routing/define-routes)
 - [Show routes with outlets](https://angular.dev/guide/routing/show-routes-with-outlets)
@@ -92,6 +94,7 @@ Angular — Deliver web apps with confidence 🚀
 - [Incremental Hydration](https://angular.dev/guide/incremental-hydration)
 
 # CLI
+
 [Angular CLI Overview](https://angular.dev/tools/cli)
 
 ## Testing
@@ -110,14 +113,15 @@ Angular — Deliver web apps with confidence 🚀
 - [Creating a component harness for your components](https://angular.dev/guide/testing/creating-component-harnesses)
 
 ## Animations
+
 - [Animations your content](https://angular.dev/guide/animations/css)
 - [Route transition animation](https://angular.dev/guide/routing/route-transition-animations)
 - [Migrating to native CSS animations](https://next.angular.dev/guide/animations/migration)
 
 ## APIs
+
 - [API reference](https://angular.dev/api)
 - [CLI command reference](https://angular.dev/cli)
-
 
 ## Others
 

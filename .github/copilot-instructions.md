@@ -8,5 +8,11 @@ See also:
   practices.
 - `.github/instructions/nx.instructions.md` for Nx-specific guidelines.
 - `.github/instructions/project.instructions.md` for project-specific rules.
-- `llms-full.txt` for angular complete coding guidelines.
-- `llms.txt` for angular reference links.
+- `.github/instructions/project-structure.instructions.md` for project
+  structure.
+- `.github/instructions/ngrx.instructions.md` for NgRx best practices.
+
+- `.github/instructions/angular-full.documentation.md` for full Angular
+  documentation.
+- `.github/instructions/angular-online.documentation.md` for online Angular
+  documentation.

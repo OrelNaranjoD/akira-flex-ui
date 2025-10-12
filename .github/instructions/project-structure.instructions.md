@@ -59,10 +59,14 @@ akira-flex-ui/                    # Nx monorepo root
 │   │   ├── src/lib/
 │   │   │   ├── components/       # Reusable UI components
 │   │   │   ├── config/           # Shared configuration
+│   │   │   ├── i18n/             # Internationalization files
 │   │   │   ├── interceptors/     # HTTP interceptors
 │   │   │   ├── public/           # Shared assets
 │   │   │   ├── services/         # Shared services
 │   │   │   ├── shared/           # Shared utilities
+│   │   │   │  └── mocks/         # Mock data for testing
+│   │   │   ├── state/            # NgRx state management
+│   │   │   │  └── state.types.ts # State type definitions
 │   │   │   └── utils/            # Utility functions
 │   │   └── project.json          # Nx library configuration
 │   └── index.ts                  # Library exports

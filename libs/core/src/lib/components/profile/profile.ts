@@ -67,7 +67,8 @@ export class Profile {
    */
   userInitials = computed(() => {
     const user = this.authService.currentUser()
-    return (user!.firstName.charAt(0) + user!.lastName.charAt(0)).toUpperCase()
+    if (!user) return ''
+    return (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase()
   })
 
   /**
@@ -75,7 +76,8 @@ export class Profile {
    */
   userName = computed(() => {
     const user = this.authService.currentUser()
-    return `${user!.firstName} ${user!.lastName}`
+    if (!user) return ''
+    return `${user.firstName} ${user.lastName}`
   })
 
   /**
@@ -83,7 +85,8 @@ export class Profile {
    */
   userPrimaryRole = computed(() => {
     const user = this.authService.currentUser()
-    return user!.roles[0]
+    if (!user) return ''
+    return user.roles[0]
   })
 
   /**

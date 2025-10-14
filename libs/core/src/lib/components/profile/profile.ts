@@ -1,144 +1,109 @@
-import { Component, signal, ChangeDetectionStrategy, inject, computed } from '@angular/core'
-import { ButtonModule } from 'primeng/button'
-import { AvatarModule } from 'primeng/avatar'
-import { AuthService } from '../../services'
+import { Component, signal, ChangeDetectionStrategy, computed, inject } from '@angular/core'
+import { Router } from '@angular/router'
+import { Button } from 'primeng/button'
+import { Avatar } from 'primeng/avatar'
+import { MenuItem } from 'primeng/api'
+import { Menu } from 'primeng/menu'
+import { AuthService } from '../../services/auth'
 
 /**
- * Component for displaying user profile information.
+ * Profile component displaying user info and a dropdown menu.
  */
 @Component({
   selector: 'app-profile',
-  imports: [ButtonModule, AvatarModule],
+  imports: [Button, Avatar, Menu],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div class="relative">
-      <p-button
-        class="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--color-muted)]"
-        [text]="true"
-        (click)="toggleDropdown()"
-      >
-        <p-avatar
-          [label]="userInitials()"
-          size="normal"
-          shape="circle"
-          styleClass="bg-blue-500 text-white border border-gray-300 text-xs font-semibold"
-        ></p-avatar>
-        <div class="hidden sm:flex flex-col justify-center">
-          <span class="font-medium text-[var(--color-foreground)] leading-tight">
-            {{ userName() }}
-          </span>
-          <span class="text-xs text-[var(--color-muted-foreground)] leading-tight">
-            {{ userRole() }}
-          </span>
-        </div>
-        <i
-          class="pi pi-chevron-down text-xs text-[var(--color-muted-foreground)] transition-transform"
-          [class.rotate-180]="isDropdownOpen()"
-        ></i>
-      </p-button>
-
-      @if (isDropdownOpen()) {
-        <div
-          class="absolute right-0 top-full mt-2 w-40 bg-[var(--color-background)] border border-[var(--border)] rounded-lg shadow-lg z-50"
-        >
-          <div class="py-2 text-right">
-            <button
-              class="w-full px-4 py-2 text-sm hover:bg-[var(--color-muted)] flex items-center justify-end gap-2"
-              (click)="viewProfile()"
-            >
-              <span>View Profile</span>
-              <i class="pi pi-user"></i>
-            </button>
-            <button
-              class="w-full px-4 py-2 text-sm hover:bg-[var(--color-muted)] flex items-center justify-end gap-2"
-              (click)="settings()"
-            >
-              <span>Settings</span>
-              <i class="pi pi-cog"></i>
-            </button>
-            <hr class="my-2 border-[var(--border)]" />
-            <button
-              class="w-full px-4 py-2 text-sm hover:bg-[var(--color-muted)] flex items-center justify-end gap-2"
-              (click)="logout()"
-            >
-              <span>Logout</span>
-              <i class="pi pi-sign-out"></i>
-            </button>
-          </div>
-        </div>
-      }
-    </div>
-  `,
+  templateUrl: './profile.html',
 })
 export class Profile {
+  private readonly authService = inject(AuthService)
+  private readonly router = inject(Router)
+
+  items = signal<MenuItem[]>([
+    {
+      label: $localize`:@@viewProfile:View Profile`,
+      icon: 'pi pi-user',
+      command: () => this.viewProfile(),
+    },
+    {
+      label: $localize`:@@settings:Settings`,
+      icon: 'pi pi-cog',
+      command: () => this.settings(),
+    },
+    {
+      separator: true,
+    },
+    {
+      label: $localize`:@@logout:Log Out`,
+      icon: 'pi pi-sign-out',
+      command: () => this.logout(),
+    },
+  ])
+
   /**
-   * Controls the visibility of the profile dropdown menu.
+   * Returns the localized label for a given role.
+   * @param role The role identifier (e.g., 'admin', 'manager').
+   * @returns The localized label for the role.
    */
-  isDropdownOpen = signal(false)
-
-  private authService = inject(AuthService)
+  getRoleLabel(role: string): string {
+    switch (role) {
+      case 'admin':
+        return $localize`:@@role.admin:Administrator`
+      case 'manager':
+        return $localize`:@@role.manager:Manager`
+      case 'auditor':
+        return $localize`:@@role.auditor:Auditor`
+      case 'viewer':
+        return $localize`:@@role.viewer:Viewer`
+      case 'tenant':
+        return $localize`:@@role.tenant:Tenant`
+      default:
+        return role
+    }
+  }
 
   /**
-   * Current user data from auth service.
-   */
-  currentUser = computed(() => this.authService.currentUser())
-
-  /**
-   * Gets the user initials from the full name.
-   * Takes the first letter of each word in the name.
-   * @returns The user initials (maximum 2 characters).
+   * Returns the initials of the current user.
    */
   userInitials = computed(() => {
-    const user = this.currentUser()
-    if (!user?.firstName || !user?.lastName) return 'U'
-    return (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase()
+    const user = this.authService.currentUser()
+    return (user!.firstName.charAt(0) + user!.lastName.charAt(0)).toUpperCase()
   })
 
   /**
-   * Gets the user's full name.
-   * @returns The user's full name.
+   * Returns the full name of the current user.
    */
   userName = computed(() => {
-    const user = this.currentUser()
-    if (!user?.firstName || !user?.lastName) return 'Usuario'
-    return `${user.firstName} ${user.lastName}`
+    const user = this.authService.currentUser()
+    return `${user!.firstName} ${user!.lastName}`
   })
 
   /**
-   * Gets the user's role.
-   * @returns The user's role.
+   * Returns the first role of the current user.
    */
-  userRole = computed(() => {
-    const user = this.currentUser()
-    return user?.roles?.[0] || 'Usuario'
+  userPrimaryRole = computed(() => {
+    const user = this.authService.currentUser()
+    return user!.roles[0]
   })
 
   /**
-   * Toggles the dropdown menu visibility.
-   */
-  toggleDropdown(): void {
-    this.isDropdownOpen.update((open) => !open)
-  }
-
-  /**
-   * Handles view profile action.
+   * Navigates to the profile page.
    */
   viewProfile(): void {
-    this.isDropdownOpen.set(false)
+    this.router.navigate(['profile'])
   }
 
   /**
-   * Handles settings action.
+   * Navigates to the settings page.
    */
   settings(): void {
-    this.isDropdownOpen.set(false)
+    this.router.navigate(['settings'])
   }
 
   /**
-   * Handles user logout action.
+   * Logs out the current user by invoking the AuthService.
    */
   logout(): void {
-    this.isDropdownOpen.set(false)
     this.authService.logout()
   }
 }

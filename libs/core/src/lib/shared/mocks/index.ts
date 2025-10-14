@@ -1,8 +1,3 @@
-/**
- * Central export file for all mock data.
- * This file enables the '@mocks' alias configured in tsconfig.base.json.
- */
-
 export * from './auth-mocks'
 export * from './company-mocks'
 export * from './inventory-mocks'

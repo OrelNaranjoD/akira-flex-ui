@@ -1,0 +1,11 @@
+<div class="flex items-center gap-2 font-poppins">
+  @if (logo()) {
+  <img [src]="logo()" [alt]="name() + ' Logo'" [class]="'h-10 w-auto rounded bg-transparent ' + logoClass()" />
+  }
+  <div class="flex flex-col">
+    <span [class]="'font-bold text-[var(--p-company-color)] tracking-wide ' + textClass()">{{ name() }}</span>
+    @if (slogan()) {
+    <span class="text-[var(--p-company-color)]">{{ slogan() }}</span>
+    }
+  </div>
+</div>

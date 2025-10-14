@@ -1,0 +1,16 @@
+<header class="flex items-center justify-between w-full px-6 py-3 bg-p-surface">
+  <div>
+    <app-logotype />
+  </div>
+  <div class="flex items-center gap-4">
+    <app-search-box />
+    <app-notification-button
+      [notifications]="notifications()"
+      (notificationRead)="markAsRead($event)"
+      (markAllRead)="markAllAsRead()"
+    ></app-notification-button>
+    <app-language-switcher />
+    <app-theme-switch />
+    <app-profile />
+  </div>
+</header>

@@ -11,7 +11,8 @@ See also:
 - `.github/instructions/project-structure.instructions.md` for project
   structure.
 - `.github/instructions/ngrx.instructions.md` for NgRx best practices.
-
+- `.github/instructions/scalability.instructions.md` for enterprise scaling and
+  micro-frontend preparation.
 - `.github/instructions/angular-full.documentation.md` for full Angular
   documentation.
 - `.github/instructions/angular-online.documentation.md` for online Angular

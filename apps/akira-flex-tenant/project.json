@@ -30,6 +30,19 @@
       },
       "configurations": {
         "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1MB",
+              "maximumError": "1.5MB"
+            },
+            {
+              "type": "bundle",
+              "name": "main",
+              "maximumWarning": "200KB",
+              "maximumError": "300KB"
+            }
+          ],
           "fileReplacements": [
             {
               "replace": "apps/akira-flex-tenant/src/environments/environment.ts",

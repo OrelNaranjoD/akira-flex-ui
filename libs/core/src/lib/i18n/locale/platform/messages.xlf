@@ -3,7 +3,7 @@
   <file id="ngi18n" original="ng.template">
     <unit id="newMessage">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:47</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:9</note>
       </notes>
       <segment>
         <source>new message</source>
@@ -11,7 +11,7 @@
     </unit>
     <unit id="newMessageFrom">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:48</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:10</note>
       </notes>
       <segment>
         <source>you have a new message from Juan Pérez</source>
@@ -19,7 +19,7 @@
     </unit>
     <unit id="fiveMinutesAgo">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:49</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:11</note>
       </notes>
       <segment>
         <source>5 minutes ago</source>
@@ -27,7 +27,7 @@
     </unit>
     <unit id="taskCompleted">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:55</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:17</note>
       </notes>
       <segment>
         <source>task completed</source>
@@ -35,7 +35,7 @@
     </unit>
     <unit id="monthlyReportCompleted">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:56</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:18</note>
       </notes>
       <segment>
         <source>the &quot;Monthly Report&quot; task has been completed</source>
@@ -43,7 +43,7 @@
     </unit>
     <unit id="oneHourAgo">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:57</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:19</note>
       </notes>
       <segment>
         <source>1 hour ago</source>
@@ -51,7 +51,7 @@
     </unit>
     <unit id="systemAlert">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:63</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:25</note>
       </notes>
       <segment>
         <source>system alert</source>
@@ -59,7 +59,7 @@
     </unit>
     <unit id="serverTemporaryIssues">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:64</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:26</note>
       </notes>
       <segment>
         <source>the server experienced temporary issues</source>
@@ -67,7 +67,7 @@
     </unit>
     <unit id="twoHoursAgo">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/platform-header/platform-header.ts:65</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:27</note>
       </notes>
       <segment>
         <source>2 hours ago</source>
@@ -75,7 +75,7 @@
     </unit>
     <unit id="languageSwitcher.tooltip">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:21,24</note>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:8,12</note>
       </notes>
       <segment>
         <source>Switch to Spanish</source>
@@ -83,7 +83,7 @@
     </unit>
     <unit id="languageSwitcher.alt">
       <notes>
-        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.ts:28,33</note>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:15,18</note>
       </notes>
       <segment>
         <source>English flag</source>
@@ -91,40 +91,71 @@
     </unit>
     <unit id="appSlogan">
       <notes>
-        <note category="location">libs/core/src/lib/components/logotype/logotype.ts:40,41</note>
+        <note category="location">libs/core/src/lib/components/logotype/logotype.html:28,30</note>
       </notes>
       <segment>
         <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
-    <unit id="notifications">
+    <unit id="notifications.title">
       <notes>
-        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:31,32</note>
-        <note category="location">libs/core/src/lib/components/notification-button/notification-button.ts:33,34</note>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
       </notes>
       <segment>
-        <source>notifications</source>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.ariaLabel">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.header">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.empty">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:65,68</note>
+      </notes>
+      <segment>
+        <source>No notifications yet</source>
+      </segment>
+    </unit>
+    <unit id="notifications.markAllRead">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:77,80</note>
+      </notes>
+      <segment>
+        <source>Mark all as read</source>
       </segment>
     </unit>
     <unit id="pageNotFoundTitle">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:23,24</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:7,9</note>
       </notes>
       <segment>
-        <source> Page not found </source>
+        <source>Page not found</source>
       </segment>
     </unit>
     <unit id="pageNotFoundMessage">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:30,33</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:12,14</note>
       </notes>
       <segment>
-        <source> The page you&apos;re looking for doesn&apos;t exist or has been moved. </source>
+        <source>The page you&apos;re looking for doesn&apos;t exist or has been moved.</source>
       </segment>
     </unit>
     <unit id="pageNotFoundAuthenticatedHint">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:35,37</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:16,19</note>
       </notes>
       <segment>
         <source> You can return to the main dashboard or contact support if you believe this is an error. </source>
@@ -132,7 +163,7 @@
     </unit>
     <unit id="pageNotFoundUnauthenticatedHint">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:40,42</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:20,24</note>
       </notes>
       <segment>
         <source> Please sign in to access the application or contact support if you need assistance. </source>
@@ -140,7 +171,7 @@
     </unit>
     <unit id="goToDashboard">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:50,51</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
       </notes>
       <segment>
         <source>Go to Dashboard</source>
@@ -148,7 +179,7 @@
     </unit>
     <unit id="signIn">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:59</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
       </notes>
       <segment>
         <source>Sign In</source>
@@ -156,18 +187,98 @@
     </unit>
     <unit id="goBack">
       <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.ts:67</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:47</note>
       </notes>
       <segment>
         <source>Go Back</source>
       </segment>
     </unit>
-    <unit id="themeSwitcher.tooltip">
+    <unit id="viewProfile">
       <notes>
-        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:23,24</note>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:24</note>
       </notes>
       <segment>
-        <source>Switch to <ph id="0" equiv="INTERPOLATION" disp="{{ isDarkMode() ? &apos;light&apos; : &apos;dark&apos; }}"/> mode</source>
+        <source>View Profile</source>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:29</note>
+      </notes>
+      <segment>
+        <source>Settings</source>
+      </segment>
+    </unit>
+    <unit id="logout">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:37</note>
+      </notes>
+      <segment>
+        <source>Log Out</source>
+      </segment>
+    </unit>
+    <unit id="role.admin">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:51</note>
+      </notes>
+      <segment>
+        <source>Administrator</source>
+      </segment>
+    </unit>
+    <unit id="role.manager">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:53</note>
+      </notes>
+      <segment>
+        <source>Manager</source>
+      </segment>
+    </unit>
+    <unit id="role.auditor">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:55</note>
+      </notes>
+      <segment>
+        <source>Auditor</source>
+      </segment>
+    </unit>
+    <unit id="role.viewer">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:57</note>
+      </notes>
+      <segment>
+        <source>Viewer</source>
+      </segment>
+    </unit>
+    <unit id="role.tenant">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:59</note>
+      </notes>
+      <segment>
+        <source>Tenant</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.html:10,11</note>
+      </notes>
+      <segment>
+        <source>theme switcher</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipLight">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:46</note>
+      </notes>
+      <segment>
+        <source>switch to light mode</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipDark">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:47</note>
+      </notes>
+      <segment>
+        <source>switch to dark mode</source>
       </segment>
     </unit>
   </file>

@@ -1,3 +1,7 @@
+---
+applyTo: '**'
+---
+
 <p style="margin-top: 2em; font-size: larger;">
 Angular is a web framework that empowers developers to build fast, reliable applications.
 </p>

@@ -21,6 +21,28 @@
         <target>Cuenta bloqueada temporalmente. Inténtalo más tarde.</target>
       </segment>
     </unit>
+    <unit id="alreadyHaveAccount">
+      <segment>
+        <source>Already have an account? <pc id="0" equivStart="START_TAG_P_BUTTON" equivEnd="CLOSE_TAG_P_BUTTON" type="other" dispStart="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;" dispEnd="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;"></pc></source>
+            <target>¿Ya tienes una cuenta? <pc id="0">Inicia sesión</pc></target>
+      </segment>
+    </unit>
     <unit id="appSlogan">
       <segment>
         <source>Innovation and flexibility for your ORG</source>
@@ -29,37 +51,43 @@
     </unit>
     <unit id="benefits">
       <segment>
-        <source>benefits</source>
+        <source>Benefits</source>
         <target>beneficios</target>
       </segment>
     </unit>
     <unit id="cashAndBanks">
       <segment>
-        <source>cash and banks</source>
+        <source>Cash and banks</source>
         <target>caja y bancos</target>
+      </segment>
+    </unit>
+    <unit id="confirmPassword">
+      <segment>
+        <source>Confirm Password</source>
+      <target>Confirmar contraseña</target>
       </segment>
     </unit>
     <unit id="createAccount">
       <segment>
-        <source>Crear cuenta</source>
+        <source>Create account</source>
         <target>Crear cuenta</target>
       </segment>
     </unit>
     <unit id="customers">
       <segment>
-        <source>customers</source>
+        <source>Customers</source>
         <target>clientes</target>
       </segment>
     </unit>
     <unit id="email">
       <segment>
-        <source>Correo electrónico</source>
+        <source>Email</source>
         <target>Correo electrónico</target>
       </segment>
     </unit>
     <unit id="emailInvalid">
       <segment>
-        <source>Por favor, introduce un email válido.</source>
+        <source>Please enter a valid email.</source>
         <target>Introduce una dirección de correo electrónico válida.</target>
       </segment>
     </unit>
@@ -71,14 +99,14 @@
     </unit>
     <unit id="emailRequired">
       <segment>
-        <source>El email es requerido.</source>
+        <source>Email is required.</source>
         <target>El correo electrónico es obligatorio.</target>
       </segment>
     </unit>
-    <unit id="error.login">
+    <unit id="error.signIn">
       <segment>
-        <source>&apos;Error al iniciar sesión. Por favor, inténtalo de nuevo.&apos;</source>
-        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+        <source>Error signing in. Please try again.</source>
+      <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
       </segment>
     </unit>
     <unit id="errorSigningIn">
@@ -89,14 +117,26 @@
     </unit>
     <unit id="features">
       <segment>
-        <source>features</source>
+        <source>Features</source>
         <target>características</target>
       </segment>
     </unit>
     <unit id="finance">
       <segment>
-        <source>finance</source>
+        <source>Finance</source>
         <target>finanzas</target>
+      </segment>
+    </unit>
+    <unit id="firstName">
+      <segment>
+        <source>First Name</source>
+      <target>Nombre</target>
+      </segment>
+    </unit>
+    <unit id="firstNameRequired">
+      <segment>
+        <source>First name is required.</source>
+      <target>El nombre es obligatorio.</target>
       </segment>
     </unit>
     <unit id="fiveMinutesAgo">
@@ -105,15 +145,33 @@
         <target>hace 5 minutos</target>
       </segment>
     </unit>
+    <unit id="footerClosed">
+      <segment>
+        <source>closed</source>
+      <target>cerrado</target>
+      </segment>
+    </unit>
+    <unit id="footerOpen">
+      <segment>
+        <source>open</source>
+      <target>abierto</target>
+      </segment>
+    </unit>
+    <unit id="footerSync">
+      <segment>
+        <source>sync: <ph id="0" equiv="PH" disp="time"/></source>
+      <target>sincronización: <ph id="0" equiv="PH" disp="time"/></target>
+      </segment>
+    </unit>
     <unit id="forgotPassword">
       <segment>
-        <source>Olvidé mi contraseña</source>
+        <source>Forgot password</source>
         <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
       </segment>
     </unit>
     <unit id="generalReports">
       <segment>
-        <source>general reports</source>
+        <source>General reports</source>
         <target>reportes generales</target>
       </segment>
     </unit>
@@ -137,13 +195,13 @@
     </unit>
     <unit id="industries">
       <segment>
-        <source>industries</source>
+        <source>Industries</source>
         <target>industrias</target>
       </segment>
     </unit>
     <unit id="inventory">
       <segment>
-        <source>inventory</source>
+        <source>Inventory</source>
         <target>inventario</target>
       </segment>
     </unit>
@@ -159,25 +217,27 @@
         <target>Cambiar a Ingles</target>
       </segment>
     </unit>
-    <unit id="login">
+    <unit id="lastName">
       <segment>
-        <source>Iniciar Sesión</source>
-        <target>Iniciar sesión</target>
+        <source>Last Name</source>
+      <target>Apellido</target>
       </segment>
     </unit>
     <unit id="loginHelp">
       <segment>
-        <source>Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a
-              class=&quot;hover:underline&quot;
-              i18n-href=&quot;@@forgotPassword&quot;
-              routerLink=&quot;/auth/password-recovery&quot;
-            &gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
+        <source>Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;/auth/password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
         <target>¿Tienes problemas para iniciar sesión? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recupera tu contraseña </pc></target>
+      </segment>
+    </unit>
+    <unit id="logout">
+      <segment>
+        <source>Log Out</source>
+      <target>Cerrar sesión</target>
       </segment>
     </unit>
     <unit id="mainPanel">
       <segment>
-        <source>main panel</source>
+        <source>Main panel</source>
         <target>panel principal</target>
       </segment>
     </unit>
@@ -201,14 +261,38 @@
     </unit>
     <unit id="newSale">
       <segment>
-        <source>new sale</source>
+        <source>New sale</source>
         <target>nueva venta</target>
       </segment>
     </unit>
-    <unit id="notifications">
+    <unit id="notifications.ariaLabel">
       <segment>
-        <source>notifications</source>
-        <target>notificaciones</target>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.empty">
+      <segment>
+        <source>No notifications yet</source>
+      <target>Aún no hay notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.header">
+      <segment>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.markAllRead">
+      <segment>
+        <source>Mark all as read</source>
+      <target>Marcar todo como leído</target>
+      </segment>
+    </unit>
+    <unit id="notifications.title">
+      <segment>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
       </segment>
     </unit>
     <unit id="oneHourAgo">
@@ -243,14 +327,20 @@
     </unit>
     <unit id="password">
       <segment>
-        <source>Contraseña</source>
+        <source>Password</source>
         <target>Contraseña</target>
       </segment>
     </unit>
     <unit id="passwordMinlength">
       <segment>
-        <source>La contraseña debe tener al menos 6 caracteres.</source>
+        <source>Password must be at least 6 characters.</source>
         <target>La contraseña debe tener al menos 6 caracteres.</target>
+      </segment>
+    </unit>
+    <unit id="passwordMismatch">
+      <segment>
+        <source>Passwords do not match.</source>
+      <target>Las contraseñas no coinciden.</target>
       </segment>
     </unit>
     <unit id="passwordPlaceholder">
@@ -267,52 +357,62 @@
     </unit>
     <unit id="passwordRequired">
       <segment>
-        <source>La contraseña es requerida.</source>
+        <source>Password is required.</source>
         <target>La contraseña es obligatoria.</target>
       </segment>
     </unit>
     <unit id="payables">
       <segment>
-        <source>payables</source>
+        <source>Payables</source>
         <target>cuentas por pagar</target>
+      </segment>
+    </unit>
+    <unit id="phoneOptional">
+      <segment>
+        <source>Phone (optional)</source>
+      <target>Teléfono (opcional)</target>
       </segment>
     </unit>
     <unit id="plans">
       <segment>
-        <source>plans</source>
+        <source>Pricing</source>
         <target>planes</target>
       </segment>
     </unit>
     <unit id="products">
       <segment>
-        <source>products</source>
+        <source>Products</source>
         <target>productos</target>
       </segment>
     </unit>
     <unit id="receivables">
       <segment>
-        <source>receivables</source>
+        <source>Receivables</source>
         <target>cuentas por cobrar</target>
       </segment>
     </unit>
     <unit id="remember">
       <segment>
-        <source>Recordarme</source>
+        <source>Remember me</source>
         <target>Recordarme</target>
       </segment>
     </unit>
     <unit id="rememberPassword">
       <segment>
-        <source>Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;
-              &gt;" dispEnd="&lt;/a
-            &gt;">Sign in</pc></source>
+        <source>Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Sign in</pc></source>
         <target>¿Recuerdas tu contraseña? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Inicia sesión</pc></target>
       </segment>
     </unit>
     <unit id="reports">
       <segment>
-        <source>reports</source>
+        <source>Reports</source>
         <target>reportes</target>
+      </segment>
+    </unit>
+    <unit id="requestDemo">
+      <segment>
+        <source>Request Demo</source>
+      <target>Solicitar demostración</target>
       </segment>
     </unit>
     <unit id="requestNewPassword">
@@ -321,21 +421,57 @@
         <target>Solicitar nueva contraseña</target>
       </segment>
     </unit>
+    <unit id="role.admin">
+      <segment>
+        <source>Administrator</source>
+        <target>Administrador</target>
+      </segment>
+    </unit>
+    <unit id="role.auditor">
+      <segment>
+        <source>Auditor</source>
+        <target>Auditor</target>
+      </segment>
+    </unit>
+    <unit id="role.manager">
+      <segment>
+        <source>Manager</source>
+        <target>Gerente</target>
+      </segment>
+    </unit>
+    <unit id="role.tenant">
+      <segment>
+        <source>Tenant</source>
+        <target>Arrendatario</target>
+      </segment>
+    </unit>
+    <unit id="role.viewer">
+      <segment>
+        <source>Viewer</source>
+        <target>Visualizador</target>
+      </segment>
+    </unit>
     <unit id="sales">
       <segment>
-        <source>sales</source>
+        <source>Sales</source>
         <target>ventas</target>
+      </segment>
+    </unit>
+    <unit id="logOut">
+      <segment>
+        <source>Log Out</source>
+        <target>Cerrar sesión</target>
       </segment>
     </unit>
     <unit id="salesHistory">
       <segment>
-        <source>sales history</source>
+        <source>Sales history</source>
         <target>historial de ventas</target>
       </segment>
     </unit>
     <unit id="salesReports">
       <segment>
-        <source>sales reports</source>
+        <source>Sales reports</source>
         <target>reportes de ventas</target>
       </segment>
     </unit>
@@ -347,7 +483,7 @@
     </unit>
     <unit id="settings">
       <segment>
-        <source>settings</source>
+        <source>Settings</source>
         <target>configuraciones</target>
       </segment>
     </unit>
@@ -365,13 +501,13 @@
     </unit>
     <unit id="stock">
       <segment>
-        <source>stock</source>
+        <source>Stock</source>
         <target>existencia</target>
       </segment>
     </unit>
     <unit id="suppliers">
       <segment>
-        <source>suppliers</source>
+        <source>Suppliers</source>
         <target>proveedores</target>
       </segment>
     </unit>
@@ -389,14 +525,26 @@
     </unit>
     <unit id="technology">
       <segment>
-        <source>technology</source>
+        <source>Technology</source>
         <target>tecnología</target>
       </segment>
     </unit>
-    <unit id="themeSwitcher.tooltip">
+    <unit id="themeSwitcher">
       <segment>
-        <source>Switch to <ph id="0" equiv="INTERPOLATION" disp="{{ isDarkMode() ? &apos;light&apos; : &apos;dark&apos; }}"/> mode</source>
-        <target>Cambiar a modo {{ isDarkMode() ? &apos;claro&apos; : &apos;oscuro&apos; }}</target>
+        <source>theme switcher</source>
+      <target>cambiador de tema</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipDark">
+      <segment>
+        <source>switch to dark mode</source>
+      <target>cambiar a modo oscuro</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipLight">
+      <segment>
+        <source>switch to light mode</source>
+      <target>cambiar a modo claro</target>
       </segment>
     </unit>
     <unit id="tooManyAttempts">
@@ -409,6 +557,12 @@
       <segment>
         <source>2 hours ago</source>
         <target>hace 2 horas</target>
+      </segment>
+    </unit>
+    <unit id="viewProfile">
+      <segment>
+        <source>View Profile</source>
+        <target>Ver perfil</target>
       </segment>
     </unit>
   </file>

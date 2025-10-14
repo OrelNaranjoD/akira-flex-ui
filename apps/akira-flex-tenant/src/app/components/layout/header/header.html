@@ -1,0 +1,28 @@
+<header class="flex p-3">
+  <div class="flex items-center gap-3">
+    <tenant-company-brand
+      [logo]="companyData.logo"
+      [name]="companyData.name"
+      [slogan]="companyData.slogan"
+      size="large"
+    />
+  </div>
+
+  <div class="flex-1"></div>
+
+  <div class="flex items-center gap-3">
+    <app-search-box (searchQuery)="onSearch($event)" (enterPressed)="onSearchEnter($event)"></app-search-box>
+
+    <app-notification-button
+      [notifications]="notifications()"
+      (notificationRead)="markAsRead($event)"
+      (markAllRead)="markAllAsRead()"
+    />
+
+    <app-language-switcher />
+
+    <app-theme-switch />
+
+    <app-profile />
+  </div>
+</header>

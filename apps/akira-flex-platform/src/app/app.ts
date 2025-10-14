@@ -5,9 +5,9 @@ import { RouterOutlet } from '@angular/router'
  * Root component that hosts the router outlet for the application.
  */
 @Component({
-  selector: 'app-root',
+  selector: 'platform-app',
   imports: [RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<router-outlet />`,
 })
-export class AppComponent {}
+export class App {}

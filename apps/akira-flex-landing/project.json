@@ -26,10 +26,36 @@
         "server": "apps/akira-flex-landing/src/main.server.ts",
         "ssr": {
           "entry": "apps/akira-flex-landing/src/server.ts"
-        }
+        },
+        "budgets": [
+          {
+            "type": "initial",
+            "maximumWarning": "1MB",
+            "maximumError": "1.5MB"
+          },
+          {
+            "type": "bundle",
+            "name": "main",
+            "maximumWarning": "200KB",
+            "maximumError": "300KB"
+          }
+        ]
       },
       "configurations": {
         "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1MB",
+              "maximumError": "1.5MB"
+            },
+            {
+              "type": "bundle",
+              "name": "main",
+              "maximumWarning": "200KB",
+              "maximumError": "300KB"
+            }
+          ],
           "fileReplacements": [
             {
               "replace": "apps/akira-flex-landing/src/environments/environment.ts",

@@ -1,0 +1,27 @@
+<header
+  class="fixed top-0 left-0 z-50 w-full p-2 transition-colors duration-300 border-b"
+  [class]="{
+        'bg-surface-ground/80 dark:bg-surface-900/80 backdrop-blur-sm': isScrolled(),
+        'bg-surface-ground': !isScrolled(),
+      }"
+>
+  <div class="flex flex-row items-center">
+    <div class="flex-shrink-0">
+      <app-logotype />
+    </div>
+
+    <div class="flex-1 flex justify-end">
+      <landing-menu />
+    </div>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <app-language-switcher />
+      <app-theme-switch />
+      @if (!isLoggedIn) {
+      <landing-auth (loginSuccess)="onLogin()" />
+      } @else {
+      <app-profile />
+      }
+    </div>
+  </div>
+</header>

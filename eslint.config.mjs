@@ -20,6 +20,7 @@ export default [
       '**/*.md',
     ],
   },
+
   {
     files: ['**/*.js', '**/*.mjs'],
     plugins: {
@@ -41,17 +42,8 @@ export default [
   },
 
   js.configs.recommended,
-
-  ...tseslint.configs.recommended.map((config) => ({
-    ...config,
-    files: ['**/*.ts'],
-  })),
-
-  ...angular.configs.tsRecommended.map((config) => ({
-    ...config,
-    files: ['**/*.ts'],
-  })),
-
+  ...tseslint.configs.recommended.map((config) => ({ ...config, files: ['**/*.ts'] })),
+  ...angular.configs.tsRecommended.map((config) => ({ ...config, files: ['**/*.ts'] })),
   prettierConfig,
 
   {
@@ -72,22 +64,6 @@ export default [
       },
     },
     rules: {
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          type: 'attribute',
-          prefix: 'app',
-          style: 'camelCase',
-        },
-      ],
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          type: 'element',
-          prefix: 'app',
-          style: 'kebab-case',
-        },
-      ],
       'prettier/prettier': 'error',
       'jsdoc/check-alignment': 'warn',
       'jsdoc/check-indentation': 'warn',
@@ -118,6 +94,69 @@ export default [
   },
 
   {
+    files: ['libs/core/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'app', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'app', style: 'kebab-case' },
+      ],
+    },
+  },
+
+  {
+    files: ['apps/akira-flex-landing/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'landing', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'landing', style: 'kebab-case' },
+      ],
+    },
+  },
+
+  {
+    files: ['apps/akira-flex-platform/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'platform', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'platform', style: 'kebab-case' },
+      ],
+    },
+  },
+
+  {
+    files: ['apps/akira-flex-tenant/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'tenant', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'tenant', style: 'kebab-case' },
+      ],
+    },
+  },
+
+  {
+    files: ['apps/*/src/app/app.component.ts'],
+    rules: {
+      '@angular-eslint/component-selector': 'off',
+    },
+  },
+
+  {
     files: ['**/*.spec.ts', '**/*.test.ts', 'src/test/**/*.ts'],
     plugins: {
       prettier: prettierPlugin,
@@ -136,7 +175,6 @@ export default [
       'jsdoc/require-returns': 'off',
     },
   },
-
   {
     files: [
       '**/*.component.ts',
@@ -158,7 +196,6 @@ export default [
       'jsdoc/require-returns-description': 'warn',
     },
   },
-
   {
     files: ['**/store/**/*.ts'],
     ignores: ['**/store/**/index.ts'],
@@ -199,14 +236,8 @@ export default [
     },
   },
 
-  ...angular.configs.templateRecommended.map((config) => ({
-    ...config,
-    files: ['**/*.html'],
-  })),
-  ...angular.configs.templateAccessibility.map((config) => ({
-    ...config,
-    files: ['**/*.html'],
-  })),
+  ...angular.configs.templateRecommended.map((config) => ({ ...config, files: ['**/*.html'] })),
+  ...angular.configs.templateAccessibility.map((config) => ({ ...config, files: ['**/*.html'] })),
 
   {
     files: ['**/*.html'],

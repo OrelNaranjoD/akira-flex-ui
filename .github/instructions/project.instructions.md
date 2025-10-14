@@ -191,43 +191,49 @@ provideAppInitializer(initializeApp, [GlobalConfigService])
 
 ### Default Text Conventions
 
-- **Always use lowercase** for default text values (e.g., `main panel`,
-  `cash and banks`, `toggle theme`)
-- Angular and CSS handle capitalization through `text-transform` (e.g.,
-  `capitalize`, `uppercase`)
-- For buttons or UI elements requiring capitalization, use Tailwind CSS classes
-  like `capitalize`, `uppercase`, or `lowercase`
+- **Use proper capitalization** for default text values (e.g., `Main panel`,
+  `Cash and banks`, `Toggle theme`)
+- Capitalize the first letter of sentences and proper nouns
+- For error messages and form labels, use appropriate capitalization (e.g.,
+  `Email is required`, `Please enter a valid email`)
+- Use CSS classes like `capitalize`, `uppercase`, or `lowercase` for additional
+  styling when needed
 - Alternative: Use Angular's `titlecase` pipe for dynamic capitalization in
   templates
 
 ### Examples
 
-**TypeScript (camelCase IDs, lowercase text):**
+**TypeScript (camelCase IDs, properly capitalized text):**
 
 ```typescript
-const label = $localize`:@@mainPanel:main panel`
-const title = $localize`:@@cashAndBanks:cash and banks`
-const action = $localize`:@@newSale:new sale`
+const label = $localize`:@@mainPanel:Main panel`
+const title = $localize`:@@cashAndBanks:Cash and banks`
+const action = $localize`:@@newSale:New sale`
+const error = $localize`:@@emailRequired:Email is required`
 ```
 
-**HTML Templates (camelCase IDs, lowercase text):**
+**HTML Templates (camelCase IDs, properly capitalized text):**
 
 ```html
-<h1 i18n="@@pageTitle">dashboard</h1>
+<h1 i18n="@@pageTitle">Dashboard</h1>
 <button i18n-title="@@toggleTheme" i18n-aria-label="@@themeSwitcher">
   Theme
 </button>
-<label i18n="@@emailLabel">email address</label>
+<label i18n="@@emailLabel">Email address</label>
+<p-message i18n="@@emailRequired">Email is required</p-message>
 ```
 
-**Capitalization with CSS:**
+**Additional Capitalization with CSS:**
 
 ```html
 <!-- Capitalize first letter of each word -->
-<h1 class="capitalize" i18n="@@mainPanel">main panel</h1>
+<h1 class="capitalize" i18n="@@mainPanel">Main panel</h1>
 
 <!-- Uppercase all letters -->
-<button class="uppercase" i18n="@@saveButton">save</button>
+<button class="uppercase" i18n="@@saveButton">Save</button>
+
+<!-- Lowercase all letters -->
+<span class="lowercase" i18n="@@codeSnippet">Code snippet</span>
 
 <!-- Capitalize with pipe -->
 <span>{{ 'mainPanel' | titlecase }}</span>
@@ -235,9 +241,10 @@ const action = $localize`:@@newSale:new sale`
 
 ### Workflow
 
-1. Developer writes code with `$localize`:@@camelCaseId:lowercase text``
+1. Developer writes code with `$localize`:@@camelCaseId:Properly capitalized
+   text``
 2. Run `npm run i18n` → Extracts to `locale/{domain}/messages.xlf`
 3. Run `npm run i18n:merge` → Merges all XLF files into `locale/messages.es.xlf`
 4. Translator edits `messages.es.xlf` and replaces `[TRANSLATE]` placeholders
 5. Build generates localized versions for English and Spanish
-6. CSS or pipes handle text capitalization as needed
+6. CSS or pipes handle additional text styling as needed

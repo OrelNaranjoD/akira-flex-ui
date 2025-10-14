@@ -12,32 +12,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon'
   selector: 'app-search-box',
   imports: [FormsModule, InputTextModule, ButtonModule, InputGroupModule, InputGroupAddonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <p-inputGroup [style]="{ width: width() }">
-      <p-inputGroupAddon>
-        <i class="pi pi-search"></i>
-      </p-inputGroupAddon>
-      <input
-        [(ngModel)]="searchValue"
-        [placeholder]="placeholder()"
-        [disabled]="disabled()"
-        (input)="onSearch()"
-        (keyup.enter)="onEnter()"
-        pInputText
-      />
-      @if (searchValue && !disabled()) {
-        <p-inputGroupAddon>
-          <p-button
-            [text]="true"
-            [rounded]="true"
-            (click)="clearSearch()"
-            aria-label="Clear search"
-            icon="pi pi-times"
-          ></p-button>
-        </p-inputGroupAddon>
-      }
-    </p-inputGroup>
-  `,
+  templateUrl: './search-box.html',
 })
 export class SearchBox {
   placeholder = input('Search...')

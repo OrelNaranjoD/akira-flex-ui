@@ -1,3 +1,7 @@
+---
+applyTo: '**'
+---
+
 # Angular
 
 Angular — Deliver web apps with confidence 🚀

@@ -1,6 +1,6 @@
 {
   "name": "akira-flex-ui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "scripts": {
     "start": "nx run-many --target=serve --all --parallel=3",
     "start:es": "nx run-many --target=serve --all --configuration=es --parallel=3",

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="signIn">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/auth.html:8</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:48</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:170,172</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:185</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:187</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
+      </notes>
+      <segment>
+        <source>Sign In</source>
+      </segment>
+    </unit>
+    <unit id="requestDemo">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/auth.html:13,16</note>
+      </notes>
+      <segment>
+        <source>Request Demo</source>
+      </segment>
+    </unit>
+    <unit id="email">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:57,58</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:17,18</note>
+      </notes>
+      <segment>
+        <source>Email</source>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:79,80</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:35,37</note>
+      </notes>
+      <segment>
+        <source>Email is required.</source>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:84,85</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:39,40</note>
+      </notes>
+      <segment>
+        <source>Please enter a valid email.</source>
+      </segment>
+    </unit>
+    <unit id="password">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:92,93</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:107,108</note>
+      </notes>
+      <segment>
+        <source>Password</source>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:117,118</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:125,126</note>
+      </notes>
+      <segment>
+        <source>Password is required.</source>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:126,128</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:129,130</note>
+      </notes>
+      <segment>
+        <source>Password must be at least 6 characters.</source>
+      </segment>
+    </unit>
+    <unit id="remember">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:137,138</note>
+      </notes>
+      <segment>
+        <source>Remember me</source>
+      </segment>
+    </unit>
+    <unit id="forgotPassword">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:144,145</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:146,147</note>
+      </notes>
+      <segment>
+        <source>Forgot password</source>
+      </segment>
+    </unit>
+    <unit id="createAccount">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:178,179</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:180,181</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:2,4</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:174,175</note>
+      </notes>
+      <segment>
+        <source>Create account</source>
+      </segment>
+    </unit>
+    <unit id="error.signIn">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:231</note>
+      </notes>
+      <segment>
+        <source>Error signing in. Please try again.</source>
+      </segment>
+    </unit>
+    <unit id="firstName">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:48,49</note>
+      </notes>
+      <segment>
+        <source>First Name</source>
+      </segment>
+    </unit>
+    <unit id="firstNameRequired">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:65,66</note>
+      </notes>
+      <segment>
+        <source> First name is required. </source>
+      </segment>
+    </unit>
+    <unit id="lastName">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:73,74</note>
+      </notes>
+      <segment>
+        <source>Last Name</source>
+      </segment>
+    </unit>
+    <unit id="phoneOptional">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:90,91</note>
+      </notes>
+      <segment>
+        <source>Phone (optional)</source>
+      </segment>
+    </unit>
+    <unit id="confirmPassword">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:137,138</note>
+      </notes>
+      <segment>
+        <source>Confirm Password</source>
+      </segment>
+    </unit>
+    <unit id="passwordMismatch">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:156,157</note>
+      </notes>
+      <segment>
+        <source> Passwords do not match. </source>
+      </segment>
+    </unit>
+    <unit id="alreadyHaveAccount">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:181,192</note>
+      </notes>
+      <segment>
+        <source> Already have an account? <pc id="0" equivStart="START_TAG_P_BUTTON" equivEnd="CLOSE_TAG_P_BUTTON" type="other" dispStart="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;" dispEnd="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;"></pc></source>
+      </segment>
+    </unit>
+    <unit id="benefits">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/layout/menu/menu.ts:29</note>
+      </notes>
+      <segment>
+        <source>Benefits</source>
+      </segment>
+    </unit>
+    <unit id="features">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/layout/menu/menu.ts:34</note>
+      </notes>
+      <segment>
+        <source>Features</source>
+      </segment>
+    </unit>
+    <unit id="industries">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/layout/menu/menu.ts:39</note>
+      </notes>
+      <segment>
+        <source>Industries</source>
+      </segment>
+    </unit>
+    <unit id="technology">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/layout/menu/menu.ts:44</note>
+      </notes>
+      <segment>
+        <source>Technology</source>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/layout/menu/menu.ts:49</note>
+      </notes>
+      <segment>
+        <source>Pricing</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:8,12</note>
+      </notes>
+      <segment>
+        <source>Switch to Spanish</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:15,18</note>
+      </notes>
+      <segment>
+        <source>English flag</source>
+      </segment>
+    </unit>
+    <unit id="appSlogan">
+      <notes>
+        <note category="location">libs/core/src/lib/components/logotype/logotype.html:28,30</note>
+      </notes>
+      <segment>
+        <source> Innovation and flexibility for your ORG </source>
+      </segment>
+    </unit>
+    <unit id="notifications.title">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.ariaLabel">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.header">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.empty">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:65,68</note>
+      </notes>
+      <segment>
+        <source>No notifications yet</source>
+      </segment>
+    </unit>
+    <unit id="notifications.markAllRead">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:77,80</note>
+      </notes>
+      <segment>
+        <source>Mark all as read</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundTitle">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:7,9</note>
+      </notes>
+      <segment>
+        <source>Page not found</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundMessage">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:12,14</note>
+      </notes>
+      <segment>
+        <source>The page you&apos;re looking for doesn&apos;t exist or has been moved.</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:16,19</note>
+      </notes>
+      <segment>
+        <source> You can return to the main dashboard or contact support if you believe this is an error. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:20,24</note>
+      </notes>
+      <segment>
+        <source> Please sign in to access the application or contact support if you need assistance. </source>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
+      </notes>
+      <segment>
+        <source>Go to Dashboard</source>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:47</note>
+      </notes>
+      <segment>
+        <source>Go Back</source>
+      </segment>
+    </unit>
+    <unit id="viewProfile">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:24</note>
+      </notes>
+      <segment>
+        <source>View Profile</source>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:29</note>
+      </notes>
+      <segment>
+        <source>Settings</source>
+      </segment>
+    </unit>
+    <unit id="logout">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:37</note>
+      </notes>
+      <segment>
+        <source>Log Out</source>
+      </segment>
+    </unit>
+    <unit id="role.admin">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:51</note>
+      </notes>
+      <segment>
+        <source>Administrator</source>
+      </segment>
+    </unit>
+    <unit id="role.manager">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:53</note>
+      </notes>
+      <segment>
+        <source>Manager</source>
+      </segment>
+    </unit>
+    <unit id="role.auditor">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:55</note>
+      </notes>
+      <segment>
+        <source>Auditor</source>
+      </segment>
+    </unit>
+    <unit id="role.viewer">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:57</note>
+      </notes>
+      <segment>
+        <source>Viewer</source>
+      </segment>
+    </unit>
+    <unit id="role.tenant">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:59</note>
+      </notes>
+      <segment>
+        <source>Tenant</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.html:10,11</note>
+      </notes>
+      <segment>
+        <source>theme switcher</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipLight">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:46</note>
+      </notes>
+      <segment>
+        <source>switch to light mode</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipDark">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:47</note>
+      </notes>
+      <segment>
+        <source>switch to dark mode</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

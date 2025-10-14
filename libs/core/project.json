@@ -1,0 +1,43 @@
+{
+  "name": "akira-flex-core",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/core/src",
+  "prefix": "app",
+  "tags": ["shared", "angular", "core"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{workspaceRoot}/dist/libs/core"],
+      "options": {
+        "main": "libs/core/index.ts",
+        "outputPath": "dist/libs/core",
+        "tsConfig": "libs/core/tsconfig.lib.json",
+        "assets": ["libs/core/*.md"]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/core/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/core/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "libs/core/vitest.config.ts",
+        "reportsDirectory": "../../coverage/akira-flex-core"
+      },
+      "outputs": ["{workspaceRoot}/coverage/akira-flex-core"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/core/**/*.ts", "libs/core/**/*.html"]
+      }
+    }
+  }
+}

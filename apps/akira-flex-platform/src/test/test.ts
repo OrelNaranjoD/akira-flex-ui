@@ -1,26 +1,15 @@
-/// <reference types="jasmine" />
-// Global test setup for Jasmine/Karma
-import { getTestBed } from '@angular/core/testing'
-import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing'
+import '@analogjs/vitest-angular/setup-zone'
 import {
-  provideZonelessChangeDetection,
-  provideCheckNoChangesConfig,
-  NgModule,
-} from '@angular/core'
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting,
+} from '@angular/platform-browser-dynamic/testing'
+import { getTestBed } from '@angular/core/testing'
 
 /**
- * Test Environment Module - Sets up the Angular testing environment with zoneless change detection.
+ * Global test setup for Vitest with Angular.
+ * Configures the Angular testing environment for akira-flex-platform.
  */
-@NgModule({
-  imports: [BrowserTestingModule],
-  providers: [
-    provideZonelessChangeDetection(),
-    provideCheckNoChangesConfig({ exhaustive: true, interval: 1000 }),
-  ],
-})
-class TestEnvironmentModule {}
-
-getTestBed().initTestEnvironment(TestEnvironmentModule, platformBrowserTesting(), {
+getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
   errorOnUnknownElements: true,
   errorOnUnknownProperties: true,
 })

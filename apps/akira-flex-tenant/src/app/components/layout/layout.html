@@ -1,0 +1,12 @@
+<div class="min-h-screen flex flex-col">
+  <tenant-header />
+  <div class="flex flex-1 min-h-0">
+    <div class="w-64 flex-shrink-0">
+      <tenant-menu />
+    </div>
+    <main class="flex-1 min-w-0 overflow-auto p-5">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <tenant-footer />
+</div>

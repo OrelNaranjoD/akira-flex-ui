@@ -1,0 +1,10 @@
+<div class="p-4">
+  <p-panelmenu class="w-full md:w-60" [model]="items" [multiple]="true">
+    <a class="flex items-center px-4 py-2 cursor-pointer group" pRipple>
+      <ng-template #item let-item>
+        <i [class]="item.icon + ' text-primary group-hover:text-inherit'"></i>
+        <span class="ml-2">{{ item.label }}</span>
+      </ng-template>
+    </a>
+  </p-panelmenu>
+</div>

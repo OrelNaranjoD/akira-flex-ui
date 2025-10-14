@@ -1,17 +1,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "ES2023",
+    "target": "ES2022",
     "module": "preserve",
-    "skipLibCheck": true,
-    "baseUrl": "./",
     "paths": {
-      "@flex-shared-lib": ["libs/flex-shared-lib/index.ts"],
-      "@flex-shared-lib/*": ["libs/flex-shared-lib/*"],
-      "@shared": ["libs"],
-      "@shared/*": ["libs/*"]
-    }
+      "@core": ["./libs/core/src/lib/index.ts"],
+      "@core/*": ["./libs/core/src/lib/*"],
+      "@landing/*": ["./apps/akira-flex-landing/*"],
+      "@mocks": ["./libs/core/src/lib/shared/mocks/index.ts"],
+      "@mocks/*": ["./libs/core/src/lib/shared/mocks/*"],
+      "@platform/*": ["./apps/akira-flex-platform/*"],
+      "@tenant/*": ["./apps/akira-flex-tenant/*"]
+    },
+    "types": ["@angular/localize"]
   }
 }

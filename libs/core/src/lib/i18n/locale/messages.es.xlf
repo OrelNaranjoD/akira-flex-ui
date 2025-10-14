@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en-US" trgLang="es">
+  <file id="ngi18n" original="ng.template">
+    <unit id="accountLocked">
+      <segment>
+        <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
+            timeRemaining / 60
+          )"/> minutes.</source>
+        <target>Cuenta bloqueada. Inténtalo de nuevo en ${Math.ceil(timeRemaining / 60)} minutos.</target>
+      </segment>
+    </unit>
+    <unit id="accountLockedMultipleAttempts">
+      <segment>
+        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
+        <target>Cuenta bloqueada por múltiples intentos fallidos. Inténtalo de nuevo en 15 minutos.</target>
+      </segment>
+    </unit>
+    <unit id="accountLockedTemporarily">
+      <segment>
+        <source>Account temporarily locked. Try again later.</source>
+        <target>Cuenta bloqueada temporalmente. Inténtalo más tarde.</target>
+      </segment>
+    </unit>
+    <unit id="alreadyHaveAccount">
+      <segment>
+        <source>Already have an account? <pc id="0" equivStart="START_TAG_P_BUTTON" equivEnd="CLOSE_TAG_P_BUTTON" type="other" dispStart="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;" dispEnd="&lt;p-button
+            (onClick)=&quot;switchToSignIn()&quot;
+            label=&quot;Sign In&quot;
+            type=&quot;button&quot;
+            aria-label=&quot;Sign In&quot;
+            i18n-label=&quot;@@signIn&quot;
+            i18n-aria-label=&quot;@@signIn&quot;
+            link
+          /&gt;"></pc></source>
+            <target>¿Ya tienes una cuenta? <pc id="0">Inicia sesión</pc></target>
+      </segment>
+    </unit>
+    <unit id="appSlogan">
+      <segment>
+        <source>Innovation and flexibility for your ORG</source>
+        <target>Innovación y flexibilidad para tu PyME</target>
+      </segment>
+    </unit>
+    <unit id="benefits">
+      <segment>
+        <source>Benefits</source>
+        <target>beneficios</target>
+      </segment>
+    </unit>
+    <unit id="cashAndBanks">
+      <segment>
+        <source>Cash and banks</source>
+        <target>caja y bancos</target>
+      </segment>
+    </unit>
+    <unit id="confirmPassword">
+      <segment>
+        <source>Confirm Password</source>
+      <target>Confirmar contraseña</target>
+      </segment>
+    </unit>
+    <unit id="createAccount">
+      <segment>
+        <source>Create account</source>
+        <target>Crear cuenta</target>
+      </segment>
+    </unit>
+    <unit id="customers">
+      <segment>
+        <source>Customers</source>
+        <target>clientes</target>
+      </segment>
+    </unit>
+    <unit id="email">
+      <segment>
+        <source>Email</source>
+        <target>Correo electrónico</target>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <segment>
+        <source>Please enter a valid email.</source>
+        <target>Introduce una dirección de correo electrónico válida.</target>
+      </segment>
+    </unit>
+    <unit id="emailPlaceholder">
+      <segment>
+        <source>example@email.com</source>
+        <target>ejemplo@email.com</target>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <segment>
+        <source>Email is required.</source>
+        <target>El correo electrónico es obligatorio.</target>
+      </segment>
+    </unit>
+    <unit id="error.signIn">
+      <segment>
+        <source>Error signing in. Please try again.</source>
+      <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+      </segment>
+    </unit>
+    <unit id="errorSigningIn">
+      <segment>
+        <source>Error signing in. Try again.</source>
+        <target>Error al iniciar sesión. Inténtalo de nuevo.</target>
+      </segment>
+    </unit>
+    <unit id="features">
+      <segment>
+        <source>Features</source>
+        <target>características</target>
+      </segment>
+    </unit>
+    <unit id="finance">
+      <segment>
+        <source>Finance</source>
+        <target>finanzas</target>
+      </segment>
+    </unit>
+    <unit id="firstName">
+      <segment>
+        <source>First Name</source>
+      <target>Nombre</target>
+      </segment>
+    </unit>
+    <unit id="firstNameRequired">
+      <segment>
+        <source>First name is required.</source>
+      <target>El nombre es obligatorio.</target>
+      </segment>
+    </unit>
+    <unit id="fiveMinutesAgo">
+      <segment>
+        <source>5 minutes ago</source>
+        <target>hace 5 minutos</target>
+      </segment>
+    </unit>
+    <unit id="footerClosed">
+      <segment>
+        <source>closed</source>
+      <target>cerrado</target>
+      </segment>
+    </unit>
+    <unit id="footerOpen">
+      <segment>
+        <source>open</source>
+      <target>abierto</target>
+      </segment>
+    </unit>
+    <unit id="footerSync">
+      <segment>
+        <source>sync: <ph id="0" equiv="PH" disp="time"/></source>
+      <target>sincronización: <ph id="0" equiv="PH" disp="time"/></target>
+      </segment>
+    </unit>
+    <unit id="forgotPassword">
+      <segment>
+        <source>Forgot password</source>
+        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+      </segment>
+    </unit>
+    <unit id="generalReports">
+      <segment>
+        <source>General reports</source>
+        <target>reportes generales</target>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <segment>
+        <source>Go Back</source>
+        <target>Volver</target>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <segment>
+        <source>Go to Dashboard</source>
+        <target>Ir al Panel</target>
+      </segment>
+    </unit>
+    <unit id="incorrectCredentials">
+      <segment>
+        <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
+        <target>Credenciales incorrectas. Te quedan ${remainingAttempts} intento${remainingAttempts === 1 ? '' : 's'}.</target>
+      </segment>
+    </unit>
+    <unit id="industries">
+      <segment>
+        <source>Industries</source>
+        <target>industrias</target>
+      </segment>
+    </unit>
+    <unit id="inventory">
+      <segment>
+        <source>Inventory</source>
+        <target>inventario</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt">
+      <segment>
+        <source>English flag</source>
+        <target>Bandera de España</target>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip">
+      <segment>
+        <source>Switch to Spanish</source>
+        <target>Cambiar a Ingles</target>
+      </segment>
+    </unit>
+    <unit id="lastName">
+      <segment>
+        <source>Last Name</source>
+      <target>Apellido</target>
+      </segment>
+    </unit>
+    <unit id="loginHelp">
+      <segment>
+        <source>Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;/auth/password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
+        <target>¿Tienes problemas para iniciar sesión? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recupera tu contraseña </pc></target>
+      </segment>
+    </unit>
+    <unit id="logout">
+      <segment>
+        <source>Log Out</source>
+      <target>Cerrar sesión</target>
+      </segment>
+    </unit>
+    <unit id="mainPanel">
+      <segment>
+        <source>Main panel</source>
+        <target>panel principal</target>
+      </segment>
+    </unit>
+    <unit id="monthlyReportCompleted">
+      <segment>
+        <source>the &quot;Monthly Report&quot; task has been completed</source>
+        <target>la tarea &quot;Reporte Mensual&quot; ha sido completada</target>
+      </segment>
+    </unit>
+    <unit id="newMessage">
+      <segment>
+        <source>new message</source>
+        <target>nuevo mensaje</target>
+      </segment>
+    </unit>
+    <unit id="newMessageFrom">
+      <segment>
+        <source>you have a new message from Juan Pérez</source>
+        <target>tienes un nuevo mensaje de Juan Pérez</target>
+      </segment>
+    </unit>
+    <unit id="newSale">
+      <segment>
+        <source>New sale</source>
+        <target>nueva venta</target>
+      </segment>
+    </unit>
+    <unit id="notifications.ariaLabel">
+      <segment>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.empty">
+      <segment>
+        <source>No notifications yet</source>
+      <target>Aún no hay notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.header">
+      <segment>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="notifications.markAllRead">
+      <segment>
+        <source>Mark all as read</source>
+      <target>Marcar todo como leído</target>
+      </segment>
+    </unit>
+    <unit id="notifications.title">
+      <segment>
+        <source>Notifications</source>
+      <target>Notificaciones</target>
+      </segment>
+    </unit>
+    <unit id="oneHourAgo">
+      <segment>
+        <source>1 hour ago</source>
+        <target>hace 1 hora</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <segment>
+        <source>You can return to the main dashboard or contact support if you believe this is an error.</source>
+        <target>Puedes volver al panel principal o contactar al soporte si crees que se trata de un error.</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundMessage">
+      <segment>
+        <source>The page you&apos;re looking for doesn&apos;t exist or has been moved.</source>
+        <target>La página que buscas no existe o ha sido movida.</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundTitle">
+      <segment>
+        <source>Page not found</source>
+        <target>Página no encontrada</target>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <segment>
+        <source>Please sign in to access the application or contact support if you need assistance.</source>
+        <target>Por favor inicia sesión para acceder a la aplicación o contacta al soporte si necesitas ayuda.</target>
+      </segment>
+    </unit>
+    <unit id="password">
+      <segment>
+        <source>Password</source>
+        <target>Contraseña</target>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <segment>
+        <source>Password must be at least 6 characters.</source>
+        <target>La contraseña debe tener al menos 6 caracteres.</target>
+      </segment>
+    </unit>
+    <unit id="passwordMismatch">
+      <segment>
+        <source>Passwords do not match.</source>
+      <target>Las contraseñas no coinciden.</target>
+      </segment>
+    </unit>
+    <unit id="passwordPlaceholder">
+      <segment>
+        <source>Secret password</source>
+        <target>Contraseña secreta</target>
+      </segment>
+    </unit>
+    <unit id="passwordRecoveryTitle">
+      <segment>
+        <source>Recover your password</source>
+        <target>Recupera tu contraseña</target>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <segment>
+        <source>Password is required.</source>
+        <target>La contraseña es obligatoria.</target>
+      </segment>
+    </unit>
+    <unit id="payables">
+      <segment>
+        <source>Payables</source>
+        <target>cuentas por pagar</target>
+      </segment>
+    </unit>
+    <unit id="phoneOptional">
+      <segment>
+        <source>Phone (optional)</source>
+      <target>Teléfono (opcional)</target>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <segment>
+        <source>Pricing</source>
+        <target>planes</target>
+      </segment>
+    </unit>
+    <unit id="products">
+      <segment>
+        <source>Products</source>
+        <target>productos</target>
+      </segment>
+    </unit>
+    <unit id="receivables">
+      <segment>
+        <source>Receivables</source>
+        <target>cuentas por cobrar</target>
+      </segment>
+    </unit>
+    <unit id="remember">
+      <segment>
+        <source>Remember me</source>
+        <target>Recordarme</target>
+      </segment>
+    </unit>
+    <unit id="rememberPassword">
+      <segment>
+        <source>Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Sign in</pc></source>
+        <target>¿Recuerdas tu contraseña? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Inicia sesión</pc></target>
+      </segment>
+    </unit>
+    <unit id="reports">
+      <segment>
+        <source>Reports</source>
+        <target>reportes</target>
+      </segment>
+    </unit>
+    <unit id="requestDemo">
+      <segment>
+        <source>Request Demo</source>
+      <target>Solicitar demostración</target>
+      </segment>
+    </unit>
+    <unit id="requestNewPassword">
+      <segment>
+        <source>Request new password</source>
+        <target>Solicitar nueva contraseña</target>
+      </segment>
+    </unit>
+    <unit id="role.admin">
+      <segment>
+        <source>Administrator</source>
+        <target>Administrador</target>
+      </segment>
+    </unit>
+    <unit id="role.auditor">
+      <segment>
+        <source>Auditor</source>
+        <target>Auditor</target>
+      </segment>
+    </unit>
+    <unit id="role.manager">
+      <segment>
+        <source>Manager</source>
+        <target>Gerente</target>
+      </segment>
+    </unit>
+    <unit id="role.tenant">
+      <segment>
+        <source>Tenant</source>
+        <target>Arrendatario</target>
+      </segment>
+    </unit>
+    <unit id="role.viewer">
+      <segment>
+        <source>Viewer</source>
+        <target>Visualizador</target>
+      </segment>
+    </unit>
+    <unit id="sales">
+      <segment>
+        <source>Sales</source>
+        <target>ventas</target>
+      </segment>
+    </unit>
+    <unit id="logOut">
+      <segment>
+        <source>Log Out</source>
+        <target>Cerrar sesión</target>
+      </segment>
+    </unit>
+    <unit id="salesHistory">
+      <segment>
+        <source>Sales history</source>
+        <target>historial de ventas</target>
+      </segment>
+    </unit>
+    <unit id="salesReports">
+      <segment>
+        <source>Sales reports</source>
+        <target>reportes de ventas</target>
+      </segment>
+    </unit>
+    <unit id="serverTemporaryIssues">
+      <segment>
+        <source>the server experienced temporary issues</source>
+        <target>el servidor experimentó problemas temporales</target>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <segment>
+        <source>Settings</source>
+        <target>configuraciones</target>
+      </segment>
+    </unit>
+    <unit id="signIn">
+      <segment>
+        <source>Sign In</source>
+        <target>Iniciar Sesión</target>
+      </segment>
+    </unit>
+    <unit id="signInTitle">
+      <segment>
+        <source>Sign in</source>
+        <target>Iniciar sesión</target>
+      </segment>
+    </unit>
+    <unit id="stock">
+      <segment>
+        <source>Stock</source>
+        <target>existencia</target>
+      </segment>
+    </unit>
+    <unit id="suppliers">
+      <segment>
+        <source>Suppliers</source>
+        <target>proveedores</target>
+      </segment>
+    </unit>
+    <unit id="systemAlert">
+      <segment>
+        <source>system alert</source>
+        <target>alerta del sistema</target>
+      </segment>
+    </unit>
+    <unit id="taskCompleted">
+      <segment>
+        <source>task completed</source>
+        <target>tarea completada</target>
+      </segment>
+    </unit>
+    <unit id="technology">
+      <segment>
+        <source>Technology</source>
+        <target>tecnología</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <segment>
+        <source>theme switcher</source>
+      <target>cambiador de tema</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipDark">
+      <segment>
+        <source>switch to dark mode</source>
+      <target>cambiar a modo oscuro</target>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipLight">
+      <segment>
+        <source>switch to light mode</source>
+      <target>cambiar a modo claro</target>
+      </segment>
+    </unit>
+    <unit id="tooManyAttempts">
+      <segment>
+        <source>Too many attempts. Try again later.</source>
+        <target>Demasiados intentos. Inténtalo de nuevo más tarde.</target>
+      </segment>
+    </unit>
+    <unit id="twoHoursAgo">
+      <segment>
+        <source>2 hours ago</source>
+        <target>hace 2 horas</target>
+      </segment>
+    </unit>
+    <unit id="viewProfile">
+      <segment>
+        <source>View Profile</source>
+        <target>Ver perfil</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

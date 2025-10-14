@@ -1,0 +1,17 @@
+<p-button
+  class="relative z-10 flex items-center justify-center scale-80"
+  [rounded]="true"
+  [outlined]="true"
+  (click)="toggleLanguage()"
+  styleClass="!p-2"
+  i18n-pTooltip="@@languageSwitcher.tooltip"
+  pTooltip="Switch to Spanish"
+  tooltipPosition="bottom"
+>
+  <img
+    class="h-6 w-6"
+    [src]="currentLanguage === 'en' ? '/flags/us.svg' : '/flags/es.svg'"
+    i18n-alt="@@languageSwitcher.alt"
+    alt="English flag"
+  />
+</p-button>

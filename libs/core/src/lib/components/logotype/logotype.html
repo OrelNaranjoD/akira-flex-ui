@@ -1,0 +1,31 @@
+<a class="flex flex-row items-center" routerLink="/">
+  <img
+    [class]="'w-auto ' + logoSize()"
+    src="/logotype.svg"
+    i18n.alt="@@appLogoAlt"
+    alt="AkiraFlex Logo"
+    i18n.aria-label="@@appLogoAriaLabel"
+    aria-label="AkiraFlex Logo"
+  />
+  <div class="flex flex-col text-left ml-2">
+    <span
+      [class]="
+        'font-poppins font-extrabold text-[var(--p-company-color)] ' +
+        'tracking-wide leading-none ' +
+        textSize()
+      "
+    >
+      AkiraFlex
+    </span>
+    <span
+      [class]="
+        'font-poppins font-medium text-[var(--color-company)] ' +
+        'leading-tight ' +
+        sloganSize()
+      "
+      i18n="@@appSlogan"
+    >
+      Innovation and flexibility for your ORG
+    </span>
+  </div>
+</a>

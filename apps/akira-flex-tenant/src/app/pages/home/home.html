@@ -1,0 +1,297 @@
+<div class="space-y-6 p-surface-ground">
+  <!-- Page Header -->
+  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold text-color">Panel Principal</h1>
+      <p class="text-muted-color">Bienvenido, {{ userData.name }} • {{ currentDate }}</p>
+    </div>
+
+    <!-- Cash Register Status Card -->
+    <p-card class="p-mb-3 p-shadow-2 p-surface-card rounded-lg">
+      <ng-template pTemplate="content">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 rounded-full flex items-center justify-center"
+            [class]="cashRegister.isOpen ? 'bg-green-500/10' : 'bg-red-500/10'"
+          >
+            <i
+              class="pi pi-box flex items-center justify-center text-xl"
+              [class]="cashRegister.isOpen ? 'text-green-500' : 'text-red-500'"
+            ></i>
+          </div>
+          <div>
+            <p class="font-semibold text-color">{{ cashRegister.isOpen ? 'Caja Abierta' : 'Caja Cerrada' }}</p>
+            <p class="text-sm text-muted-color">Último movimiento: {{ cashRegister.lastMovement }}</p>
+            <p class="text-sm font-medium text-color">
+              Efectivo disponible: {{ cashRegister.availableCash | currency: 'CLP' : 'symbol' : '1.0-0' }}
+            </p>
+          </div>
+          @if (!cashRegister.isOpen) {
+          <button class="ml-auto px-4 py-2 p-button p-button-primary" (click)="openCashRegister()">Abrir Caja</button>
+          }
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <!-- Key Performance Indicators -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Daily Sales -->
+    <p-card class="p-shadow-1 p-surface-card rounded-xl">
+      <ng-template pTemplate="content">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-[var(--color-muted-foreground)] text-sm font-medium">Ventas del Día</p>
+            <p class="text-2xl font-bold text-[var(--color-foreground)] mt-1">
+              {{ dailyKPIs.sales.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
+            </p>
+            <div class="flex items-center mt-2 text-sm">
+              <i
+                class="pi"
+                [class]="
+dailyKPIs.sales.trend === 'up'
+? 'pi-arrow-up text-green-500 mr-1'
+: 'pi-arrow-down text-red-500 mr-1'
+"
+              ></i>
+              <span [class]="dailyKPIs.sales.trend === 'up' ? 'text-green-500' : 'text-red-500'">
+                {{ dailyKPIs.sales.change }}
+              </span>
+              <span class="text-muted-color ml-1">vs ayer</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+            <i class="pi pi-cash-register text-white"></i>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+
+    <!-- Work Orders -->
+    <p-card class="p-shadow-1 p-surface-card rounded-xl">
+      <ng-template pTemplate="content">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-muted-color text-sm font-medium">Órdenes Activas</p>
+            <p class="text-2xl font-bold text-color mt-1">{{ dailyKPIs.workOrders.active }}</p>
+            <div class="flex items-center mt-2 text-sm">
+              <span class="text-yellow-500">{{ dailyKPIs.workOrders.pending }} pendientes</span>
+              <span class="text-muted-color ml-1">• {{ dailyKPIs.workOrders.inProgress }} en proceso</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+            <i class="pi pi-wrench text-white"></i>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+
+    <!-- Parts Inventory -->
+    <p-card class="p-shadow-1 p-surface-card rounded-xl">
+      <ng-template pTemplate="content">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-muted-color text-sm font-medium">Stock Crítico</p>
+            <p class="text-2xl font-bold text-yellow-500 mt-1">{{ dailyKPIs.inventory.criticalItems }}</p>
+            <div class="flex items-center mt-2 text-sm">
+              <i class="pi pi-exclamation-triangle text-red-500 mr-1"></i>
+              <span class="text-red-500">{{ dailyKPIs.inventory.outOfStock }} agotados</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+            <i class="pi pi-box text-white"></i>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+
+    <!-- Accounts Receivable -->
+    <p-card class="p-shadow-1 p-surface-card rounded-xl">
+      <ng-template pTemplate="content">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-muted-color text-sm font-medium">Por Cobrar</p>
+            <p class="text-2xl font-bold text-color mt-1">
+              {{ dailyKPIs.receivables.amount | currency: 'CLP' : 'symbol' : '1.0-0' }}
+            </p>
+            <div class="flex items-center mt-2 text-sm">
+              <span class="text-red-500">{{ dailyKPIs.receivables.overdue }} vencidas</span>
+              <span class="text-muted-color ml-1">• {{ dailyKPIs.receivables.dueToday }} vencen hoy</span>
+            </div>
+          </div>
+          <div class="w-12 h-12 p-surface-card rounded-lg flex items-center justify-center">
+            <i class="pi pi-dollar text-white"></i>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
+    <h3 class="text-lg font-semibold text-color mb-4">Acciones Rápidas</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('new-sale')"
+      >
+        <i
+          class="pi pi-plus-circle text-2xl text-primary group-hover:text-primary group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Nueva Venta </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('new-work-order')"
+      >
+        <i
+          class="pi pi-file-edit text-2xl text-accent group-hover:text-accent group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Nueva O.T. </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('cash-count')"
+      >
+        <i
+          class="pi pi-calculator text-2xl text-accent group-hover:text-accent group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Arqueo Caja </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('inventory-check')"
+      >
+        <i
+          class="pi pi-box text-2xl text-green-500 group-hover:text-green-500 group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Revisar Stock </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('customer-search')"
+      >
+        <i
+          class="pi pi-search text-2xl text-blue-500 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Buscar Cliente </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('reports')"
+      >
+        <i
+          class="pi pi-chart-bar text-2xl text-purple-500 group-hover:text-purple-500 group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Reportes </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('new-quote')"
+      >
+        <i
+          class="pi pi-file text-2xl text-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Nueva Cotización </span>
+      </button>
+
+      <button
+        class="flex flex-col items-center gap-3 p-4 rounded-lg surface-card hover:surface hover:text-color transition-all duration-200 group"
+        (click)="quickAction('suppliers')"
+      >
+        <i
+          class="pi pi-truck text-2xl text-indigo-500 group-hover:text-indigo-500 group-hover:scale-110 transition-all duration-200"
+        ></i>
+        <span class="text-sm font-medium text-muted-color group-hover:text-color"> Proveedores </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Recent Activity & Notifications -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Recent Work Orders -->
+    <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold text-color">Órdenes Recientes</h3>
+        <button class="text-primary hover:text-accent text-sm font-medium">Ver Todas</button>
+      </div>
+      <div class="space-y-4">
+        @for (order of recentWorkOrders; track order.id) {
+        <div class="flex items-center justify-between p-3 rounded-lg p-surface">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full flex items-center justify-center"
+              [class]="getStatusColor(order.status) + '/10'"
+            >
+              <i
+                class="pi text-sm"
+                [class]="
+'pi-' + getStatusIcon(order.status) + ' ' + getStatusColor(order.status)
+"
+              ></i>
+            </div>
+            <div>
+              <p class="font-medium text-color">{{ order.vehicle }}</p>
+              <p class="text-sm text-muted-color">{{ order.client }} • OT #{{ order.number }}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-medium" [class]="getStatusColor(order.status)">{{ order.statusText }}</p>
+            <p class="text-xs text-muted-color">{{ order.date }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Daily Summary -->
+    <div class="p-card p-component p-6 p-shadow-1 p-surface-card rounded-xl">
+      <h3 class="text-lg font-semibold text-color mb-4">Resumen del Día</h3>
+      <div class="space-y-4">
+        <!-- Revenue Summary -->
+        <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
+          <div class="flex items-center gap-3">
+            <i class="pi pi-dollar text-green-500"></i>
+            <div>
+              <p class="font-medium text-color">Ingresos del Día</p>
+              <p class="text-sm text-muted-color">{{ summary.completedOrders }} órdenes completadas</p>
+            </div>
+          </div>
+          <p class="text-lg font-bold text-green-500">
+            {{ summary.dailyRevenue | currency: 'CLP' : 'symbol' : '1.0-0' }}
+          </p>
+        </div>
+
+        <!-- Pending Tasks -->
+        <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
+          <div class="flex items-center gap-3">
+            <i class="pi pi-list text-yellow-500"></i>
+            <div>
+              <p class="font-medium text-color">Tareas Pendientes</p>
+              <p class="text-sm text-muted-color">Requieren atención</p>
+            </div>
+          </div>
+          <p class="text-lg font-bold text-yellow-500">{{ summary.pendingTasks }}</p>
+        </div>
+
+        <!-- Customer Satisfaction -->
+        <div class="flex items-center justify-between p-3 rounded-lg p-surface border">
+          <div class="flex items-center gap-3">
+            <i class="pi pi-face-smile text-primary"></i>
+            <div>
+              <p class="font-medium text-color">Satisfacción Clientes</p>
+              <p class="text-sm text-muted-color">{{ summary.reviewsCount }} evaluaciones</p>
+            </div>
+          </div>
+          <p class="text-lg font-bold text-primary">{{ summary.satisfaction }}/5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

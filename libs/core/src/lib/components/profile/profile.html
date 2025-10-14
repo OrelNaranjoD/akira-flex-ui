@@ -1,0 +1,12 @@
+@if (userName()) {
+<div class="card flex justify-center">
+  <p-menu #menu [model]="items()" [popup]="true" />
+  <p-button class="flex items-center gap-2 p-2 rounded-lg" [text]="true" (click)="menu.toggle($event)">
+    <p-avatar class="text-xs font-semibold" [label]="userInitials()" size="normal" shape="circle"></p-avatar>
+    <div class="hidden sm:flex flex-col items-start">
+      <span class="font-medium leading-tight text-sm"> {{ userName() }} </span>
+      <span class="text-xs leading-tight p-text-secondary">{{ getRoleLabel(userPrimaryRole()) }}</span>
+    </div>
+  </p-button>
+</div>
+}

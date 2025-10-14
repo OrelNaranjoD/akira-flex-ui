@@ -1,0 +1,195 @@
+<p-dialog
+  header="Create Account"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '480px' }"
+  [dismissableMask]="true"
+  i18n-header="@@createAccount"
+>
+  <div class="p-4">
+    <form
+      class="flex flex-col gap-3"
+      [formGroup]="form"
+      (ngSubmit)="registerSubmit(); $event.preventDefault()"
+      autocomplete="on"
+    >
+      <div class="flex flex-col gap-1">
+        <label class="font-medium" for="register-email" i18n="@@email">Email</label>
+        <p-iconfield>
+          <p-inputIcon class="pi pi-envelope" />
+          <input
+            id="register-email"
+            formControlName="email"
+            type="email"
+            pInputText
+            autocomplete="email"
+            placeholder="email@domain.com"
+            required
+            fluid
+          />
+        </p-iconfield>
+        @if ( form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) ) {
+        <div class="text-xs">
+          @if (form.get('email')?.hasError('required')) {
+          <p-message severity="error" variant="simple" size="small" i18n="@@emailRequired"
+            >Email is required.</p-message
+          >
+          } @if (form.get('email')?.hasError('email')) {
+          <p-message severity="error" variant="simple" size="small" i18n="@@emailInvalid">
+            Please enter a valid email.
+          </p-message>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col gap-1">
+          <label class="font-medium" for="register-firstname" i18n="@@firstName">First Name</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-user" />
+            <input
+              id="register-firstname"
+              formControlName="firstName"
+              pInputText
+              autocomplete="given-name"
+              placeholder="First Name"
+              required
+              fluid
+            />
+          </p-iconfield>
+          @if ( form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched) ) {
+          <div class="text-xs">
+            @if (form.get('firstName')?.hasError('required')) {
+            <p-message severity="error" variant="simple" size="small" i18n="@@firstNameRequired">
+              First name is required.
+            </p-message>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="font-medium" for="register-lastname" i18n="@@lastName">Last Name</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-user" />
+            <input
+              id="register-lastname"
+              formControlName="lastName"
+              pInputText
+              autocomplete="family-name"
+              placeholder="Last Name"
+              required
+              fluid
+            />
+          </p-iconfield>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="font-medium" for="register-phone" i18n="@@phoneOptional">Phone (optional)</label>
+        <p-iconfield>
+          <p-inputIcon class="pi pi-phone" />
+          <input
+            id="register-phone"
+            formControlName="phone"
+            type="tel"
+            pInputText
+            autocomplete="tel"
+            placeholder="Phone"
+            fluid
+          />
+        </p-iconfield>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="flex flex-col gap-1">
+          <label class="font-medium" for="register-password" i18n="@@password">Password</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-lock" />
+            <p-password
+              id="register-password"
+              formControlName="password"
+              name="password"
+              autocomplete="new-password"
+              placeholder="********"
+              toggleMask="true"
+              fluid
+              required
+            ></p-password>
+          </p-iconfield>
+          @if ( form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched) ) {
+          <div class="text-xs">
+            @if (form.get('password')?.hasError('required')) {
+            <p-message severity="error" variant="simple" size="small" i18n="@@passwordRequired">
+              Password is required.
+            </p-message>
+            } @if (form.get('password')?.hasError('minlength')) {
+            <p-message severity="error" variant="simple" size="small" i18n="@@passwordMinlength">
+              Password must be at least 6 characters.
+            </p-message>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label class="font-medium" for="register-confirm" i18n="@@confirmPassword">Confirm Password</label>
+          <p-iconfield>
+            <p-inputIcon class="pi pi-lock" />
+            <p-password
+              id="register-confirm"
+              formControlName="confirmPassword"
+              name="confirmPassword"
+              autocomplete="new-password"
+              placeholder="********"
+              toggleMask="true"
+              [feedback]="false"
+              fluid
+              required
+            ></p-password>
+          </p-iconfield>
+          @if (form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty ||
+          form.get('confirmPassword')?.touched)) {
+          <div class="text-xs">
+            <p-message severity="error" variant="simple" size="small" i18n="@@passwordMismatch">
+              Passwords do not match.
+            </p-message>
+          </div>
+          }
+        </div>
+      </div>
+
+      @if (serverError()) {
+      <p-message styleClass="w-full" severity="error" variant="simple" size="small"> {{ serverError() }} </p-message>
+      }
+
+      <p-button
+        [rounded]="true"
+        [raised]="true"
+        [disabled]="form.invalid || isLoading()"
+        [label]="!isLoading() ? 'Create Account' : 'Creating...'"
+        styleClass="w-full my-2"
+        type="submit"
+        aria-label="Create Account"
+        i18n-label="@@createAccount"
+        i18n-aria-label="@@createAccount"
+      />
+
+      <div class="pt-4 border-t text-center">
+        <p class="text-sm" i18n="@@alreadyHaveAccount">
+          Already have an account?
+          <p-button
+            (onClick)="switchToSignIn()"
+            label="Sign In"
+            type="button"
+            aria-label="Sign In"
+            i18n-label="@@signIn"
+            i18n-aria-label="@@signIn"
+            link
+          />
+        </p>
+      </div>
+    </form>
+  </div>
+</p-dialog>

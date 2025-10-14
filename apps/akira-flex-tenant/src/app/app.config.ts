@@ -2,35 +2,43 @@ import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
+  isDevMode,
 } from '@angular/core'
 import { provideRouter } from '@angular/router'
-import { TENANT_ROUTES } from './tenant.routes'
-import { provideHttpClient, withFetch } from '@angular/common/http'
+import { ROUTES } from './app.routes'
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
-import { TenantTheme } from './themes/tenant-theme.preset'
+import { provideState, provideStore } from '@ngrx/store'
+import { provideEffects } from '@ngrx/effects'
+import { provideStoreDevtools } from '@ngrx/store-devtools'
+import { authInterceptor, errorInterceptor, systemStatusFeature, SystemStatusEffects } from '@core'
+import TealSlateTheme from './themes/custom-theme.preset'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay()),
-    provideRouter(TENANT_ROUTES),
-    provideHttpClient(withFetch()),
+    ...(isDevMode() ? [] : [provideClientHydration(withEventReplay())]),
+    provideRouter(ROUTES),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, errorInterceptor])),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
       theme: {
-        preset: TenantTheme,
+        preset: TealSlateTheme,
         options: {
           darkModeSelector: '.dark',
-          prefix: 'p',
-          cssLayer: {
-            name: 'primeng',
-            order: 'tailwind-base, primeng, tailwind-utilities',
-          },
         },
       },
+    }),
+    provideStore(),
+    provideState(systemStatusFeature),
+    provideEffects(SystemStatusEffects),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
     }),
   ],
 }

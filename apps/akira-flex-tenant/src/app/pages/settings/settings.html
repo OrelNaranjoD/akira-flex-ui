@@ -1,0 +1,251 @@
+<div class="p-6 space-y-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-gray-900">Settings</h1>
+    <p-button (onClick)="saveSettings()" label="Save Changes" icon="pi pi-save" severity="success" />
+  </div>
+
+  <!-- General Settings -->
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-cog"></i>
+        <span class="font-semibold">General Settings</span>
+      </div>
+    </ng-template>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label class="block" for="companyName">Company Name</label>
+        <input class="w-full" id="companyName" [(ngModel)]="companyName" pInputText placeholder="Enter company name" />
+      </div>
+
+      <div class="space-y-2">
+        <label class="block" for="language">Language</label>
+        <p-select
+          class="w-full"
+          inputId="language"
+          [(ngModel)]="language"
+          [options]="languageOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select language"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label class="block" for="timezone">Timezone</label>
+        <p-select
+          class="w-full"
+          inputId="timezone"
+          [(ngModel)]="timezone"
+          [options]="timezoneOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select timezone"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label class="block" for="currency">Currency</label>
+        <p-select
+          class="w-full"
+          inputId="currency"
+          [(ngModel)]="currency"
+          [options]="currencyOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select currency"
+        />
+      </div>
+    </div>
+  </p-card>
+
+  <!-- User Preferences -->
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-user"></i>
+        <span class="font-semibold">User Preferences</span>
+      </div>
+    </ng-template>
+
+    <div class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label class="block" for="theme">Theme</label>
+          <p-select
+            class="w-full"
+            inputId="theme"
+            [(ngModel)]="theme"
+            [options]="themeOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Select theme"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="block" for="itemsPerPage">Items per page</label>
+          <p-select
+            class="w-full"
+            inputId="itemsPerPage"
+            [(ngModel)]="itemsPerPage"
+            [options]="itemsPerPageOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Select items per page"
+          />
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <div>Email Notifications</div>
+            <div class="text-xs">Receive email notifications for important updates</div>
+          </div>
+          <p-toggleButton [(ngModel)]="emailNotifications" />
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <div>Push Notifications</div>
+            <div class="text-xs">Receive push notifications in your browser</div>
+          </div>
+          <p-toggleButton [(ngModel)]="pushNotifications" />
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <div>Auto-save</div>
+            <div class="text-xs">Automatically save changes as you work</div>
+          </div>
+          <p-toggleButton [(ngModel)]="autoSave" />
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Business Settings -->
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-building"></i>
+        <span class="font-semibold">Business Settings</span>
+      </div>
+    </ng-template>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label class="block" for="taxRate">Tax Rate (%)</label>
+        <input class="w-full" id="taxRate" [(ngModel)]="taxRate" pInputText type="number" placeholder="0.00" />
+      </div>
+
+      <div class="space-y-2">
+        <label class="block" for="defaultPaymentTerms">Default Payment Terms</label>
+        <p-select
+          class="w-full"
+          inputId="defaultPaymentTerms"
+          [(ngModel)]="defaultPaymentTerms"
+          [options]="paymentTermsOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select payment terms"
+        />
+      </div>
+
+      <div class="space-y-2 md:col-span-2">
+        <label class="block" for="businessAddress">Business Address</label>
+        <input
+          class="w-full"
+          id="businessAddress"
+          [(ngModel)]="businessAddress"
+          pInputText
+          placeholder="Enter business address"
+        />
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Security Settings -->
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-shield"></i>
+        <span class="font-semibold">Security Settings</span>
+      </div>
+    </ng-template>
+
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <div>Two-Factor Authentication</div>
+            <div class="text-xs">Add an extra layer of security to your account</div>
+          </div>
+          <p-toggleButton [(ngModel)]="twoFactorAuth" />
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div>
+            <div>Session Timeout</div>
+            <div class="text-xs">Automatically log out after period of inactivity</div>
+          </div>
+          <p-toggleButton [(ngModel)]="sessionTimeout" />
+        </div>
+      </div>
+
+      <p-divider />
+
+      <div class="space-y-4">
+        <h4 class="text-md font-semibold">Change Password</h4>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="space-y-2">
+            <label class="block" for="currentPassword">Current Password</label>
+            <input
+              class="w-full"
+              id="currentPassword"
+              [(ngModel)]="currentPassword"
+              pInputText
+              type="password"
+              placeholder="Enter current password"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label class="block" for="newPassword">New Password</label>
+            <input
+              class="w-full"
+              id="newPassword"
+              [(ngModel)]="newPassword"
+              pInputText
+              type="password"
+              placeholder="Enter new password"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label class="block" for="confirmPassword">Confirm Password</label>
+            <input
+              class="w-full"
+              id="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              pInputText
+              type="password"
+              placeholder="Confirm new password"
+            />
+          </div>
+        </div>
+
+        <p-button (onClick)="changePassword()" label="Change Password" icon="pi pi-lock" severity="secondary" />
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Success Message -->
+  @if (showSuccessMessage()) {
+  <p-message [text]="successMessage()" severity="success" />
+  }
+</div>

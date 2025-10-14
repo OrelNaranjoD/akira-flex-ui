@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="footerOpen">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/footer/footer.ts:120</note>
+      </notes>
+      <segment>
+        <source>open</source>
+      </segment>
+    </unit>
+    <unit id="footerClosed">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/footer/footer.ts:121</note>
+      </notes>
+      <segment>
+        <source>closed</source>
+      </segment>
+    </unit>
+    <unit id="footerSync">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/footer/footer.ts:130</note>
+      </notes>
+      <segment>
+        <source>sync: <ph id="0" equiv="PH" disp="time"/></source>
+      </segment>
+    </unit>
+    <unit id="mainPanel">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:17</note>
+      </notes>
+      <segment>
+        <source>Main panel</source>
+      </segment>
+    </unit>
+    <unit id="finance">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:22</note>
+      </notes>
+      <segment>
+        <source>Finance</source>
+      </segment>
+    </unit>
+    <unit id="cashAndBanks">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:26</note>
+      </notes>
+      <segment>
+        <source>Cash and banks</source>
+      </segment>
+    </unit>
+    <unit id="receivables">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:31</note>
+      </notes>
+      <segment>
+        <source>Receivables</source>
+      </segment>
+    </unit>
+    <unit id="payables">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:36</note>
+      </notes>
+      <segment>
+        <source>Payables</source>
+      </segment>
+    </unit>
+    <unit id="sales">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:43</note>
+      </notes>
+      <segment>
+        <source>Sales</source>
+      </segment>
+    </unit>
+    <unit id="newSale">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:47</note>
+      </notes>
+      <segment>
+        <source>New sale</source>
+      </segment>
+    </unit>
+    <unit id="salesHistory">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:52</note>
+      </notes>
+      <segment>
+        <source>Sales history</source>
+      </segment>
+    </unit>
+    <unit id="customers">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:57</note>
+      </notes>
+      <segment>
+        <source>Customers</source>
+      </segment>
+    </unit>
+    <unit id="inventory">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:64</note>
+      </notes>
+      <segment>
+        <source>Inventory</source>
+      </segment>
+    </unit>
+    <unit id="products">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:68</note>
+      </notes>
+      <segment>
+        <source>Products</source>
+      </segment>
+    </unit>
+    <unit id="stock">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:73</note>
+      </notes>
+      <segment>
+        <source>Stock</source>
+      </segment>
+    </unit>
+    <unit id="suppliers">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:78</note>
+      </notes>
+      <segment>
+        <source>Suppliers</source>
+      </segment>
+    </unit>
+    <unit id="reports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:85</note>
+      </notes>
+      <segment>
+        <source>Reports</source>
+      </segment>
+    </unit>
+    <unit id="salesReports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:89</note>
+      </notes>
+      <segment>
+        <source>Sales reports</source>
+      </segment>
+    </unit>
+    <unit id="generalReports">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:94</note>
+      </notes>
+      <segment>
+        <source>General reports</source>
+      </segment>
+    </unit>
+    <unit id="settings">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/components/layout/menu/menu.ts:101</note>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:29</note>
+      </notes>
+      <segment>
+        <source>Settings</source>
+      </segment>
+    </unit>
+    <unit id="passwordRecoveryTitle">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:11,13</note>
+      </notes>
+      <segment>
+        <source>Recover your password</source>
+      </segment>
+    </unit>
+    <unit id="email">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:16,17</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:16,17</note>
+      </notes>
+      <segment>
+        <source>Email address</source>
+      </segment>
+    </unit>
+    <unit id="emailPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:25,26</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:25,26</note>
+      </notes>
+      <segment>
+        <source>example@email.com</source>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:31,32</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:31,32</note>
+      </notes>
+      <segment>
+        <source>Email is required</source>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:34,36</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:34,36</note>
+      </notes>
+      <segment>
+        <source>Enter a valid email address</source>
+      </segment>
+    </unit>
+    <unit id="requestNewPassword">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:59,60</note>
+      </notes>
+      <segment>
+        <source>Request new password</source>
+      </segment>
+    </unit>
+    <unit id="rememberPassword">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/password-recovery/password-recovery.html:69,72</note>
+      </notes>
+      <segment>
+        <source> Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Sign in</pc></source>
+      </segment>
+    </unit>
+    <unit id="signInTitle">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:11,12</note>
+      </notes>
+      <segment>
+        <source>Sign in</source>
+      </segment>
+    </unit>
+    <unit id="password">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:41,42</note>
+      </notes>
+      <segment>
+        <source> Password </source>
+      </segment>
+    </unit>
+    <unit id="passwordPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:52,54</note>
+      </notes>
+      <segment>
+        <source>Secret password</source>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:58,60</note>
+      </notes>
+      <segment>
+        <source>Password is required</source>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:62,64</note>
+      </notes>
+      <segment>
+        <source>Password must be at least 6 characters</source>
+      </segment>
+    </unit>
+    <unit id="signIn">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:81</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
+      </notes>
+      <segment>
+        <source>Sign in</source>
+      </segment>
+    </unit>
+    <unit id="loginHelp">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:90,95</note>
+      </notes>
+      <segment>
+        <source> Having trouble signing in? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@forgotPassword&quot; routerLink=&quot;/auth/password-recovery&quot;&gt;" dispEnd="&lt;/a&gt;"> Recover your password </pc></source>
+      </segment>
+    </unit>
+    <unit id="accountLocked">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:70,72</note>
+      </notes>
+      <segment>
+        <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
+            timeRemaining / 60
+          )"/> minutes.</source>
+      </segment>
+    </unit>
+    <unit id="accountLockedTemporarily">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:96</note>
+      </notes>
+      <segment>
+        <source>Account temporarily locked. Try again later.</source>
+      </segment>
+    </unit>
+    <unit id="accountLockedMultipleAttempts">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:133</note>
+      </notes>
+      <segment>
+        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
+      </segment>
+    </unit>
+    <unit id="incorrectCredentials">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:138</note>
+      </notes>
+      <segment>
+        <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
+      </segment>
+    </unit>
+    <unit id="tooManyAttempts">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:142</note>
+      </notes>
+      <segment>
+        <source>Too many attempts. Try again later.</source>
+      </segment>
+    </unit>
+    <unit id="errorSigningIn">
+      <notes>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:144</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:147</note>
+      </notes>
+      <segment>
+        <source>Error signing in. Try again.</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.tooltip">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:8,12</note>
+      </notes>
+      <segment>
+        <source>Switch to Spanish</source>
+      </segment>
+    </unit>
+    <unit id="languageSwitcher.alt">
+      <notes>
+        <note category="location">libs/core/src/lib/components/language-switcher/language-switcher.html:15,18</note>
+      </notes>
+      <segment>
+        <source>English flag</source>
+      </segment>
+    </unit>
+    <unit id="appSlogan">
+      <notes>
+        <note category="location">libs/core/src/lib/components/logotype/logotype.html:28,30</note>
+      </notes>
+      <segment>
+        <source> Innovation and flexibility for your ORG </source>
+      </segment>
+    </unit>
+    <unit id="notifications.title">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.ariaLabel">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.header">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
+      </notes>
+      <segment>
+        <source>Notifications</source>
+      </segment>
+    </unit>
+    <unit id="notifications.empty">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:65,68</note>
+      </notes>
+      <segment>
+        <source>No notifications yet</source>
+      </segment>
+    </unit>
+    <unit id="notifications.markAllRead">
+      <notes>
+        <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:77,80</note>
+      </notes>
+      <segment>
+        <source>Mark all as read</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundTitle">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:7,9</note>
+      </notes>
+      <segment>
+        <source>Page not found</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundMessage">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:12,14</note>
+      </notes>
+      <segment>
+        <source>The page you&apos;re looking for doesn&apos;t exist or has been moved.</source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundAuthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:16,19</note>
+      </notes>
+      <segment>
+        <source> You can return to the main dashboard or contact support if you believe this is an error. </source>
+      </segment>
+    </unit>
+    <unit id="pageNotFoundUnauthenticatedHint">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:20,24</note>
+      </notes>
+      <segment>
+        <source> Please sign in to access the application or contact support if you need assistance. </source>
+      </segment>
+    </unit>
+    <unit id="goToDashboard">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
+      </notes>
+      <segment>
+        <source>Go to Dashboard</source>
+      </segment>
+    </unit>
+    <unit id="goBack">
+      <notes>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:47</note>
+      </notes>
+      <segment>
+        <source>Go Back</source>
+      </segment>
+    </unit>
+    <unit id="viewProfile">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:24</note>
+      </notes>
+      <segment>
+        <source>View Profile</source>
+      </segment>
+    </unit>
+    <unit id="logout">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:37</note>
+      </notes>
+      <segment>
+        <source>Log Out</source>
+      </segment>
+    </unit>
+    <unit id="role.admin">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:51</note>
+      </notes>
+      <segment>
+        <source>Administrator</source>
+      </segment>
+    </unit>
+    <unit id="role.manager">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:53</note>
+      </notes>
+      <segment>
+        <source>Manager</source>
+      </segment>
+    </unit>
+    <unit id="role.auditor">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:55</note>
+      </notes>
+      <segment>
+        <source>Auditor</source>
+      </segment>
+    </unit>
+    <unit id="role.viewer">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:57</note>
+      </notes>
+      <segment>
+        <source>Viewer</source>
+      </segment>
+    </unit>
+    <unit id="role.tenant">
+      <notes>
+        <note category="location">libs/core/src/lib/components/profile/profile.ts:59</note>
+      </notes>
+      <segment>
+        <source>Tenant</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcher">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.html:10,11</note>
+      </notes>
+      <segment>
+        <source>theme switcher</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipLight">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:46</note>
+      </notes>
+      <segment>
+        <source>switch to light mode</source>
+      </segment>
+    </unit>
+    <unit id="themeSwitcherTooltipDark">
+      <notes>
+        <note category="location">libs/core/src/lib/components/theme-switch/theme-switch.ts:47</note>
+      </notes>
+      <segment>
+        <source>switch to dark mode</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

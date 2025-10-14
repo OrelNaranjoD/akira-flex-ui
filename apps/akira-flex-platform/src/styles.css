@@ -1,27 +1,4 @@
-@import "../../../../libs/public/styles/base.css";
-
-/* Definir capas de CSS para evitar conflictos entre Tailwind y PrimeNG */
-@layer tailwind-base, primeng, tailwind-utilities;
-
-@layer tailwind-base {
-  @import "tailwindcss";
-}
-
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
-
-@theme {
-  --color-company: oklch(0.4 0.1 260);
-  --p-menubar-gap: 0 !important;
-}
-
-/* Global styles for the all domains */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", "Roboto", "Montserrat", "Raleway", "Lato", Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
+@import "../../../libs/core/src/lib/public/styles/base.css";

@@ -1,13 +1,58 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
-    "build": {
+    "@angular/build:application": {
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production"],
+      "options": {
+        "polyfills": ["@angular/localize/init"],
+        "outputMode": "server"
+      },
+      "configurations": {
+        "production": {
+          "localize": true,
+          "outputHashing": "all",
+          "optimization": {
+            "scripts": true,
+            "styles": true,
+            "fonts": true
+          }
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "libs/core/src/lib/public",
+              "output": "/"
+            }
+          ]
+        }
+      }
     },
-    "serve": {
-      "cache": true
+    "@angular/build:dev-server": {
+      "cache": true,
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "{projectName}:build:production"
+        },
+        "development": {
+          "buildTarget": "{projectName}:build:development"
+        },
+        "es": {
+          "buildTarget": "{projectName}:build:development,es"
+        },
+        "en": {
+          "buildTarget": "{projectName}:build:development,en"
+        }
+      }
+    },
+    "nx:run-commands": {
+      "cache": false
     },
     "extract-i18n": {
       "cache": true
@@ -19,15 +64,6 @@
     "lint": {
       "cache": true,
       "inputs": ["default"]
-    },
-    "@angular/build:application": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "@nx/vite:test": {
-      "cache": true,
-      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -38,16 +74,14 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/**/*.spec.[jt]s",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/eslint.config.mjs"
     ]
   },
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
-        "targetName": "eslint:lint"
+        "targetName": "lint"
       }
     }
   ],

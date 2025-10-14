@@ -1,0 +1,23 @@
+<div class="relative flex items-center gap-2">
+  <p-button
+    [raised]="true"
+    [outlined]="true"
+    (click)="openSignInDialog()"
+    i18n-label="@@signIn"
+    label="Sign In"
+    icon="pi pi-sign-in"
+    iconPos="right"
+    size="small"
+  />
+
+  <p-button [raised]="true" (click)="openSignUpDialog()" i18n-label="@@requestDemo" label="Request Demo" size="small" />
+</div>
+
+<landing-sign-in
+  #signInComponent
+  (loginSuccess)="onLoginSuccess()"
+  (requestSignUp)="switchToSignUp()"
+  (forgot)="onForgotPassword()"
+/>
+
+<landing-sign-up #signUpComponent (requestSwitch)="switchToSignIn()" />

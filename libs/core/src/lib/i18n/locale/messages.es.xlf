@@ -23,24 +23,8 @@
     </unit>
     <unit id="alreadyHaveAccount">
       <segment>
-        <source>Already have an account? <pc id="0" equivStart="START_TAG_P_BUTTON" equivEnd="CLOSE_TAG_P_BUTTON" type="other" dispStart="&lt;p-button
-            (onClick)=&quot;switchToSignIn()&quot;
-            label=&quot;Sign In&quot;
-            type=&quot;button&quot;
-            aria-label=&quot;Sign In&quot;
-            i18n-label=&quot;@@signIn&quot;
-            i18n-aria-label=&quot;@@signIn&quot;
-            link
-          /&gt;" dispEnd="&lt;p-button
-            (onClick)=&quot;switchToSignIn()&quot;
-            label=&quot;Sign In&quot;
-            type=&quot;button&quot;
-            aria-label=&quot;Sign In&quot;
-            i18n-label=&quot;@@signIn&quot;
-            i18n-aria-label=&quot;@@signIn&quot;
-            link
-          /&gt;"></pc></source>
-            <target>¿Ya tienes una cuenta? <pc id="0">Inicia sesión</pc></target>
+        <source>Already have an account?</source>
+        <target>¿Ya tienes una cuenta?</target>
       </segment>
     </unit>
     <unit id="appSlogan">
@@ -64,7 +48,7 @@
     <unit id="confirmPassword">
       <segment>
         <source>Confirm Password</source>
-      <target>Confirmar contraseña</target>
+        <target>Confirmar contraseña</target>
       </segment>
     </unit>
     <unit id="createAccount">
@@ -106,7 +90,7 @@
     <unit id="error.signIn">
       <segment>
         <source>Error signing in. Please try again.</source>
-      <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
       </segment>
     </unit>
     <unit id="errorSigningIn">
@@ -130,13 +114,13 @@
     <unit id="firstName">
       <segment>
         <source>First Name</source>
-      <target>Nombre</target>
+        <target>Nombre</target>
       </segment>
     </unit>
     <unit id="firstNameRequired">
       <segment>
         <source>First name is required.</source>
-      <target>El nombre es obligatorio.</target>
+        <target>El nombre es obligatorio.</target>
       </segment>
     </unit>
     <unit id="fiveMinutesAgo">
@@ -148,19 +132,19 @@
     <unit id="footerClosed">
       <segment>
         <source>closed</source>
-      <target>cerrado</target>
+        <target>cerrado</target>
       </segment>
     </unit>
     <unit id="footerOpen">
       <segment>
         <source>open</source>
-      <target>abierto</target>
+        <target>abierto</target>
       </segment>
     </unit>
     <unit id="footerSync">
       <segment>
         <source>sync: <ph id="0" equiv="PH" disp="time"/></source>
-      <target>sincronización: <ph id="0" equiv="PH" disp="time"/></target>
+        <target>sincronización: <ph id="0" equiv="PH" disp="time"/></target>
       </segment>
     </unit>
     <unit id="forgotPassword">
@@ -220,7 +204,7 @@
     <unit id="lastName">
       <segment>
         <source>Last Name</source>
-      <target>Apellido</target>
+        <target>Apellido</target>
       </segment>
     </unit>
     <unit id="loginHelp">
@@ -232,7 +216,7 @@
     <unit id="logout">
       <segment>
         <source>Log Out</source>
-      <target>Cerrar sesión</target>
+        <target>Cerrar sesión</target>
       </segment>
     </unit>
     <unit id="mainPanel">
@@ -268,31 +252,31 @@
     <unit id="notifications.ariaLabel">
       <segment>
         <source>Notifications</source>
-      <target>Notificaciones</target>
+        <target>Notificaciones</target>
       </segment>
     </unit>
     <unit id="notifications.empty">
       <segment>
         <source>No notifications yet</source>
-      <target>Aún no hay notificaciones</target>
+        <target>Aún no hay notificaciones</target>
       </segment>
     </unit>
     <unit id="notifications.header">
       <segment>
         <source>Notifications</source>
-      <target>Notificaciones</target>
+        <target>Notificaciones</target>
       </segment>
     </unit>
     <unit id="notifications.markAllRead">
       <segment>
         <source>Mark all as read</source>
-      <target>Marcar todo como leído</target>
+        <target>Marcar todo como leído</target>
       </segment>
     </unit>
     <unit id="notifications.title">
       <segment>
         <source>Notifications</source>
-      <target>Notificaciones</target>
+        <target>Notificaciones</target>
       </segment>
     </unit>
     <unit id="oneHourAgo">
@@ -340,7 +324,7 @@
     <unit id="passwordMismatch">
       <segment>
         <source>Passwords do not match.</source>
-      <target>Las contraseñas no coinciden.</target>
+        <target>Las contraseñas no coinciden.</target>
       </segment>
     </unit>
     <unit id="passwordPlaceholder">
@@ -370,7 +354,7 @@
     <unit id="phoneOptional">
       <segment>
         <source>Phone (optional)</source>
-      <target>Teléfono (opcional)</target>
+        <target>Teléfono (opcional)</target>
       </segment>
     </unit>
     <unit id="plans">
@@ -412,7 +396,7 @@
     <unit id="requestDemo">
       <segment>
         <source>Request Demo</source>
-      <target>Solicitar demostración</target>
+        <target>Solicitar demostración</target>
       </segment>
     </unit>
     <unit id="requestNewPassword">
@@ -455,12 +439,6 @@
       <segment>
         <source>Sales</source>
         <target>ventas</target>
-      </segment>
-    </unit>
-    <unit id="logOut">
-      <segment>
-        <source>Log Out</source>
-        <target>Cerrar sesión</target>
       </segment>
     </unit>
     <unit id="salesHistory">
@@ -532,19 +510,19 @@
     <unit id="themeSwitcher">
       <segment>
         <source>theme switcher</source>
-      <target>cambiador de tema</target>
+        <target>cambiador de tema</target>
       </segment>
     </unit>
     <unit id="themeSwitcherTooltipDark">
       <segment>
         <source>switch to dark mode</source>
-      <target>cambiar a modo oscuro</target>
+        <target>cambiar a modo oscuro</target>
       </segment>
     </unit>
     <unit id="themeSwitcherTooltipLight">
       <segment>
         <source>switch to light mode</source>
-      <target>cambiar a modo claro</target>
+        <target>cambiar a modo claro</target>
       </segment>
     </unit>
     <unit id="tooManyAttempts">

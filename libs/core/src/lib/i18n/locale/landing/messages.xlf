@@ -162,26 +162,10 @@
     </unit>
     <unit id="alreadyHaveAccount">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:181,192</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:181,183</note>
       </notes>
       <segment>
-        <source> Already have an account? <pc id="0" equivStart="START_TAG_P_BUTTON" equivEnd="CLOSE_TAG_P_BUTTON" type="other" dispStart="&lt;p-button
-            (onClick)=&quot;switchToSignIn()&quot;
-            label=&quot;Sign In&quot;
-            type=&quot;button&quot;
-            aria-label=&quot;Sign In&quot;
-            i18n-label=&quot;@@signIn&quot;
-            i18n-aria-label=&quot;@@signIn&quot;
-            link
-          /&gt;" dispEnd="&lt;p-button
-            (onClick)=&quot;switchToSignIn()&quot;
-            label=&quot;Sign In&quot;
-            type=&quot;button&quot;
-            aria-label=&quot;Sign In&quot;
-            i18n-label=&quot;@@signIn&quot;
-            i18n-aria-label=&quot;@@signIn&quot;
-            link
-          /&gt;"></pc></source>
+        <source>Already have an account?</source>
       </segment>
     </unit>
     <unit id="benefits">

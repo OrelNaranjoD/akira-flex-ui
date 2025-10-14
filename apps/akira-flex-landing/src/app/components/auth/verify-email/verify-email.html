@@ -1,0 +1,83 @@
+<div class="p-6">
+  <div class="text-center mb-6">
+    <i class="pi pi-envelope text-4xl text-blue-500 mb-4"></i>
+    <h2 class="text-xl font-semibold mb-2" i18n="@@verifyEmail">Verify your email</h2>
+    <p class="text-[var(--color-muted-foreground)]" i18n="@@verificationCodeSent">
+      We have sent a verification code to:
+    </p>
+    <p class="font-medium text-[var(--color-foreground)]">{{ email }}</p>
+  </div>
+
+  <form class="space-y-4" [formGroup]="form" (ngSubmit)="verifyCode()">
+    <div>
+      <label
+        class="block text-sm font-medium text-[var(--color-foreground)] mb-2"
+        for="verificationCode"
+        i18n="@@verificationCode"
+      >
+        Verification code
+      </label>
+      <input
+        id="verificationCode"
+        type="text"
+        pInputText
+        formControlName="verificationCode"
+        placeholder="Enter the 6-digit code"
+        maxlength="6"
+        [class.ng-invalid]="form.get('verificationCode')?.invalid && form.get('verificationCode')?.touched"
+      />
+      @if (form.get('verificationCode')?.invalid && form.get('verificationCode')?.touched) {
+      <small class="text-red-500">
+        @if (form.get('verificationCode')?.errors?.['required']) {
+        <span i18n="@@verificationCodeRequired">Code is required</span>
+        } @if (form.get('verificationCode')?.errors?.['pattern']) {
+        <span i18n="@@verificationCodeInvalid">Code must be 6 digits</span>
+        }
+      </small>
+      }
+    </div>
+
+    @if (serverError()) {
+    <p-message severity="error" [text]="serverError()!" i18n-text="@@verificationError"></p-message>
+    } @if (emailSent()) {
+    <p-message severity="success" text="Code resent successfully" i18n-text="@@codeResent"></p-message>
+    }
+
+    <div class="flex gap-3 pt-4">
+      <p-button
+        class="flex-1"
+        type="button"
+        label="Cancel"
+        [text]="true"
+        (click)="cancel()"
+        i18n-label="@@cancel"
+      ></p-button>
+      <p-button
+        class="flex-1"
+        type="submit"
+        label="Verify"
+        [loading]="isLoading()"
+        [disabled]="form.invalid"
+        i18n-label="@@verify"
+      ></p-button>
+    </div>
+
+    <div class="text-center pt-4">
+      @if (resendDisabled()) {
+      <p class="text-sm text-[var(--color-muted-foreground)]" i18n="@@resendCodeIn">
+        Resend code in {{ countdown() }} seconds
+      </p>
+      } @else {
+      <p-button
+        class="text-sm"
+        type="button"
+        label="Resend code"
+        [text]="true"
+        [link]="true"
+        (click)="resendCode()"
+        i18n-label="@@resendCode"
+      ></p-button>
+      }
+    </div>
+  </form>
+</div>

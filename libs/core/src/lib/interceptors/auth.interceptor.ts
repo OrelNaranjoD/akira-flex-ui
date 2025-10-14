@@ -1,6 +1,6 @@
 import { inject } from '@angular/core'
 import { HttpInterceptorFn } from '@angular/common/http'
-import { AuthService } from '../services/auth.service'
+import { AuthService } from '../services/auth'
 
 /**
  * HTTP interceptor function that adds authorization headers to outgoing requests.

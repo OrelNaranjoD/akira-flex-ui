@@ -1,0 +1,55 @@
+<div class="min-h-screen flex items-center justify-center p-4 md:p-8">
+  <div class="w-full max-w-md">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="text-center py-4">
+          <div class="text-6xl">404</div>
+          <h1 class="text-2xl font-bold text-center" i18n="@@pageNotFoundTitle">Page not found</h1>
+        </div>
+      </ng-template>
+
+      <div class="text-center space-y-4">
+        <p i18n="@@pageNotFoundMessage">The page you're looking for doesn't exist or has been moved.</p>
+
+        @if (isAuthenticated()) {
+        <p i18n="@@pageNotFoundAuthenticatedHint">
+          You can return to the main dashboard or contact support if you believe this is an error.
+        </p>
+        } @else {
+        <p i18n="@@pageNotFoundUnauthenticatedHint">
+          Please sign in to access the application or contact support if you need assistance.
+        </p>
+        }
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="flex gap-2 justify-center">
+          @if (isAuthenticated()) {
+          <p-button
+            (onClick)="goToDashboard()"
+            label="Go to Dashboard"
+            i18n-label="@@goToDashboard"
+            icon="pi pi-home"
+            styleClass="p-button-primary"
+          />
+          } @else {
+          <p-button
+            (onClick)="goToSignIn()"
+            label="Sign In"
+            i18n-label="@@signIn"
+            icon="pi pi-sign-in"
+            styleClass="p-button-primary"
+          />
+          }
+          <p-button
+            (onClick)="goBack()"
+            label="Go Back"
+            i18n-label="@@goBack"
+            icon="pi pi-arrow-left"
+            styleClass="p-button-secondary p-button-outlined"
+          />
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

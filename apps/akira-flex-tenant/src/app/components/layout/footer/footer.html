@@ -1,0 +1,58 @@
+@if (companyInfo(); as company) {
+<footer class="p-shadow-1 border-t px-5 py-3">
+  <div class="flex w-full flex-row items-center justify-between gap-6 text-sm">
+    <div class="flex flex-row items-center gap-6">
+      @if (branchInfo(); as branch) {
+      <div class="flex items-center gap-2">
+        <i class="pi pi-map-marker text-sm"></i>
+        <span class="font-medium">{{ branch.name }}</span>
+        <span class="p-text-secondary">•</span>
+        <span>{{ branch.address }}</span>
+      </div>
+      } @if (businessHoursFormatted(); as hours) {
+      <div class="flex items-center gap-2">
+        <i class="pi pi-clock text-sm"></i>
+        <span
+          [style.color]="
+                isWithinBusinessHours() ? 'var(--p-success-color)' : 'var(--p-warning-color)'
+              "
+        >
+          {{ currentHoursStatus() }}
+        </span>
+        <span class="p-text-secondary">•</span>
+        <span>{{ hours }}</span>
+      </div>
+      }
+    </div>
+
+    <div class="flex flex-1 flex-row items-center justify-center gap-4">
+      @if (connectionStatus(); as status) {
+      <div class="flex items-center gap-2">
+        <span class="h-2 w-2 animate-pulse rounded-full" [style.background-color]="status.color"></span>
+        <span class="text-xs">{{ status.text }}</span>
+      </div>
+      }
+      <div class="flex items-center gap-2">
+        <i class="pi pi-sync-alt p-text-secondary text-xs"></i>
+        <span class="text-xs">{{ syncText() }}</span>
+      </div>
+    </div>
+
+    <div class="flex flex-row items-center gap-6">
+      @if (currentUser(); as user) {
+      <div class="flex items-center gap-2">
+        <i class="pi pi-user-circle text-sm" style="color: var(--p-primary-color)"></i>
+        <span class="font-medium">{{ user.firstName }} {{ user.lastName }}</span>
+        <span class="p-text-secondary">•</span>
+        <span class="text-xs">{{ user.roles[0] }}</span>
+      </div>
+      }
+      <div class="flex items-center gap-2">
+        <span class="text-xs">{{ company.name }}</span>
+        <span class="p-text-secondary">•</span>
+        <span class="text-xs">v{{ appVersion() }}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+}

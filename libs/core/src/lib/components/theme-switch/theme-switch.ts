@@ -10,24 +10,9 @@ import { TooltipModule } from 'primeng/tooltip'
  */
 @Component({
   selector: 'app-theme-switch',
-  standalone: true,
   imports: [ButtonModule, TooltipModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <p-button
-      class="relative z-10 flex scale-80 items-center justify-center"
-      [icon]="iconClass()"
-      [style]="{ color: iconColor() }"
-      [rounded]="true"
-      [outlined]="true"
-      [pTooltip]="tooltipText()"
-      (click)="toggleTheme()"
-      tooltipPosition="bottom"
-      aria-label="theme switcher"
-      i18n-aria-label="@@themeSwitcher"
-    >
-    </p-button>
-  `,
+  templateUrl: './theme-switch.html',
 })
 export class ThemeSwitch {
   private readonly themeService = inject(ThemeService)

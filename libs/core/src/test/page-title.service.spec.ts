@@ -2,7 +2,7 @@ import './test'
 import { TestBed } from '@angular/core/testing'
 import { Title } from '@angular/platform-browser'
 import { vi } from 'vitest'
-import { PageTitleService } from '../lib/services/page-title.service'
+import { PageTitleService } from '../lib/services/page-title'
 
 /**
  * Unit tests for PageTitleService.

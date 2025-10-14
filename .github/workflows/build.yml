@@ -66,33 +66,47 @@ jobs:
             BUILD_DIR="dist/apps/$APP/browser"
             echo "Checking build artifacts in $BUILD_DIR"
             
-            # List all files for debugging
-            echo "Files in $BUILD_DIR:"
-            ls -la "$BUILD_DIR" || echo "Directory not found"
-            
-            # Check if directory exists and has files
+            # Check if directory exists
             if [ ! -d "$BUILD_DIR" ]; then
               echo "Build failed - directory $BUILD_DIR does not exist"
               exit 1
             fi
             
-            # Check for index.html
-            if [ ! -f "$BUILD_DIR/index.html" ]; then
-              echo "Build failed - index.html not found in $BUILD_DIR"
-              exit 1
-            fi
+            # List directories for debugging
+            echo "Subdirectories in $BUILD_DIR:"
+            ls -la "$BUILD_DIR"
             
-            # Check for any JS files (not necessarily main*.js)
-            if [ -z "$(find $BUILD_DIR -name '*.js' -type f)" ]; then
-              echo "Build failed - no JS files found in $BUILD_DIR"
-              exit 1
-            fi
-            
-            # Check for any CSS files (not necessarily styles*.css)
-            if [ -z "$(find $BUILD_DIR -name '*.css' -type f)" ]; then
-              echo "Build failed - no CSS files found in $BUILD_DIR"
-              exit 1
-            fi
+            # Check for localized builds (en, es directories)
+            LOCALES=("en" "es")
+            for LOCALE in "${LOCALES[@]}"; do
+              LOCALE_DIR="$BUILD_DIR/$LOCALE"
+              if [ ! -d "$LOCALE_DIR" ]; then
+                echo "Warning - locale directory $LOCALE_DIR not found, skipping"
+                continue
+              fi
+              
+              echo "Checking locale: $LOCALE"
+              
+              # Check for index.html in locale directory
+              if [ ! -f "$LOCALE_DIR/index.html" ]; then
+                echo "Build failed - index.html not found in $LOCALE_DIR"
+                exit 1
+              fi
+              
+              # Check for JS files
+              if [ -z "$(find $LOCALE_DIR -name '*.js' -type f)" ]; then
+                echo "Build failed - no JS files found in $LOCALE_DIR"
+                exit 1
+              fi
+              
+              # Check for CSS files
+              if [ -z "$(find $LOCALE_DIR -name '*.css' -type f)" ]; then
+                echo "Build failed - no CSS files found in $LOCALE_DIR"
+                exit 1
+              fi
+              
+              echo "✓ Locale $LOCALE verified successfully"
+            done
             
             echo "Build successful - verified in $BUILD_DIR"
             du -sh "$BUILD_DIR"

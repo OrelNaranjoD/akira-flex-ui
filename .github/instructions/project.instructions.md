@@ -53,18 +53,57 @@ export class User {
 
 ## Project Structure
 
-- Maintain Nx folder organization: `apps/` for specific applications, `libs/`
-  for shared libraries.
-- Name files and folders in kebab-case (e.g., `landing-login.ts`,
-  `landing-header/`).
-- Group related components in dedicated folders (e.g.,
-  `components/landing-login/`).
-- Use `index.ts` to export library modules and facilitate imports.
-- Follow naming conventions: PascalCase for classes/components, camelCase for
-  variables/methods/properties.
-- Maintain consistency in structure: `src/app/` with subfolders `components/`,
-  `pages/`, `services/`, `themes/`, etc.
-- Avoid overly long files; split logic into multiple files if necessary.
+### Naming Conventions
+
+- **Files and folders**: Use kebab-case (e.g., `sign-in.ts`, `user-profile/`)
+- **Component names**: Do NOT use domain prefixes in filenames (e.g., use
+  `sign-in.ts` not `landing-sign-in.ts` or `tenant-sign-in.ts`)
+- **Component selectors**: Use domain-specific prefixes (e.g.,
+  `selector: 'landing-sign-in'`, `selector: 'tenant-sign-in'`,
+  `selector: 'platform-sign-in'`)
+- **Class names**: Use PascalCase (e.g., `SignIn`, `UserProfile`)
+- **Variables and methods**: Use camelCase (e.g., `currentUser`, `handleSubmit`)
+
+### Folder Organization
+
+- **Nx structure**: `apps/` for specific applications, `libs/` for shared
+  libraries
+- **Application structure**: Each app has `src/app/` with subfolders:
+  - `components/`: Reusable UI components (e.g., `layout/`, `auth/`)
+  - `pages/`: Route-level page components (e.g., `home/`, `auth/sign-in/`)
+  - `guards/`: Route guards (e.g., `admin.guard.ts`, `auth.guard.ts`)
+  - `themes/`: Application-specific theme configuration
+  - `config/`: App-specific configuration (e.g., `api-endpoints.ts`)
+- **Organize by feature**: Group related files in feature folders, not by file
+  type
+  - Example: `pages/auth/sign-in/` contains `sign-in.ts`, `sign-in.html`
+  - Avoid generic folders like `all-components/`, `all-services/`
+- **Shared library**: `libs/core/` contains all shared code:
+  - `components/`: Shared UI components
+  - `services/`: Shared services
+  - `utils/`: Utility functions
+  - `shared/`: Types, interfaces, mocks
+  - `state/`: NgRx state management
+  - `interceptors/`: HTTP interceptors
+  - `i18n/`: Internationalization files
+  - `public/`: Shared assets
+
+### Test Structure
+
+- **Location**: All test files (.spec.ts) must be placed in `src/test/`
+  directory
+- **Mirror structure**: Tests must mirror the `src/app/` folder structure
+  - Component: `src/app/pages/auth/sign-in/sign-in.ts`
+  - Test: `src/test/pages/auth/sign-in/sign-in.spec.ts`
+- **Test initialization**: Each test file must import the shared `test.ts` file
+  from `src/test/` using relative imports (e.g., `import '../../../test'`)
+- **Test file naming**: Use the same base name with `.spec.ts` suffix
+
+### Additional Guidelines
+
+- Use `index.ts` to export library modules and facilitate imports
+- Avoid overly long files; split logic into multiple files if necessary
+- Keep consistent indentation and formatting (handled by Prettier)
 
 ## Specific Libraries and Technologies
 
@@ -79,12 +118,40 @@ export class User {
   styles or inline styles; prefer Tailwind classes to maintain consistency.
 - **NgRx State Management**: Use NgRx for global state management. For local
   component state, use signals. Avoid Ngxs or other state libraries.
-- **Testing**: Write unit tests with Jasmine + Karma for all components,
-  services, and utilities. Use Angular testing patterns. Test spec files
-  (.spec.ts) do not require JSDoc documentation. Test titles (it descriptions)
-  in spec files must be in English and avoid blank lines between test blocks for
-  consistency. Make mocks reusable at a global level whenever possible. Note:
-  Configuration files like test.ts may include JSDoc and formatting as needed.
+- **Testing**: Write unit tests with **Vitest** for all components, services,
+  and utilities. Use Angular testing patterns with Vitest's `vi.fn()` for mocks
+  instead of Jasmine's `jasmine.createSpyObj()`. Test files must be placed in
+  `src/test/` maintaining the same structure as `src/app/`. Each test file must
+  import the shared test initialization from `src/test/test.ts` using relative
+  paths (e.g., `import '../../../test'`). Use `vi.fn()` for creating mock
+  functions and `mockFn.mockReturnValue()` for setting return values. Test spec
+  files (.spec.ts) do not require JSDoc documentation. Test titles (it
+  descriptions) in spec files must be in English and avoid blank lines between
+  test blocks for consistency. Make mocks reusable at a global level whenever
+  possible. Example test setup:
+
+  ```typescript
+  // File: src/test/pages/auth/sign-in/sign-in.spec.ts
+  import '../../../test' // Import shared test initialization
+  import { vi } from 'vitest'
+  import { SignIn } from '../../../../app/pages/auth/sign-in/sign-in'
+
+  let mockService: {
+    method: ReturnType<typeof vi.fn>
+  }
+
+  beforeEach(() => {
+    mockService = {
+      method: vi.fn(),
+    }
+  })
+
+  it('should work', () => {
+    mockService.method.mockReturnValue('value')
+    expect(mockService.method()).toBe('value')
+  })
+  ```
+
 - **Linting and Formatting**: Follow ESLint and Prettier rules. Include JSDoc in
   all public classes, methods, and functions. The project uses ESLint with
   Prettier integration to ensure consistent formatting. Prettier is configured

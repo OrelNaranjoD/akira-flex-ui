@@ -43,29 +43,46 @@ directly inside src/.
 directories based on feature areas, not by file type. This is the key to
 avoiding naming conflicts.
 
-DO: Create a folder for each feature (e.g., src/header/, src/user-profile/).
+DO: Create a folder for each feature within appropriate categories:
 
-AVOID: Creating generic folders like src/components/, src/services/, or
-src/guards/.
+- `src/app/components/auth/` for auth-related components
+- `src/app/pages/auth/sign-in/` for sign-in page
+- `src/app/guards/` for route guards
 
-**Solving Naming Conflicts**: By using feature folders, you can simplify the
-component's filename while keeping other file types distinct.
+AVOID: Creating overly generic folders that mix unrelated features.
 
-The component can use the simplified name, acting as the feature's main file.
+**File Naming Conventions**:
 
-Services, guards, models, and other files must retain their descriptive suffixes
-to ensure clarity and prevent filename collisions.
+- Component files use simple names matching the feature (e.g., `sign-in.ts`)
+- Do NOT use domain prefixes in filenames (e.g., avoid `landing-sign-in.ts`)
+- Component selectors MUST use domain prefixes (e.g.,
+  `selector: 'landing-sign-in'`)
+- Services, guards, and models retain their descriptive suffixes (e.g.,
+  `sign-in.service.ts`, `admin.guard.ts`, `user.model.ts`)
 
-**Recommended Structure Example**:
+**Actual Structure Example**:
 
 ```
-src/
-└─ user-profile/
-   ├─ user-profile.ts            // The component (simplified name)
-   ├─ user-profile.html          // Its template
-   ├─ user-profile.css           // Its styles
-   ├─ user-profile.service.ts    // The service (RETAINS suffix for clarity)
-   └─ user.model.ts              // A related model (RETAINS suffix)
+src/app/
+├─ components/
+│  ├─ auth/
+│  │  ├─ sign-in/
+│  │  │  ├─ sign-in.ts           // Component with selector: 'landing-sign-in'
+│  │  │  ├─ sign-in.html         // Template
+│  │  │  └─ sign-in.service.ts   // Service (RETAINS suffix)
+│  │  └─ auth.ts                 // Parent auth component
+│  └─ layout/
+│     ├─ header/
+│     ├─ footer/
+│     └─ layout.ts
+├─ pages/
+│  ├─ auth/
+│  │  └─ sign-in/
+│  │     ├─ sign-in.ts           // Page component
+│  │     └─ sign-in.html
+│  └─ home/
+└─ guards/
+   └─ admin.guard.ts              // Route guard (RETAINS suffix)
 ```
 
 ### 3. Dependency Injection
@@ -78,13 +95,21 @@ syntactically simpler.
 // PREFER ✅
 export class MyComponent {
   private readonly myService = inject(MyService)
+  private readonly router = inject(Router)
 }
 
 // AVOID ❌
 export class MyComponent {
-  constructor(private readonly myService: MyService) {}
+  constructor(
+    private readonly myService: MyService,
+    private readonly router: Router
+  ) {}
 }
 ```
+
+**Readability Benefits**: The inject() approach is clearer when you have
+multiple dependencies, easier to add inline comments, and avoids issues with
+`useDefineForClassFields`.
 
 ### 4. Components & Directives
 

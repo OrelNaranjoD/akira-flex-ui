@@ -24,7 +24,7 @@ export class PageNotFound {
    * Navigate to the dashboard page.
    */
   goToDashboard(): void {
-    this.router.navigate(['home'])
+    this.router.navigate([''])
   }
 
   /**

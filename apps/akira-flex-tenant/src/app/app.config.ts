@@ -30,6 +30,11 @@ export const appConfig: ApplicationConfig = {
         preset: TealSlateTheme,
         options: {
           darkModeSelector: '.dark',
+          prefix: 'p',
+          cssLayer: {
+            name: 'primeng',
+            order: 'theme, base, primeng',
+          },
         },
       },
     }),

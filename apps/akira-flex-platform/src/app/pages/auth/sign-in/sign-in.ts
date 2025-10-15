@@ -1,23 +1,22 @@
 import { Component, inject, signal } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Router, RouterLink } from '@angular/router'
+import { Router } from '@angular/router'
 import { Card } from 'primeng/card'
 import { InputText } from 'primeng/inputtext'
 import { Password } from 'primeng/password'
 import { Button } from 'primeng/button'
 import { Message } from 'primeng/message'
 import { AuthService } from '@core'
-import { MOCK_COMPANY_DATA } from '@mocks'
 import { Logotype } from '@core/components/logotype/logotype'
 import { emailValidator } from '@core/utils'
 
 /**
- * Sign-in page component for tenant authentication.
- * Provides a full-screen sign-in form for tenant creators and users.
+ * Sign-in page component for system administrators.
+ * Provides a full-screen sign-in form exclusively for platform administrators.
  */
 @Component({
-  selector: 'tenant-sign-in',
+  selector: 'platform-sign-in',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -27,7 +26,6 @@ import { emailValidator } from '@core/utils'
     Button,
     Message,
     Logotype,
-    RouterLink,
   ],
   templateUrl: './sign-in.html',
 })
@@ -36,9 +34,6 @@ export class SignIn {
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
 
-  // Company data from shared mocks
-  companyData = MOCK_COMPANY_DATA
-
   readonly isLoading = signal(false)
   readonly errorMessage = signal<string | null>(null)
   readonly isAccountLocked = signal(false)
@@ -46,7 +41,7 @@ export class SignIn {
 
   readonly signInForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, emailValidator]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   })
 
   constructor() {
@@ -61,7 +56,7 @@ export class SignIn {
     if (!email) return
 
     const lockData = this.getLockData(email)
-    if (lockData && lockData.attempts >= 5) {
+    if (lockData && lockData.attempts >= 3) {
       const timeRemaining = this.getLockoutTimeRemaining(lockData.lockTime)
       if (timeRemaining > 0) {
         this.isAccountLocked.set(true)
@@ -80,7 +75,7 @@ export class SignIn {
   }
 
   /**
-   * Handle form submission with account lock logic.
+   * Handle form submission with admin role validation and account lock logic.
    */
   onSubmit(): void {
     if (this.signInForm.invalid) {
@@ -90,7 +85,6 @@ export class SignIn {
 
     const email = this.signInForm.value.email
 
-    // Check if account is locked
     if (this.isAccountLocked()) {
       const timeRemaining = this.lockoutTimeRemaining()
       this.errorMessage.set(
@@ -108,6 +102,17 @@ export class SignIn {
 
     this.authService.loginHardcoded({ email, password, remember: true }).subscribe({
       next: () => {
+        const user = this.authService.currentUser()
+
+        if (!user?.roles.includes('admin')) {
+          this.isLoading.set(false)
+          this.authService.logout()
+          this.errorMessage.set(
+            $localize`:@@unauthorizedAccess:Access denied. Only system administrators can sign in.`
+          )
+          return
+        }
+
         this.isLoading.set(false)
         this.clearLockData(email)
         this.router.navigate(['/'])
@@ -120,7 +125,7 @@ export class SignIn {
   }
 
   /**
-   * Handle sign-in errors and implement lockout logic.
+   * Handle sign-in errors and implement stricter lockout logic for admin accounts.
    * @param error The error object from the sign-in attempt.
    * @param email The email address being used for sign-in.
    */
@@ -130,7 +135,7 @@ export class SignIn {
       if (httpError.status === 401) {
         const attempts = this.incrementFailedAttempts(email)
 
-        if (attempts >= 5) {
+        if (attempts >= 3) {
           this.lockAccount(email)
           const timeRemaining = this.lockoutTimeRemaining()
           this.errorMessage.set(
@@ -139,7 +144,7 @@ export class SignIn {
             )} minutes.`
           )
         } else {
-          const remainingAttempts = 5 - attempts
+          const remainingAttempts = 3 - attempts
           this.errorMessage.set(
             $localize`:@@incorrectCredentials:Incorrect credentials. You have ${remainingAttempts} attempt${remainingAttempts === 1 ? '' : 's'} remaining.`
           )
@@ -160,18 +165,18 @@ export class SignIn {
    * @returns The lock data or null if not found.
    */
   private getLockData(email: string): { attempts: number; lockTime: number } | null {
-    const key = `login_attempts_${btoa(email)}`
+    const key = `admin_login_attempts_${btoa(email)}`
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : null
   }
 
   /**
-   * Increment failed attempts counter.
+   * Increment failed attempts counter for admin login.
    * @param email The email address for which to increment attempts.
    * @returns The new number of failed attempts.
    */
   private incrementFailedAttempts(email: string): number {
-    const key = `login_attempts_${btoa(email)}`
+    const key = `admin_login_attempts_${btoa(email)}`
     const currentData = this.getLockData(email) || { attempts: 0, lockTime: 0 }
     currentData.attempts += 1
     localStorage.setItem(key, JSON.stringify(currentData))
@@ -179,18 +184,18 @@ export class SignIn {
   }
 
   /**
-   * Lock account for 15 minutes.
+   * Lock admin account for 30 minutes after 3 failed attempts.
    * @param email The email address to lock.
    */
   private lockAccount(email: string): void {
-    const key = `login_attempts_${btoa(email)}`
+    const key = `admin_login_attempts_${btoa(email)}`
     const lockData = {
-      attempts: 5,
-      lockTime: Date.now() + 15 * 60 * 1000, // 15 minutes
+      attempts: 3,
+      lockTime: Date.now() + 30 * 60 * 1000,
     }
     localStorage.setItem(key, JSON.stringify(lockData))
     this.isAccountLocked.set(true)
-    this.lockoutTimeRemaining.set(15 * 60)
+    this.lockoutTimeRemaining.set(30 * 60)
   }
 
   /**
@@ -198,7 +203,7 @@ export class SignIn {
    * @param email The email address to clear data for.
    */
   private clearLockData(email: string): void {
-    const key = `login_attempts_${btoa(email)}`
+    const key = `admin_login_attempts_${btoa(email)}`
     localStorage.removeItem(key)
     this.isAccountLocked.set(false)
     this.lockoutTimeRemaining.set(0)

@@ -6,8 +6,8 @@
         <note category="location">apps/akira-flex-landing/src/app/components/auth/auth.html:8</note>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:48</note>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:170,172</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:185</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:187</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:186</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:188</note>
         <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
       </notes>
       <segment>
@@ -34,25 +34,25 @@
     <unit id="emailRequired">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:79,80</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:35,37</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:34,35</note>
       </notes>
       <segment>
-        <source>Email is required.</source>
+        <source>Email is required</source>
       </segment>
     </unit>
     <unit id="emailInvalid">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:84,85</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:39,40</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:37,38</note>
       </notes>
       <segment>
-        <source>Please enter a valid email.</source>
+        <source>Enter a valid email address</source>
       </segment>
     </unit>
     <unit id="password">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:92,93</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:107,108</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:108,109</note>
       </notes>
       <segment>
         <source>Password</source>
@@ -61,7 +61,7 @@
     <unit id="passwordRequired">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:117,118</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:125,126</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:126,127</note>
       </notes>
       <segment>
         <source>Password is required.</source>
@@ -70,7 +70,7 @@
     <unit id="passwordMinlength">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:126,128</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:129,130</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:130,131</note>
       </notes>
       <segment>
         <source>Password must be at least 6 characters.</source>
@@ -98,7 +98,7 @@
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:178,179</note>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-in/sign-in.ts:180,181</note>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:2,4</note>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:174,175</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:175,176</note>
       </notes>
       <segment>
         <source>Create account</source>
@@ -114,7 +114,7 @@
     </unit>
     <unit id="firstName">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:48,49</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:46,47</note>
       </notes>
       <segment>
         <source>First Name</source>
@@ -122,7 +122,7 @@
     </unit>
     <unit id="firstNameRequired">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:65,66</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:63,64</note>
       </notes>
       <segment>
         <source> First name is required. </source>
@@ -130,23 +130,31 @@
     </unit>
     <unit id="lastName">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:73,74</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:71,72</note>
       </notes>
       <segment>
         <source>Last Name</source>
       </segment>
     </unit>
-    <unit id="phoneOptional">
+    <unit id="phone">
+      <notes>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:89,90</note>
+      </notes>
+      <segment>
+        <source>Phone</source>
+      </segment>
+    </unit>
+    <unit id="optional">
       <notes>
         <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:90,91</note>
       </notes>
       <segment>
-        <source>Phone (optional)</source>
+        <source>(optional)</source>
       </segment>
     </unit>
     <unit id="confirmPassword">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:137,138</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:138,139</note>
       </notes>
       <segment>
         <source>Confirm Password</source>
@@ -154,7 +162,7 @@
     </unit>
     <unit id="passwordMismatch">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:156,157</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:157,158</note>
       </notes>
       <segment>
         <source> Passwords do not match. </source>
@@ -162,7 +170,7 @@
     </unit>
     <unit id="alreadyHaveAccount">
       <notes>
-        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:181,183</note>
+        <note category="location">apps/akira-flex-landing/src/app/components/auth/sign-up/sign-up.html:182,184</note>
       </notes>
       <segment>
         <source>Already have an account?</source>
@@ -232,24 +240,10 @@
         <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
-    <unit id="notifications.title">
+    <unit id="notifications">
       <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.ariaLabel">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.header">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
       </notes>
       <segment>
@@ -304,12 +298,12 @@
         <source> Please sign in to access the application or contact support if you need assistance. </source>
       </segment>
     </unit>
-    <unit id="goToDashboard">
+    <unit id="goToStart">
       <notes>
         <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
       </notes>
       <segment>
-        <source>Go to Dashboard</source>
+        <source>Go to Start</source>
       </segment>
     </unit>
     <unit id="goBack">

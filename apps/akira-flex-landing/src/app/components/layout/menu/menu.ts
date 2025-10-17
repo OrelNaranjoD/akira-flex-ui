@@ -46,9 +46,9 @@ export class Menu {
       command: () => this.scrollTo('technology'),
     },
     {
-      label: $localize`:@@plans:Pricing`,
+      label: $localize`:@@plans:Plans`,
       icon: 'pi pi-tag',
-      command: () => this.scrollTo('pricing'),
+      command: () => this.scrollTo('plans'),
     },
   ]
 

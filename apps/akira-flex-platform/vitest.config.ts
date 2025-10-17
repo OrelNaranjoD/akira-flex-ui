@@ -1,41 +1,8 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import angular from '@analogjs/vite-plugin-angular'
+import { createVitestConfig } from '../../vitest.workspace'
 
 /**
  * Vitest configuration for akira-flex-platform application.
+ * Extends the base workspace configuration.
  */
-export default defineConfig({
-  cacheDir: '../../node_modules/.vite/akira-flex-platform',
-  plugins: [angular()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['src/test/test.ts'],
-    include: ['src/**/*.spec.ts'],
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'html', 'lcov'],
-      reportsDirectory: '../../coverage/akira-flex-platform',
-      exclude: [
-        'node_modules/',
-        'src/test/',
-        '**/*.spec.ts',
-        '**/*.config.ts',
-        '**/*.routes.ts',
-        '**/environments/',
-      ],
-    },
-    pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
-  },
-  resolve: {
-    alias: {
-      '@shared': '../../libs/core/src/lib',
-    },
-  },
-})
+export default createVitestConfig('akira-flex-platform')

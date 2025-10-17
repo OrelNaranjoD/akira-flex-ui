@@ -15,9 +15,14 @@ export default [
       '.angular/',
       'coverage/',
       'eslint.config.mjs',
+      'vitest.workspace.ts',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
       '**/*.md',
+      '**/styles.css',
+      'package-lock.json',
+      'package.json',
+      'tsconfig.base.json',
     ],
   },
 
@@ -240,7 +245,17 @@ export default [
   ...angular.configs.templateAccessibility.map((config) => ({ ...config, files: ['**/*.html'] })),
 
   {
-    files: ['**/*.html'],
+    files: ['**/*.css'],
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+    },
+  },
+
+  {
+    files: ['**/*.json'],
     plugins: {
       prettier: prettierPlugin,
     },

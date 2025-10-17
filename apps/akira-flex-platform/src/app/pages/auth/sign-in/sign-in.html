@@ -1,0 +1,97 @@
+<div class="min-h-screen flex flex-col justify-start md:items-center md:justify-center p-4">
+  <div class="w-full max-w-md md:mt-0 mt-8">
+    <!-- Logo/Brand Section -->
+    <div class="flex flex-col items-center text-center mb-8">
+      <app-logotype size="normal" />
+    </div>
+
+    <!-- Sign In Form -->
+    <p-card class="shadow-2xl">
+      <ng-template #header>
+        <div class="flex items-center justify-center gap-2 pt-4">
+          <i class="pi pi-shield text-2xl"></i>
+          <h1 class="text-xl font-semibold text-center" i18n="@@signIn">Sign In</h1>
+        </div>
+      </ng-template>
+      <form class="space-y-6" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <!-- Email Field -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium" i18n="@@email" for="email">Email</label>
+          <input
+            class="w-full"
+            id="email"
+            [invalid]="signInForm.get('email')?.invalid && signInForm.get('email')?.touched"
+            type="email"
+            pInputText
+            formControlName="email"
+            i18n-placeholder="@@emailPlaceholder"
+            placeholder="user@akiraflex.cl"
+            autocomplete="email"
+            variant="filled"
+          />
+          @if (signInForm.get('email')?.invalid && signInForm.get('email')?.touched) { @if
+          (signInForm.get('email')?.errors?.['required']) {
+          <p-message i18n="@@emailRequired" severity="error" size="small" variant="simple">
+            Email is required
+          </p-message>
+          } @else if (signInForm.get('email')?.errors?.['invalidEmail']) {
+          <p-message i18n="@@emailInvalid" severity="error" size="small" variant="simple">
+            Enter a valid email address
+          </p-message>
+          } }
+        </div>
+
+        <!-- Password Field -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium" i18n="@@password" for="password"> Password </label>
+          <p-password
+            [invalid]="signInForm.get('password')?.invalid && signInForm.get('password')?.touched"
+            [feedback]="false"
+            [toggleMask]="true"
+            formControlName="password"
+            autocomplete="current-password"
+            fluid
+            i18n-placeholder="@@passwordPlaceholder"
+            placeholder="Secure password"
+            variant="filled"
+          ></p-password>
+          @if (signInForm.get('password')?.invalid && signInForm.get('password')?.touched) { @if
+          (signInForm.get('password')?.errors?.['required']) {
+          <p-message i18n="@@passwordRequired" severity="error" size="small" variant="simple">
+            Password is required
+          </p-message>
+          } @else if (signInForm.get('password')?.errors?.['minlength']) {
+          <p-message i18n="@@passwordMinlength" severity="error" size="small" variant="simple">
+            Password must be at least 8 characters
+          </p-message>
+          } }
+        </div>
+
+        <!-- Error Message -->
+        @if (errorMessage()) {
+        <p-message class="w-full" severity="error" icon="pi pi-times-circle" styleClass="mb-2" closable>
+          {{ errorMessage() }}
+        </p-message>
+        }
+
+        <!-- Submit Button -->
+        <p-button
+          [loading]="isLoading()"
+          [disabled]="signInForm.invalid || isAccountLocked()"
+          type="submit"
+          i18n-label="@@signIn"
+          label="Sign In"
+          styleClass="w-full p-3"
+          size="large"
+        />
+      </form>
+    </p-card>
+
+    <!-- Footer -->
+    <div class="text-center mt-6">
+      <p class="text-xs" i18n="@@securityFooter">
+        Protected by advanced security measures. Unauthorized access attempts will be reported.
+      </p>
+    </div>
+  </div>
+</div>

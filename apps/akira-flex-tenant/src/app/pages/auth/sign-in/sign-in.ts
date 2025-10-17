@@ -92,8 +92,11 @@ export class SignIn {
 
     // Check if account is locked
     if (this.isAccountLocked()) {
+      const timeRemaining = this.lockoutTimeRemaining()
       this.errorMessage.set(
-        $localize`:@@accountLockedTemporarily:Account temporarily locked. Try again later.`
+        $localize`:@@accountLocked:Account locked. Try again in ${Math.ceil(
+          timeRemaining / 60
+        )} minutes.`
       )
       return
     }
@@ -129,8 +132,11 @@ export class SignIn {
 
         if (attempts >= 5) {
           this.lockAccount(email)
+          const timeRemaining = this.lockoutTimeRemaining()
           this.errorMessage.set(
-            $localize`:@@accountLockedMultipleAttempts:Account locked due to multiple failed attempts. Try again in 15 minutes.`
+            $localize`:@@accountLocked:Account locked. Try again in ${Math.ceil(
+              timeRemaining / 60
+            )} minutes.`
           )
         } else {
           const remainingAttempts = 5 - attempts
@@ -141,10 +147,10 @@ export class SignIn {
       } else if (httpError.status === 429) {
         this.errorMessage.set($localize`:@@tooManyAttempts:Too many attempts. Try again later.`)
       } else {
-        this.errorMessage.set($localize`:@@errorSigningIn:Error signing in. Try again.`)
+        this.errorMessage.set($localize`:@@error.signIn:Error signing in. Try again.`)
       }
     } else {
-      this.errorMessage.set($localize`:@@errorSigningIn:Error signing in. Try again.`)
+      this.errorMessage.set($localize`:@@error.signIn:Error signing in. Try again.`)
     }
   }
 

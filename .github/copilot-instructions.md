@@ -13,6 +13,8 @@ See also:
 - `.github/instructions/ngrx.instructions.md` for NgRx best practices.
 - `.github/instructions/scalability.instructions.md` for enterprise scaling and
   micro-frontend preparation.
+- `.github/instructions/testing.instructions.md` for testing conventions and
+  best practices with Vitest.
 - `.github/instructions/angular-full.documentation.md` for full Angular
   documentation.
 - `.github/instructions/angular-online.documentation.md` for online Angular

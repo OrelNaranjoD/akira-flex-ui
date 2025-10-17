@@ -9,18 +9,6 @@
         <target>Cuenta bloqueada. Inténtalo de nuevo en ${Math.ceil(timeRemaining / 60)} minutos.</target>
       </segment>
     </unit>
-    <unit id="accountLockedMultipleAttempts">
-      <segment>
-        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
-        <target>Cuenta bloqueada por múltiples intentos fallidos. Inténtalo de nuevo en 15 minutos.</target>
-      </segment>
-    </unit>
-    <unit id="accountLockedTemporarily">
-      <segment>
-        <source>Account temporarily locked. Try again later.</source>
-        <target>Cuenta bloqueada temporalmente. Inténtalo más tarde.</target>
-      </segment>
-    </unit>
     <unit id="alreadyHaveAccount">
       <segment>
         <source>Already have an account?</source>
@@ -42,7 +30,7 @@
     <unit id="cashAndBanks">
       <segment>
         <source>Cash and banks</source>
-        <target>caja y bancos</target>
+        <target>Caja y bancos</target>
       </segment>
     </unit>
     <unit id="confirmPassword">
@@ -71,44 +59,38 @@
     </unit>
     <unit id="emailInvalid">
       <segment>
-        <source>Please enter a valid email.</source>
+        <source>Enter a valid email address</source>
         <target>Introduce una dirección de correo electrónico válida.</target>
       </segment>
     </unit>
     <unit id="emailPlaceholder">
       <segment>
-        <source>example@email.com</source>
-        <target>ejemplo@email.com</target>
+        <source>user@akiraflex.cl</source>
+        <target>usuario@akiraflex.cl</target>
       </segment>
     </unit>
     <unit id="emailRequired">
       <segment>
-        <source>Email is required.</source>
+        <source>Email is required</source>
         <target>El correo electrónico es obligatorio.</target>
       </segment>
     </unit>
     <unit id="error.signIn">
       <segment>
         <source>Error signing in. Please try again.</source>
-        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
-      </segment>
-    </unit>
-    <unit id="errorSigningIn">
-      <segment>
-        <source>Error signing in. Try again.</source>
         <target>Error al iniciar sesión. Inténtalo de nuevo.</target>
       </segment>
     </unit>
     <unit id="features">
       <segment>
         <source>Features</source>
-        <target>características</target>
+        <target>Características</target>
       </segment>
     </unit>
     <unit id="finance">
       <segment>
         <source>Finance</source>
-        <target>finanzas</target>
+        <target>Finanzas</target>
       </segment>
     </unit>
     <unit id="firstName">
@@ -121,12 +103,6 @@
       <segment>
         <source>First name is required.</source>
         <target>El nombre es obligatorio.</target>
-      </segment>
-    </unit>
-    <unit id="fiveMinutesAgo">
-      <segment>
-        <source>5 minutes ago</source>
-        <target>hace 5 minutos</target>
       </segment>
     </unit>
     <unit id="footerClosed">
@@ -150,13 +126,13 @@
     <unit id="forgotPassword">
       <segment>
         <source>Forgot password</source>
-        <target>Error al iniciar sesión. Por favor, inténtalo de nuevo.</target>
+        <target>¿Olvidaste tu contraseña?</target>
       </segment>
     </unit>
     <unit id="generalReports">
       <segment>
         <source>General reports</source>
-        <target>reportes generales</target>
+        <target>Reportes generales</target>
       </segment>
     </unit>
     <unit id="goBack">
@@ -165,10 +141,10 @@
         <target>Volver</target>
       </segment>
     </unit>
-    <unit id="goToDashboard">
+    <unit id="goToStart">
       <segment>
-        <source>Go to Dashboard</source>
-        <target>Ir al Panel</target>
+        <source>Go to Start</source>
+        <target>Ir al Inicio</target>
       </segment>
     </unit>
     <unit id="incorrectCredentials">
@@ -180,13 +156,13 @@
     <unit id="industries">
       <segment>
         <source>Industries</source>
-        <target>industrias</target>
+        <target>Industrias</target>
       </segment>
     </unit>
     <unit id="inventory">
       <segment>
         <source>Inventory</source>
-        <target>inventario</target>
+        <target>Inventario</target>
       </segment>
     </unit>
     <unit id="languageSwitcher.alt">
@@ -198,7 +174,7 @@
     <unit id="languageSwitcher.tooltip">
       <segment>
         <source>Switch to Spanish</source>
-        <target>Cambiar a Ingles</target>
+        <target>Cambiar a Español</target>
       </segment>
     </unit>
     <unit id="lastName">
@@ -222,7 +198,7 @@
     <unit id="mainPanel">
       <segment>
         <source>Main panel</source>
-        <target>panel principal</target>
+        <target>Panel principal</target>
       </segment>
     </unit>
     <unit id="monthlyReportCompleted">
@@ -239,8 +215,8 @@
     </unit>
     <unit id="newMessageFrom">
       <segment>
-        <source>you have a new message from Juan Pérez</source>
-        <target>tienes un nuevo mensaje de Juan Pérez</target>
+        <source>you have a new message from <ph id="0" equiv="PH" disp="&apos;Juan Pérez&apos;"/></source>
+        <target>tienes un nuevo mensaje de <ph id="0" equiv="PH" disp="senderName"/></target>
       </segment>
     </unit>
     <unit id="newSale">
@@ -249,7 +225,7 @@
         <target>nueva venta</target>
       </segment>
     </unit>
-    <unit id="notifications.ariaLabel">
+    <unit id="notifications">
       <segment>
         <source>Notifications</source>
         <target>Notificaciones</target>
@@ -261,28 +237,16 @@
         <target>Aún no hay notificaciones</target>
       </segment>
     </unit>
-    <unit id="notifications.header">
-      <segment>
-        <source>Notifications</source>
-        <target>Notificaciones</target>
-      </segment>
-    </unit>
     <unit id="notifications.markAllRead">
       <segment>
         <source>Mark all as read</source>
         <target>Marcar todo como leído</target>
       </segment>
     </unit>
-    <unit id="notifications.title">
+    <unit id="optional">
       <segment>
-        <source>Notifications</source>
-        <target>Notificaciones</target>
-      </segment>
-    </unit>
-    <unit id="oneHourAgo">
-      <segment>
-        <source>1 hour ago</source>
-        <target>hace 1 hora</target>
+        <source>(optional)</source>
+        <target>(opcional)</target>
       </segment>
     </unit>
     <unit id="pageNotFoundAuthenticatedHint">
@@ -329,8 +293,8 @@
     </unit>
     <unit id="passwordPlaceholder">
       <segment>
-        <source>Secret password</source>
-        <target>Contraseña secreta</target>
+        <source>Secure password</source>
+        <target>Tu contraseña segura</target>
       </segment>
     </unit>
     <unit id="passwordRecoveryTitle">
@@ -351,10 +315,10 @@
         <target>cuentas por pagar</target>
       </segment>
     </unit>
-    <unit id="phoneOptional">
+    <unit id="phone">
       <segment>
-        <source>Phone (optional)</source>
-        <target>Teléfono (opcional)</target>
+        <source>Phone</source>
+        <target>Teléfono</target>
       </segment>
     </unit>
     <unit id="plans">
@@ -453,6 +417,12 @@
         <target>reportes de ventas</target>
       </segment>
     </unit>
+    <unit id="securityFooter">
+      <segment>
+        <source>Protected by advanced security measures. Unauthorized access attempts will be reported.</source>
+        <target>Protegido por medidas de seguridad avanzadas. Los intentos de acceso no autorizados serán reportados.</target>
+      </segment>
+    </unit>
     <unit id="serverTemporaryIssues">
       <segment>
         <source>the server experienced temporary issues</source>
@@ -469,12 +439,6 @@
       <segment>
         <source>Sign In</source>
         <target>Iniciar Sesión</target>
-      </segment>
-    </unit>
-    <unit id="signInTitle">
-      <segment>
-        <source>Sign in</source>
-        <target>Iniciar sesión</target>
       </segment>
     </unit>
     <unit id="stock">
@@ -525,16 +489,22 @@
         <target>cambiar a modo claro</target>
       </segment>
     </unit>
+    <unit id="timeAgo">
+      <segment>
+        <source><ph id="0" equiv="PH" disp="5"/> <ph id="1" equiv="PH_1" disp="&apos;minutes&apos;"/> ago</source>
+        <target>hace <ph id="0" equiv="PH" disp="timeValue"/> <ph id="1" equiv="PH_1" disp="timeUnit"/></target>
+      </segment>
+    </unit>
     <unit id="tooManyAttempts">
       <segment>
         <source>Too many attempts. Try again later.</source>
         <target>Demasiados intentos. Inténtalo de nuevo más tarde.</target>
       </segment>
     </unit>
-    <unit id="twoHoursAgo">
+    <unit id="unauthorizedAccess">
       <segment>
-        <source>2 hours ago</source>
-        <target>hace 2 horas</target>
+        <source>Access denied. Only system administrators can sign in.</source>
+        <target>Acceso denegado. Solo los administradores del sistema pueden iniciar sesión.</target>
       </segment>
     </unit>
     <unit id="viewProfile">

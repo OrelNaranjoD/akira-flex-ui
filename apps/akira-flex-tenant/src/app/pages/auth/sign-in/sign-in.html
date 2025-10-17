@@ -8,12 +8,12 @@
     <!-- Sign In Form -->
     <p-card class="shadow-xl">
       <ng-template #header>
-        <h1 class="text-xl font-semibold text-center" i18n="@@signInTitle">Sign in</h1>
+        <h1 class="text-xl font-semibold text-center" i18n="@@signIn">Sign in</h1>
       </ng-template>
       <form class="space-y-6" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <!-- Email Field -->
         <div class="space-y-2">
-          <label class="block text-sm font-medium" i18n="@@email" for="email">Email address</label>
+          <label class="block text-sm font-medium" i18n="@@email" for="email">Email</label>
           <input
             class="w-full"
             id="email"

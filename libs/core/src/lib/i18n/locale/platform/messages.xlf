@@ -14,15 +14,17 @@
         <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:10</note>
       </notes>
       <segment>
-        <source>you have a new message from Juan Pérez</source>
+        <source>you have a new message from <ph id="0" equiv="PH" disp="&apos;Juan Pérez&apos;"/></source>
       </segment>
     </unit>
-    <unit id="fiveMinutesAgo">
+    <unit id="timeAgo">
       <notes>
         <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:11</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:19</note>
+        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:27</note>
       </notes>
       <segment>
-        <source>5 minutes ago</source>
+        <source><ph id="0" equiv="PH" disp="5"/> <ph id="1" equiv="PH_1" disp="&apos;minutes&apos;"/> ago</source>
       </segment>
     </unit>
     <unit id="taskCompleted">
@@ -41,14 +43,6 @@
         <source>the &quot;Monthly Report&quot; task has been completed</source>
       </segment>
     </unit>
-    <unit id="oneHourAgo">
-      <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:19</note>
-      </notes>
-      <segment>
-        <source>1 hour ago</source>
-      </segment>
-    </unit>
     <unit id="systemAlert">
       <notes>
         <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:25</note>
@@ -65,12 +59,131 @@
         <source>the server experienced temporary issues</source>
       </segment>
     </unit>
-    <unit id="twoHoursAgo">
+    <unit id="signIn">
       <notes>
-        <note category="location">apps/akira-flex-platform/src/app/components/layout/header/platform-header.notifications.ts:27</note>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:13,15</note>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:84</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
       </notes>
       <segment>
-        <source>2 hours ago</source>
+        <source>Sign In</source>
+      </segment>
+    </unit>
+    <unit id="email">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:19,20</note>
+      </notes>
+      <segment>
+        <source>Email</source>
+      </segment>
+    </unit>
+    <unit id="emailPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:28,29</note>
+      </notes>
+      <segment>
+        <source>user@akiraflex.cl</source>
+      </segment>
+    </unit>
+    <unit id="emailRequired">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:35,36</note>
+      </notes>
+      <segment>
+        <source> Email is required </source>
+      </segment>
+    </unit>
+    <unit id="emailInvalid">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:39,40</note>
+      </notes>
+      <segment>
+        <source> Enter a valid email address </source>
+      </segment>
+    </unit>
+    <unit id="password">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:46,47</note>
+      </notes>
+      <segment>
+        <source> Password </source>
+      </segment>
+    </unit>
+    <unit id="passwordPlaceholder">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:55,57</note>
+      </notes>
+      <segment>
+        <source>Secure password</source>
+      </segment>
+    </unit>
+    <unit id="passwordRequired">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:61,62</note>
+      </notes>
+      <segment>
+        <source> Password is required </source>
+      </segment>
+    </unit>
+    <unit id="passwordMinlength">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:65,66</note>
+      </notes>
+      <segment>
+        <source> Password must be at least 8 characters </source>
+      </segment>
+    </unit>
+    <unit id="securityFooter">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.html:93,95</note>
+      </notes>
+      <segment>
+        <source> Protected by advanced security measures. Unauthorized access attempts will be reported. </source>
+      </segment>
+    </unit>
+    <unit id="accountLocked">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:65,67</note>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:91,93</note>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:142,144</note>
+      </notes>
+      <segment>
+        <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
+            timeRemaining / 60
+          )"/> minutes.</source>
+      </segment>
+    </unit>
+    <unit id="unauthorizedAccess">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:111</note>
+      </notes>
+      <segment>
+        <source>Access denied. Only system administrators can sign in.</source>
+      </segment>
+    </unit>
+    <unit id="incorrectCredentials">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:149</note>
+      </notes>
+      <segment>
+        <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
+      </segment>
+    </unit>
+    <unit id="tooManyAttempts">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:153</note>
+      </notes>
+      <segment>
+        <source>Too many attempts. Try again later.</source>
+      </segment>
+    </unit>
+    <unit id="error.signIn">
+      <notes>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:155</note>
+        <note category="location">apps/akira-flex-platform/src/app/pages/auth/sign-in/sign-in.ts:158</note>
+      </notes>
+      <segment>
+        <source>Error signing in. Try again.</source>
       </segment>
     </unit>
     <unit id="languageSwitcher.tooltip">
@@ -97,24 +210,10 @@
         <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
-    <unit id="notifications.title">
+    <unit id="notifications">
       <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.ariaLabel">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.header">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
       </notes>
       <segment>
@@ -169,20 +268,12 @@
         <source> Please sign in to access the application or contact support if you need assistance. </source>
       </segment>
     </unit>
-    <unit id="goToDashboard">
+    <unit id="goToStart">
       <notes>
         <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
       </notes>
       <segment>
-        <source>Go to Dashboard</source>
-      </segment>
-    </unit>
-    <unit id="signIn">
-      <notes>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
-      </notes>
-      <segment>
-        <source>Sign In</source>
+        <source>Go to Start</source>
       </segment>
     </unit>
     <unit id="goBack">

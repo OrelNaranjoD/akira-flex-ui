@@ -4,7 +4,7 @@ import {
   provideZonelessChangeDetection,
   isDevMode,
 } from '@angular/core'
-import { provideRouter } from '@angular/router'
+import { provideRouter, withInMemoryScrolling } from '@angular/router'
 import { ROUTES } from './app.routes'
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
@@ -20,7 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     ...(isDevMode() ? [] : [provideClientHydration(withEventReplay())]),
-    provideRouter(ROUTES),
+    provideRouter(
+      ROUTES,
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' })
+    ),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor, errorInterceptor])),
     provideAnimationsAsync(),
     providePrimeNG({

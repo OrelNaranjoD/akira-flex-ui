@@ -1,7 +1,8 @@
 import { isPlatformBrowser } from '@angular/common'
 import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core'
+import { REQUEST } from '@angular/core'
 import { THEME_COOKIES, ThemeMode } from '../shared'
-import { getCookie, setSecureCookie } from '../utils/cookie-utils'
+import { getCookie, getCookieFromString, setSecureCookie } from '../utils/cookie-utils'
 
 /**
  * Manages the application's visual theme (light, dark, or system-based).
@@ -12,6 +13,7 @@ import { getCookie, setSecureCookie } from '../utils/cookie-utils'
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID))
+  private readonly request = inject(REQUEST, { optional: true })
   private readonly userPreference = signal<ThemeMode>(this.getInitialMode())
   private readonly systemPreferenceChanged = signal(0)
 
@@ -70,16 +72,23 @@ export class ThemeService {
   }
 
   /**
-   * Retrieves the initial theme mode from the browser cookie.
+   * Retrieves the initial theme mode from the browser cookie or server request.
    * Defaults to 'system' if no cookie is found or if running on the server.
    * @returns The stored theme preference or 'system'.
    */
   private getInitialMode(): ThemeMode {
+    let stored: string | null = null
+
     if (this.isBrowser) {
-      const stored = getCookie(THEME_COOKIES.MODE)
-      if (stored === 'light' || stored === 'dark' || stored === 'system') {
-        return stored
-      }
+      stored = getCookie(THEME_COOKIES.MODE)
+    } else if (this.request) {
+      const req = this.request as { headers?: { cookie?: string }; get?: (key: string) => string }
+      const cookieHeader = req.headers?.cookie || req.get?.('cookie') || ''
+      stored = getCookieFromString(cookieHeader, THEME_COOKIES.MODE)
+    }
+
+    if (stored === 'light' || stored === 'dark' || stored === 'system') {
+      return stored
     }
     return 'system'
   }
@@ -96,10 +105,11 @@ export class ThemeService {
 
   /**
    * Applies the theme to the document's root element by toggling the 'dark' class.
+   * Works on both server and browser.
    * @param mode The effective theme mode to apply ('light' or 'dark').
    */
   private applyTheme(mode: 'light' | 'dark'): void {
-    if (this.isBrowser) {
+    if (typeof document !== 'undefined') {
       document.documentElement.classList.toggle('dark', mode === 'dark')
     }
   }

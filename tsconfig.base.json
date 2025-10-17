@@ -22,5 +22,6 @@
       "@tenant/*": ["./apps/akira-flex-tenant/*"]
     },
     "types": ["@angular/localize"]
-  }
+  },
+  "files": ["vitest.workspace.ts"]
 }

@@ -31,12 +31,10 @@
         @if ( form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched) ) {
         <div class="text-xs">
           @if (form.get('email')?.hasError('required')) {
-          <p-message severity="error" variant="simple" size="small" i18n="@@emailRequired"
-            >Email is required.</p-message
-          >
+          <p-message severity="error" variant="simple" size="small" i18n="@@emailRequired">Email is required</p-message>
           } @if (form.get('email')?.hasError('email')) {
           <p-message severity="error" variant="simple" size="small" i18n="@@emailInvalid">
-            Please enter a valid email.
+            Enter a valid email address
           </p-message>
           }
         </div>
@@ -87,7 +85,10 @@
       </div>
 
       <div class="flex flex-col gap-1">
-        <label class="font-medium" for="register-phone" i18n="@@phoneOptional">Phone (optional)</label>
+        <label class="font-medium" for="register-phone">
+          <span i18n="@@phone">Phone</span>
+          <span i18n="@@optional">(optional)</span>
+        </label>
         <p-iconfield>
           <p-inputIcon class="pi pi-phone" />
           <input

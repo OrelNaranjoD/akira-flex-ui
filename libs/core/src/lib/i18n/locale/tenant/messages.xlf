@@ -176,7 +176,7 @@
         <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:16,17</note>
       </notes>
       <segment>
-        <source>Email address</source>
+        <source>Email</source>
       </segment>
     </unit>
     <unit id="emailPlaceholder">
@@ -222,9 +222,11 @@
         <source> Remember your password? <pc id="0" equivStart="START_LINK" equivEnd="CLOSE_LINK" type="link" dispStart="&lt;a class=&quot;hover:underline&quot; i18n-href=&quot;@@loginLink&quot; routerLink=&quot;/auth/sign-in&quot;&gt;" dispEnd="&lt;/a&gt;">Sign in</pc></source>
       </segment>
     </unit>
-    <unit id="signInTitle">
+    <unit id="signIn">
       <notes>
         <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:11,12</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:81</note>
+        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
       </notes>
       <segment>
         <source>Sign in</source>
@@ -262,15 +264,6 @@
         <source>Password must be at least 6 characters</source>
       </segment>
     </unit>
-    <unit id="signIn">
-      <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:81</note>
-        <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:39</note>
-      </notes>
-      <segment>
-        <source>Sign in</source>
-      </segment>
-    </unit>
     <unit id="loginHelp">
       <notes>
         <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.html:90,95</note>
@@ -282,6 +275,8 @@
     <unit id="accountLocked">
       <notes>
         <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:70,72</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:97,99</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:137,139</note>
       </notes>
       <segment>
         <source>Account locked. Try again in <ph id="0" equiv="PH" disp="Math.ceil(
@@ -289,25 +284,9 @@
           )"/> minutes.</source>
       </segment>
     </unit>
-    <unit id="accountLockedTemporarily">
-      <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:96</note>
-      </notes>
-      <segment>
-        <source>Account temporarily locked. Try again later.</source>
-      </segment>
-    </unit>
-    <unit id="accountLockedMultipleAttempts">
-      <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:133</note>
-      </notes>
-      <segment>
-        <source>Account locked due to multiple failed attempts. Try again in 15 minutes.</source>
-      </segment>
-    </unit>
     <unit id="incorrectCredentials">
       <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:138</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:144</note>
       </notes>
       <segment>
         <source>Incorrect credentials. You have <ph id="0" equiv="PH" disp="remainingAttempts"/> attempt<ph id="1" equiv="PH_1" disp="remainingAttempts === 1 ? &apos;&apos; : &apos;s&apos;"/> remaining.</source>
@@ -315,16 +294,16 @@
     </unit>
     <unit id="tooManyAttempts">
       <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:142</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:148</note>
       </notes>
       <segment>
         <source>Too many attempts. Try again later.</source>
       </segment>
     </unit>
-    <unit id="errorSigningIn">
+    <unit id="error.signIn">
       <notes>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:144</note>
-        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:147</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:150</note>
+        <note category="location">apps/akira-flex-tenant/src/app/pages/auth/sign-in/sign-in.ts:153</note>
       </notes>
       <segment>
         <source>Error signing in. Try again.</source>
@@ -354,24 +333,10 @@
         <source> Innovation and flexibility for your ORG </source>
       </segment>
     </unit>
-    <unit id="notifications.title">
+    <unit id="notifications">
       <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:9,10</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.ariaLabel">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:11,14</note>
-      </notes>
-      <segment>
-        <source>Notifications</source>
-      </segment>
-    </unit>
-    <unit id="notifications.header">
-      <notes>
         <note category="location">libs/core/src/lib/components/notification-button/notification-button.html:26,29</note>
       </notes>
       <segment>
@@ -426,12 +391,12 @@
         <source> Please sign in to access the application or contact support if you need assistance. </source>
       </segment>
     </unit>
-    <unit id="goToDashboard">
+    <unit id="goToStart">
       <notes>
         <note category="location">libs/core/src/lib/components/page-not-found/page-not-found.html:30,31</note>
       </notes>
       <segment>
-        <source>Go to Dashboard</source>
+        <source>Go to Start</source>
       </segment>
     </unit>
     <unit id="goBack">

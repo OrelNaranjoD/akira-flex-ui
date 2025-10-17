@@ -10,10 +10,10 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser'
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { providePrimeNG } from 'primeng/config'
-import { PurpleStoneTheme } from './themes/custom-theme.preset'
 import { provideStore } from '@ngrx/store'
 import { provideStoreDevtools } from '@ngrx/store-devtools'
 import { authInterceptor, errorInterceptor } from '@core'
+import PurpleStoneTheme from './themes/custom-theme.preset'
 
 export const appConfig: ApplicationConfig = {
   providers: [

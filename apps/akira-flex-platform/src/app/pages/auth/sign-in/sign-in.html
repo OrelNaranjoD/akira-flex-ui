@@ -6,9 +6,12 @@
     </div>
 
     <!-- Sign In Form -->
-    <p-card class="shadow-xl">
+    <p-card class="shadow-2xl">
       <ng-template #header>
-        <h1 class="text-xl font-semibold text-center" i18n="@@signIn">Sign in</h1>
+        <div class="flex items-center justify-center gap-2 pt-4">
+          <i class="pi pi-shield text-2xl"></i>
+          <h1 class="text-xl font-semibold text-center" i18n="@@signIn">Sign In</h1>
+        </div>
       </ng-template>
       <form class="space-y-6" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <!-- Email Field -->
@@ -22,17 +25,19 @@
             pInputText
             formControlName="email"
             i18n-placeholder="@@emailPlaceholder"
-            placeholder="example@email.com"
+            placeholder="user@akiraflex.cl"
             autocomplete="email"
             variant="filled"
           />
           @if (signInForm.get('email')?.invalid && signInForm.get('email')?.touched) { @if
           (signInForm.get('email')?.errors?.['required']) {
-          <p-message i18n="@@emailRequired" severity="error" size="small" variant="simple">Email is required</p-message>
+          <p-message i18n="@@emailRequired" severity="error" size="small" variant="simple">
+            Email is required
+          </p-message>
           } @else if (signInForm.get('email')?.errors?.['invalidEmail']) {
-          <p-message i18n="@@emailInvalid" severity="error" size="small" variant="simple"
-            >Enter a valid email address</p-message
-          >
+          <p-message i18n="@@emailInvalid" severity="error" size="small" variant="simple">
+            Enter a valid email address
+          </p-message>
           } }
         </div>
 
@@ -40,44 +45,42 @@
         <div class="space-y-2">
           <label class="block text-sm font-medium" i18n="@@password" for="password"> Password </label>
           <p-password
-            [invalid]="
-signInForm.get('password')?.invalid && signInForm.get('password')?.touched
-"
+            [invalid]="signInForm.get('password')?.invalid && signInForm.get('password')?.touched"
             [feedback]="false"
             [toggleMask]="true"
             formControlName="password"
             autocomplete="current-password"
             fluid
             i18n-placeholder="@@passwordPlaceholder"
-            placeholder="Secret password"
+            placeholder="Secure password"
             variant="filled"
           ></p-password>
           @if (signInForm.get('password')?.invalid && signInForm.get('password')?.touched) { @if
           (signInForm.get('password')?.errors?.['required']) {
-          <p-message i18n="@@passwordRequired" severity="error" size="small" variant="simple"
-            >Password is required</p-message
-          >
+          <p-message i18n="@@passwordRequired" severity="error" size="small" variant="simple">
+            Password is required
+          </p-message>
           } @else if (signInForm.get('password')?.errors?.['minlength']) {
-          <p-message i18n="@@passwordMinlength" severity="error" size="small" variant="simple"
-            >Password must be at least 6 characters</p-message
-          >
+          <p-message i18n="@@passwordMinlength" severity="error" size="small" variant="simple">
+            Password must be at least 8 characters
+          </p-message>
           } }
         </div>
 
         <!-- Error Message -->
         @if (errorMessage()) {
-        <p-message class="w-full" severity="error" icon="pi pi-times-circle" styleClass="mb-2" closable
-          >{{ errorMessage() }}</p-message
-        >
+        <p-message class="w-full" severity="error" icon="pi pi-times-circle" styleClass="mb-2" closable>
+          {{ errorMessage() }}
+        </p-message>
         }
 
         <!-- Submit Button -->
         <p-button
           [loading]="isLoading()"
-          [disabled]="signInForm.invalid"
+          [disabled]="signInForm.invalid || isAccountLocked()"
           type="submit"
           i18n-label="@@signIn"
-          label="Sign in"
+          label="Sign In"
           styleClass="w-full p-3"
           size="large"
         />
@@ -86,11 +89,8 @@ signInForm.get('password')?.invalid && signInForm.get('password')?.touched
 
     <!-- Footer -->
     <div class="text-center mt-6">
-      <p class="text-sm" i18n="@@loginHelp">
-        Having trouble signing in?
-        <a class="hover:underline" i18n-href="@@forgotPassword" routerLink="/auth/password-recovery">
-          Recover your password
-        </a>
+      <p class="text-xs" i18n="@@securityFooter">
+        Protected by advanced security measures. Unauthorized access attempts will be reported.
       </p>
     </div>
   </div>

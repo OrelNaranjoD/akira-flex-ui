@@ -102,13 +102,40 @@ export class AuthService {
             expiresIn: 3600,
           }
 
-          const mockUser: User = {
-            id: '1',
-            email: credentials.email,
-            firstName: credentials.email === 'admin@tenant.com' ? 'Admin' : 'User',
-            lastName: 'Tenant',
-            roles:
-              credentials.email === 'admin@tenant.com' ? ['admin', 'tenant'] : ['user', 'tenant'],
+          let mockUser: User
+
+          if (credentials.email === 'sysadmin@akiraflex.com') {
+            mockUser = {
+              id: 'sysadmin-001',
+              email: credentials.email,
+              firstName: 'System',
+              lastName: 'Administrator',
+              roles: ['admin', 'system'],
+            }
+          } else if (credentials.email === 'superadmin@akiraflex.com') {
+            mockUser = {
+              id: 'superadmin-001',
+              email: credentials.email,
+              firstName: 'Super',
+              lastName: 'Administrator',
+              roles: ['admin', 'system', 'superadmin'],
+            }
+          } else if (credentials.email === 'admin@tenant.com') {
+            mockUser = {
+              id: '1',
+              email: credentials.email,
+              firstName: 'Admin',
+              lastName: 'Tenant',
+              roles: ['admin', 'tenant'],
+            }
+          } else {
+            mockUser = {
+              id: '2',
+              email: credentials.email,
+              firstName: 'User',
+              lastName: 'Tenant',
+              roles: ['user', 'tenant'],
+            }
           }
 
           this.setMockSession(mockResponse, mockUser)

@@ -76,12 +76,12 @@ import { SignInService } from './sign-in.service'
               <div class="text-xs mt-1">
                 @if (signInForm.get('email')?.hasError('required')) {
                   <p-message i18n="@@emailRequired" severity="error" variant="simple" size="small"
-                    >Email is required.</p-message
+                    >Email is required</p-message
                   >
                 }
                 @if (signInForm.get('email')?.hasError('email')) {
                   <p-message i18n="@@emailInvalid" severity="error" variant="simple" size="small"
-                    >Please enter a valid email.</p-message
+                    >Enter a valid email address</p-message
                   >
                 }
               </div>

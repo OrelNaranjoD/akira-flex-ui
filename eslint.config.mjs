@@ -20,6 +20,7 @@ export default [
       '**/vitest.config.*.timestamp*',
       '**/*.md',
       '**/styles.css',
+      'package-lock.json',
       'package.json',
       'tsconfig.base.json',
     ],

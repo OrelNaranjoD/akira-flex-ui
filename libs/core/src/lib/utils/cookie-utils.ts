@@ -126,3 +126,33 @@ export function removeCookie(name: string, path: string = '/'): void {
 
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=${path}`
 }
+
+/**
+ * Parses cookies from a cookie string (e.g., from request headers).
+ * @param cookieString The cookie string to parse.
+ * @returns An object with cookie names as keys and values as values.
+ */
+export function parseCookies(cookieString: string): Record<string, string> {
+  const cookies: Record<string, string> = {}
+  if (!cookieString) return cookies
+
+  const cookiePairs = cookieString.split(';')
+  for (const pair of cookiePairs) {
+    const [name, ...valueParts] = pair.trim().split('=')
+    if (name) {
+      cookies[name] = decodeURIComponent(valueParts.join('='))
+    }
+  }
+  return cookies
+}
+
+/**
+ * Gets a cookie value by name from a cookie string.
+ * @param cookieString The cookie string.
+ * @param name The cookie name.
+ * @returns The cookie value or null if not found.
+ */
+export function getCookieFromString(cookieString: string, name: string): string | null {
+  const cookies = parseCookies(cookieString)
+  return cookies[name] || null
+}
